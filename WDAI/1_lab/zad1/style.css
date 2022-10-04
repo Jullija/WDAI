@@ -1,0 +1,94 @@
+#first{
+    background-color:rgb(80, 8, 74);
+    font-size: 20px;
+    color: white;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+#second{
+    background-color:rgb(112, 11, 104);
+    width: 200px;
+    height: 100px;
+    font-size: 17px;
+    color: rgba(255, 255, 255, 0.863);
+    font-family: 'Lucida Sans', sans-serif;
+    overflow: scroll;
+    margin-left: 500px;
+}
+
+#third{
+    background-color:rgb(160, 25, 149);
+    width: 1800px;
+    height:30px;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.671);
+    font-family: 'Franklin Gothic Medium', sans-serif;
+    padding: 20px;
+}
+
+#fourth{
+    background-color:rgb(194, 65, 183);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.452);
+    font-family: 'Segoe UI';
+    margin-top: 20px;
+}
+
+
+
+
+
+
+#firstTable{
+    height: 306px;
+    width: 800px;
+    margin-bottom: 20px;
+}
+
+
+.firstTableHeading{
+    background-color:rgba(91,156,214,255);
+    height: 50px;
+    width: 200px;
+    border-bottom: 3px solid white;
+}
+
+
+.darker{
+    background-color: rgba(211,222,240,255);
+    height: 50px;
+    width: 200px;
+}
+
+.bright{
+    background-color: rgba(235,239,248,255);
+    height: 50px;
+    width: 200px;
+}
+
+
+
+
+
+
+#secondTable{
+    width:750px;
+    height: 210px;
+    border-collapse: collapse;
+}
+
+.secondTableHeading{
+    background-color: rgba(119,111,109,255);
+    height: auto;
+    width: auto; 
+    border: 2px solid black;
+}
+
+.secondTableInside{
+    background-color: rgba(217,217,217,255);
+    height: auto;
+    width: auto;
+    border: 2px solid black;
+}
+
