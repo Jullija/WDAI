@@ -92,3 +92,69 @@
     border: 2px solid black;
 }
 
+
+
+
+
+
+
+
+
+
+
+#piesek1{
+    height: 100px;
+    width: 100px;
+    float: left;
+
+    padding-right: 15px;
+}
+
+#piesek2{
+    height: 100px;
+    width: 100px;
+    float: right;   
+    padding: 15px;
+}
+
+
+
+
+
+#firstPicture{
+    height: 200px;
+    width: 200px;
+}
+
+
+
+#thirdPicture{
+    height: 200px;
+    width: 200px;
+    position: relative;
+}
+
+#secondPicture{
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    margin-left: 220px;
+}
+
+
+
+
+
+#eu{
+    background-color: rgb(26, 60, 211);
+    position: absolute;
+    margin-top: 100px;
+    width: 300px;
+}
+
+#azja{
+    background-color: rgba(248, 45, 45, 0.849);
+    position: relative;
+    width:300px;
+}
+
