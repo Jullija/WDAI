@@ -1,0 +1,28 @@
+#container{
+    height: 420px;
+    width: 850px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.red{
+    border: 1px solid black;
+    height: 100px;
+    width: 190px;
+    background-color: red;
+}
+
+.blue{
+    border: 1px solid black;
+    height: 100px;
+    width: 600px;
+    background-color: rgba(172,216,229,255);
+}
+
+#yellow{
+    height: 100px;
+    width: 96.5%;
+    background-color: yellow;
+    border: 1px solid black;
+}
