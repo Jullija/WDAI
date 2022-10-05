@@ -1,0 +1,96 @@
+#gridContainer{
+    height: 500px;
+    width: 700px;
+    background-color: rgb(168, 168, 168);
+    display: grid;
+    border: 1px solid black;
+    text-align: center;
+
+}
+
+#gridContainerSmall{
+    height: 97%;
+    width: 97%;
+    background-color: rgb(102, 102, 102);
+    margin:auto;
+    display: grid;
+    border: 1px solid black;
+    grid-template-rows: 100px 330px auto;
+
+}
+
+#topStrony{
+    padding: 10px;
+}
+
+
+#logo{
+    height: 40%;
+    width: 20%;
+    background-color: white;
+    border: 1px solid black;
+    text-align: left;
+
+
+}
+
+
+
+#middle{
+    background-color: white;
+    border-top: 1px solid black;
+    display: grid;
+    grid-template-rows: 50px auto;
+    grid-auto-columns: repeat(4, minmax(0, 1fr));
+}
+
+
+
+
+#mainPage{
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    font-weight: bold;
+    padding: 10px;
+    background-image: url("main.png");
+
+}
+
+#gallery{
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 10px;
+}
+
+#lokalizacja{
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    font-weight: bold;
+    padding: 10px;
+    background-image: url("lok.png");
+}
+
+#contact{
+    border-bottom: 1px solid black;
+    padding: 10px;
+}
+
+#left{
+    border-right: 1px solid black;
+    grid-column: 1 / 2;
+    padding: 10px;
+}
+
+
+
+#right{
+    grid-column: 2 / 5;
+    padding: 10px;
+}
+
+
+#footer{
+    border-top: 1px solid black;
+    padding: 10px;
+}
+
