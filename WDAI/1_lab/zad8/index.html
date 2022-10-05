@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+    <div id="container">
+
+        <form method="post">
+
+            <label for="nrKonta">Numer konta</label><br />
+            <input type="text" id="nrKonta" name="nrKonta" maxlength="26" minlength="26" value="" required><br /><br />
+
+
+            <label for="imie">Imię</label><br />
+            <input type="text" id="imie" name="imie" minlength="3" maxlength="26" required><br /><br />
+
+
+            <label for="nazwisko">Nazwisko</label><br />
+            <input type="text" id="nazwisko" name="nazwisko" minlength="2" maxlength="26" required><br /><br />
+
+
+            <label for="mail">Adres e-mail</label><br />
+            <input type="email" id="mail" name="mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$" required><br /><br />
+
+
+            <label for="adres">Adres</label><br />
+            <input type="text" id="adres" name="adres" minlength="2" maxlength="50" required><br /><br />
+
+
+            <label for="kod">Kod pocztowy</label><br />
+            <input type="text" id="kod" name="kod" maxlength="6" minlength="6" pattern="[0-9]{2}[-][0-9]{3}" required><br /><br />
+
+
+            <label for="miasto">Miasto</label><br />
+            <input type="text" list ="miasta" id="miasto" name="miasto" minlength="2" maxlength="26" required><br /><br />
+            <datalist id="miasta">
+                <option value="Warszawa"></option>
+                <option value="Kraków"></option>
+                <option value="Łódź"></option>
+                <option value="Wrocław"></option>
+                <option value="Poznań"></option>
+                <option value="Gdańsk"></option>
+                <option value="Szczecin"></option>
+                <option value="Bydgoszcz"></option>
+                <option value="Lublin"></option>
+                <option value="Białystok"></option>
+            </datalist>
+
+
+            <label for="kwota">Kwota przelewu</label><br />
+            <input type="number" id="kwota" name="kwota" min="1" value="0" required><br /><br />
+
+
+            <label for="data">Data przelewu</label><br />
+            <input type="month" id="data" name="data" required><br /><br />
+            
+
+            <input type="submit" value="Wyślij">
+
+        </form>
+
+
+    </div>
+    
+</body>
+</html>
