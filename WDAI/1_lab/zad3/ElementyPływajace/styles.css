@@ -1,0 +1,103 @@
+body {
+	font-family: Tahoma, "Lucida Grande", Arial, sans-serif;
+	font-size: 62.5%;
+	font-family: 'Times New Roman', Times, serif;
+}
+
+
+
+#container{
+	background-color: rgba(248,250,241,255);
+	height: 900px;
+	width: 600px;
+	margin: auto;
+
+}
+
+#top{
+	background-color: rgba(248,250,241,255);
+	width: 600px;
+	height: 15px;
+	margin: auto;
+	margin-bottom: 0;
+}
+
+h1 {
+	font-size: 2.4em;
+	color: white;
+	height: 35px;
+	background-color: rgba(40,77,85,255);
+	border-bottom: 2px solid rgba(251,239,153,255);
+	border-top: 2px solid rgba(251,239,153,255);
+	padding: 3px;
+	padding-left: 20px;
+	margin-top: 0;
+
+}
+
+
+#sideBar{
+	background-color: rgba(251,239,153,255);
+	float: right;
+	height: 280px;
+	width: 170px;
+	border: 1px solid rgba(253,208,64,255);
+	border-top: 3px solid rgba(253,208,64,255);
+	margin-right: 10px;
+}
+
+ul{
+	list-style-type:disc;
+	font-size: 12px;
+	margin-left: -15px;
+
+}
+
+
+#first{
+	width: 390px;
+	border-top: 1px solid rgba(94,151,148,255);
+	margin-left: 20px;
+}
+
+#yves{
+	border-bottom: 1px solid rgba(94,151,148,255);
+	width: 390px;
+}
+
+#second{
+	margin-left: 20px;
+	top: 390px;
+}
+
+#third{
+	border-top: 1px solid rgba(94,151,148,255);
+	margin-left: 20px;
+	border-bottom: 1px solid rgba(204,204,204,255);
+	margin-bottom: 2px;
+}
+
+#last{
+	margin-bottom: 3px;
+}
+
+
+h2 {
+	font-size: 1.8em;
+	color: black;
+	margin-left: 20px;
+	margin-bottom: 1px;
+}
+
+h3 {
+	font-size: 1.4em;
+	color: black;
+	text-align: center;
+	margin-top: 8px;
+}
+p, ol {
+	font-size: 1.2em;
+	line-height: 130%;
+	margin-top: -1px;
+}
+
