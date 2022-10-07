@@ -1,1 +1,54 @@
 
+#content{
+    margin: auto;
+    width: 800px;
+    padding-left: 10px;
+}
+
+h1{
+
+    color: rgba(30,92,128,255);
+    border: 2px dotted grey;
+    border-right: none;
+    font-weight: 3;
+    padding: 5px;
+    margin-bottom: 0;
+}
+
+.intro{
+    border-left: 2px dotted grey;
+    margin-top: 0;
+    padding: 5px;
+    width: auto;
+    margin-left: 0;
+}
+
+p{
+    width: 190px;
+    margin-left: 10px;
+}
+
+#gallery{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    font-size: 10px;
+    width: 600px;
+    margin-left: 3px;
+}
+
+.figure{
+    width: 230px;
+    height: 250px;
+    margin-bottom: 15px;
+    margin-left: 0;
+}
+
+.photo{
+    width: 200px;
+    border: 1px solid grey;
+    padding: 3px;
+    box-shadow: rgb(168, 168, 168) 3px 5px 4px ;
+
+}
+
