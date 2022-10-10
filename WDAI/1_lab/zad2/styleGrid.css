@@ -1,0 +1,97 @@
+#container{
+    height: 500px;
+    width: 700px;
+    background-color: rgba(194,194,194,255);
+    margin: auto;
+    display: flex;
+    border: 1px solid black;
+}
+
+#smallerContainer{
+    height: 97%;
+    width: 97%;
+    background-color: rgba(151,151,151,255);
+    margin:auto;
+    display: grid; 
+    border: 1px solid black;
+    grid-template-areas: "head head head head"
+                         "nav nav nav nav"
+                         "leftSide rightSide rightSide rightSide"
+                         "foot foot foot foot";
+    grid-template-rows: 17% 11% 62% 10%;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+header{
+    grid-area: head;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+#topStrony{
+    height: 100%;
+}
+
+#logo{
+    height: 50%;
+    width: 23%;
+    background-color: white;
+    border: 1px solid black;
+    text-align: left;
+    margin-top: -10px;
+}
+
+nav{
+    grid-area: nav;
+    border-bottom: 1px solid black;
+    display: grid;
+    grid-template-areas: "mpage gallery locali contact";
+    grid-template-columns: 25% 25% 25% 25%;
+    text-align: center;
+}
+
+#stronaGlowna{
+    grid-area: mpage;
+    border-right: 1px solid black;
+    background-image: url("main.png");
+
+}
+
+#galeria{
+    grid-area: gallery;
+    border-right: 1px solid black;
+}
+
+#lokalizacja{
+    grid-area: locali;
+    border-right: 1px solid black;
+    background-image: url("lok.png");
+}
+
+#kontakt{
+    grid-area: contact;
+}
+
+
+
+#left{
+    grid-area: leftSide;
+    border-right: 1px solid black;
+    text-align: center;
+}
+
+main{
+    text-align: center;
+    grid-column:  2 / 5;
+}
+
+#right{
+    grid-area: rightSide;
+}
+
+footer{
+    grid-area: foot;
+    border-top: 1px solid black;
+    text-align: center;
+}
