@@ -1,12 +1,14 @@
-
-@media (min-width: 1600px) {
+@media (min-width: 0px) {
 
     #container{
         display: grid;
-        grid-template-areas: "photo photo photo"
-                            "photo photo photo"
-                            "photo photo photo";
-        font-size: 100px;
+        grid-template-areas: "photo";
+        font-size: 25px;
+    }
+    .photoClass{
+        width: 600px;
+        height: 500px;
+        display: flex;
     }
 
     img{
@@ -16,27 +18,6 @@
     }
     
 }
-
-
-@media (min-width: 1200px) {
-
-    #container{
-        display: grid;
-        grid-template-areas: "photo photo photo"
-                            "photo photo photo"
-                            "photo photo photo";
-        font-size: 20px;
-    }
-
-    img{
-        grid-area: photo;
-        width:500px;
-        height: 400px;
-    }
-    
-}
-
-
 
 
 
@@ -50,27 +31,74 @@
         font-size: 10px;
     }
 
+    .photoClass{
+        width: 350px;
+        height: 250px;
+        display: flex;
+    }
+
     img{
         grid-area: photo;
-        width:100%;
+        width: 100%;
         height: 100%;
+        object-fit: fill;
     }
     
 }
 
 
-@media (max-width: 800px) {
+
+@media (min-width: 1200px) {
 
     #container{
         display: grid;
-        grid-template-areas: "photo";
-        font-size: 25px;
+        grid-template-areas: "photo photo photo"
+                            "photo photo photo"
+                            "photo photo photo";
+        font-size: 20px;
+    }
+
+    .photoClass{
+        width: 400px;
+        height: 300px;
+        display: flex;
     }
 
     img{
         grid-area: photo;
         width:100%;
         height: 100%;
+        object-fit: fill;
+    }
+    
+}
+
+
+
+@media (min-width: 1600px) {
+
+    #container{
+        display: grid;
+        grid-template-areas: "photo photo photo"
+                            "photo photo photo"
+                            "photo photo photo";
+        font-size: 20px;        
+    }
+
+    .photoClass{
+        display: flex;
+        width: 500px;
+        height: 300px;
+       
+    }
+
+ 
+
+    img{
+        grid-area: photo;
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
     }
     
 }
