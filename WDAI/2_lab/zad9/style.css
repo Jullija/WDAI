@@ -1,0 +1,86 @@
+nav{
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid orange;
+    position: fixed;
+    width: 100%;
+    transform: translate(0, -100%);
+}
+
+img{
+    width: 20px;
+    height: 20px;
+}
+
+#left{
+    
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.leftElements{
+    width: 100px;
+    height: 50px;
+    background-color: red;
+    border: 1px solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+#right{
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.rightElements{
+    width: 100px;
+    height: 50px;
+    background-color: red;
+    border: 1px solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+
+
+/*SEKCJE*/
+main{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+main > div{
+    width: 100vh;
+    height: 50vh;
+}
+
+#first{
+    background-color: aqua;
+}
+
+#second{
+    background-color: rgb(19, 146, 97);
+}
+
+#third{
+    background-color: brown;
+}
+
+#fourth{
+    background-color: palevioletred;
+}
