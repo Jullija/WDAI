@@ -1,0 +1,93 @@
+body{
+    display: flex;
+    flex-direction: row;
+}
+
+nav{
+    height: 500px;
+    width: 250px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    color: rgba(1,73,105,255);
+    font-weight: bold;
+}
+
+nav > div{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 60px;
+}
+
+.notification{
+    height: 30px;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    border: 1px solid rgba(82,179,167,255);
+    color: rgba(82,179,167,255);
+    border-radius: 15px;
+}
+
+main > div{
+    margin-left: 50px;
+    width: 1000px;
+    height: 500px;
+    border: 1px solid red;
+}
+
+
+img{
+    height: 30px;
+    width: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.withHover{
+    display: none;
+}
+
+
+
+
+
+nav > div:hover{
+    background-color:rgba(55,189,182,255);
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+nav > div:hover .noHover{
+    display: none;
+}
+
+nav > div:hover .withHover{
+    display: flex;
+}
+
+nav > div:hover .notification{
+    color: white;
+    border: 1px solid white;
+}
+
+
+@media screen and (max-width:1315px){
+    nav{
+        width: 100px;
+    }
+
+    .text{
+        display: none;
+    }
+}
+
+
+
+
