@@ -1,0 +1,109 @@
+body{
+    height: 2000px;
+    margin: 10px;
+}
+
+
+#doktor{
+    float: left;
+    padding: 20px;
+    position: absolute;
+}
+
+#doktor > img{
+    width: 150px;
+    height: 200px;
+    border-radius: 20px;
+}
+
+
+#pasek{
+    height: 150px;
+    width: 20px;
+    background-color: white;
+    border-radius: 20px;
+    position: absolute;
+    margin-top: 600px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.dot{
+    border-radius: 30px;
+    height: 10px;
+    width: 10px;
+    background-color: rgba(91,166,156,255);
+}
+
+.dot:nth-of-type(1){
+    background-color: rgba(91,166,156,255);
+}
+.dot:nth-of-type(2){
+    background-color: rgba(208,204,205,255);
+}
+
+
+
+#kobieta{
+    background-color: rgba(0,42,66,255);
+    border-radius: 10px;
+    height: 800px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#kobieta > img{
+    width: 900px;
+}
+
+
+#container{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 50px;
+    width: 300px;
+    top: 700px;
+
+}
+
+#container > div{
+    border-radius: 30px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.white{
+    background-color: white;
+}
+
+.white:nth-of-type(1) > img{ /*zdjęcia są źle przycięte, więc dodatkowo wyrównuję, chociaż same w sobie są już na środku -> przez wzgląd wizualny */
+    margin-left: 6px;
+}
+
+.white:nth-of-type(2) > img{
+    margin-top: 6px;
+    margin-left: 2px;
+}
+
+.red{
+    background-color: red;;
+}
+
+
+
+#container > div > img{
+    width: 20px;
+    height: 20px;
+}
+
+
+
+
