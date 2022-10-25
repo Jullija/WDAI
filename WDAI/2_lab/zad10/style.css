@@ -1,0 +1,209 @@
+main{
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+main > div{
+    height: 500px;
+    width: 300px;
+    background-color: white;
+    position: relative;
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    transition: 2s ease;
+}
+
+main > div > div:not(:nth-of-type(5)){
+    float: right;
+
+}
+
+main > div > div:not(:nth-of-type(6)){
+    float: right;
+
+}
+
+main > div > div:nth-of-type(5){
+    align-items: center;
+
+}
+
+
+.photo{
+    width: 300px;
+    height: 200px;
+
+}
+
+img{
+    height: 100%;
+    width: 100%;
+}
+
+#fog1{
+    width: 300px;
+    height: 200px;
+    background-color: orange;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    opacity: 0.5;
+}
+
+#fog2{
+    width: 300px;
+    height: 200px;
+    background-color: greenyellow;
+    z-index: 1;
+    position: absolute;
+    top:0;
+    opacity: 0.5;
+}
+
+
+/* napisy na zdjęciu */
+
+.napis1{
+    position: absolute;
+    width: auto;
+    height: auto;
+    color: white;
+    padding: 2px;
+    font-size: 25px;
+    right: 4px;
+    top: 100px;
+    z-index: 2;
+    background-color: hsl(39, 100%, 50%, 0.7);
+    padding: 4px;
+}
+
+.second1{
+    background-color: hsl(84, 100%, 59%, 0.7);
+}
+
+.napis2{
+    position: absolute;
+    width: auto;
+    height: auto;
+    color: white;
+    padding: 2px;
+    font-size: 25px;
+    right: 4px;
+    top: 135px;
+    z-index: 2;
+    background-color: hsl(39, 100%, 50%, 0.7);
+    padding: 4px;
+}
+
+.second2{
+    background-color: hsl(84, 100%, 59%, 0.7);
+}
+
+
+/* asymetryczne zdjęcie */
+.assymetric{
+    width: 100%;
+    height: 100px;
+    transform: skewY(-7deg);
+    z-index: 2;
+    background-color: white;
+    position: absolute;
+    top: 180px;
+
+}
+
+
+/*opisy wycieczek*/
+
+.tekst{
+    height: 300px;
+    top: 200px;
+    width: 100%;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    justify-content: space-evenly;
+    color: rgba(158,158,158,255);
+}
+
+.tekst > div{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid rgba(158,158,158,255);
+    padding-bottom: 10px;
+}
+
+.tekst > div:nth-of-type(5){
+    border: none;
+}
+
+
+.hoverDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 300px;
+    position: absolute;
+    font-size: 40px;
+    z-index: 4;
+    background-color: orange;
+    color: white;
+    opacity: 0;
+    transform: rotateY(180deg);
+    z-index: 5;
+    transition: 2s ease;
+}
+
+.two{
+    background-color: green;
+}
+
+.hoverDiv > div:nth-of-type(1){
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+a{
+    margin-top: 50px;
+    text-decoration: none;
+    background-color: white;
+    color: rgba(158,158,158,255);
+    width: 150px;
+    height: 75px;
+    border-radius: 20px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+
+
+
+
+
+/* po najechaniu */
+main > div:hover{
+    transform: rotateY(180deg);
+    transition: 2s ease;
+    position: relative;
+}
+
+main > div:hover > div{
+    transition: 2s ease;
+}
+
+main > div:hover .hoverDiv{
+    opacity: 1;
+    transition: 2s ease;
+}
+

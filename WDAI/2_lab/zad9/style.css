@@ -1,0 +1,157 @@
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* TŁO */
+
+nav{
+    width: 100%;
+    background-color: rgba(5,122,236,255);
+    height: 400px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#assymetric{
+    position: absolute;
+    background-color: white;
+    height: 150px;
+    width: 100%;
+    top: 370px;
+    transform: skewY(-2deg);
+}
+
+/* NAGŁÓWEK TESTOWY */
+
+#left{
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 30%;
+    color: white;
+    font-size: 20px;
+    transform: translateX(20%);
+    transition: 2s ease;
+    top: 7%;
+    left: 10%;
+
+}
+
+#left > p:nth-of-type(1){
+    font-size: 40px;
+    margin: 0;
+}
+
+#info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 100px;
+    border: 1px solid white;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+}
+
+
+
+
+
+
+ 
+/* FORMS */
+aside{
+    width: 30%;
+    height: 50%;
+    position: absolute;
+    border-radius: 20px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    transform: translateX(0%);
+    transition: 2s ease;
+    background-color: white;
+    top: 5%;
+    right: 15%;
+    overflow: auto;
+}
+
+aside > p{
+    font-size: 40px;
+    text-align: left;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    color: rgba(153,150,147,255);
+}
+
+form{
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+#formsInside{
+    border: none;
+    padding: 5px;
+    width: 80%;
+    margin-left: 20px;
+    border-bottom: 1px solid rgba(153,150,147,255);
+    font-size: 20px;
+}
+
+#submicik{
+    width:20%;
+    height: 12%;
+    background-color: rgba(5,122,236,255);
+    color: white;
+    border-radius: 10px;
+    border: none;
+    margin-left: 20px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+
+
+@media screen and (max-width: 1100px){
+    nav{
+        background-color: rgba(5,122,236,255);
+        height: 500px;
+    }
+
+    #left{
+        height: 300px;
+        width: 90%;
+        left:-10%;
+        transition: 2s ease;
+        top: 0;
+    }
+
+    p{
+        width: 100%;
+    }
+
+
+    aside{
+        position: relative;
+        top:-10px;
+        left: 0;
+        width: auto;
+        height: 500px;
+        transform: translateX(0%);
+        transition: 2s ease;
+    }
+
+}
