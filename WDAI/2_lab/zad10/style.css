@@ -207,3 +207,16 @@ main > div:hover .hoverDiv{
     transition: 2s ease;
 }
 
+
+@media screen and (max-width: 800px){
+    main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    main > div{
+        margin-bottom: 20px;
+    }
+    
+}
