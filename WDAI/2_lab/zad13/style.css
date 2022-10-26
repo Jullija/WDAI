@@ -1,0 +1,388 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+
+body{
+    margin: 0;
+}
+
+.gridContainer{
+    display: grid;
+    grid-template-areas: "head head head"
+                         "side nav  ad"
+                          "side main ad"
+                          ". main ad"
+                          "foot foot foot";
+    background-color: pink;
+    grid-template-columns: 19.25% 60% 19.25%;
+    grid-template-rows: 10vh 10vh 70vh auto 10vh;
+    row-gap: 1vh;
+    column-gap: 1vh;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+.borderClass{
+    border: 3px solid red;
+}
+
+.headClass{
+    grid-area: head;
+}
+
+.navClass{
+    grid-area: nav;
+}
+
+.adsClass{
+    grid-area: ad;
+}
+
+.footerClass{
+    grid-area: foot;
+}
+
+.cardClass{
+    grid-area: side;
+    font-size: 20px;
+    text-align: center;
+}
+
+.mainClass{
+    grid-area: main;
+}
+
+
+
+
+/* wizytówka */
+
+.cardClass{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    position: -webkit-sticky;
+    position: sticky;
+    top:10px;
+}
+
+
+.cardClass > img{
+    width: 100%;
+    height: auto;
+    margin-bottom: 25px;
+}
+
+.cardClass > div > p:nth-of-type(3){
+    margin-bottom: 70px;  
+}
+
+.cardClass > div > div{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.social{
+    width: 20%;
+}
+
+.social > img{
+    width: 100%;
+}
+
+.withHover{
+    display: none;
+}
+
+.social:hover .noHover{
+    display: none;
+}
+
+.social:hover .withHover{
+    display: block;
+}
+
+
+
+
+
+/* main */
+
+.mainClass > img{
+    width: 100%;
+    height: auto;
+}
+
+.back{
+    width: 100%;
+    height: auto;
+    opacity: 0.4;
+}
+
+.mainClass{
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.mainContainer{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+}
+
+.list{
+    width: 100%;
+    height: 50%;
+}
+
+.testList{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 18%;
+    font-size: 10px;
+    background-color: rgb(255, 255, 255, 0.7);
+    position: relative;
+    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+}
+
+.testListInside{
+    display: block;
+    align-items: center;
+    width: 80%;
+    padding: 10px;
+    overflow: auto;
+}
+
+.photo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    shape-outside: circle(50%);
+    float: left;
+    position: relative;
+    margin-right: 10px;
+    margin-top: 2%;
+}
+
+.first{
+    background: url(one.jpg);
+    background-position: center;
+}
+
+.second{
+    background: url(two.jpg);
+    background-position: 10px 0px;
+}
+
+.third{
+    background: url(three.jpg);
+    background-position: center;
+}
+
+.fourth{
+    background: url(four.jpg);
+    background-position: center;
+}
+
+.fifth{
+    background: url(five.jpg);
+    background-position: center;
+}
+
+
+/*formularz */
+
+.forForm{
+    height: 50%;
+    top:50%;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+}
+
+.form{
+    background-color: rgb(255, 255, 255, 0.7);
+    width: 60%;
+    height: 100%;
+    clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 70%;
+    margin-left: 7%;
+}
+
+
+.wpis{
+    font-size: 100%;
+    padding: 7%;
+    padding-top: 7%;
+    font-weight: 900;
+    color: green
+}
+
+.formsInside{
+    height: 50px;
+    margin-bottom: 30px;
+    border: none;
+}
+
+.choose{
+    width: 110%;
+    margin-top: 7%;
+    margin-bottom: 7%;
+    display: flex;
+    flex-direction: row;
+}
+
+label{
+    margin-right: 2%;
+}
+
+input[type=radio]{
+    width: 20px;
+    height: 20px;
+}
+
+#submicik{
+    margin-top: 7%;
+    width: 50%;
+    height: 30%;
+    background-color: green;
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 20px;
+}
+
+
+/* Tablety */
+@media screen and (max-width:1300px) {
+    .gridContainer{
+        grid-template-areas: "head head "
+                         " nav  nav"
+                          "side main"
+                          ". main "
+                          "ad foot";
+        grid-template-columns: 30% 69%;
+        grid-template-rows: 10vh 10vh 70vh auto 10vh;
+    }
+
+    .cardClass{
+        font-size: 15px;
+    }
+
+    .cardClass > div > p:nth-of-type(3){
+        margin-bottom: 15px;
+    }
+
+    .cardClass > img{
+        width: 80%;
+        height: auto;
+        margin-bottom: 0;
+    }
+
+    .social{
+        width: 15%;
+    }
+
+
+    .testList{
+        font-size: 7px;
+    }
+
+    h1{
+        margin-top: 5%;
+        font-size: 10px;
+    }
+
+    .photo{
+        width: 50px;
+        height: 50px;
+        margin-top: 3%;
+       
+    } 
+
+
+}
+
+
+
+
+@media screen and (max-width:900px) {
+    .gridContainer{
+        grid-template-areas: "head "
+                             "nav"
+                             "main"
+                             "side "
+                             "."
+                             "ad"
+                             "foot";
+        grid-template-rows: 10vh 10vh auto auto 10vh 10vh;
+        grid-template-columns: 100%;
+    }
+
+    .cardClass{
+        font-size: 15px;
+    }
+
+    .cardClass > div > p:nth-of-type(3){
+        margin-bottom: 15px;
+    }
+
+    .cardClass > img{
+        width: 40%;
+        height: auto;
+        margin-bottom: 0;
+    }
+
+    .social{
+        width: 5%;
+    }
+
+    .testList{
+        font-size: 5px;
+        overflow: auto;
+    }
+
+
+    h1{
+        margin-top: 2%;
+        font-size: 7px;
+    }
+
+    .photo{
+        width: 30px;
+        height: 30px;
+        margin-top: 3%;
+    } 
+
+    label{
+        font-size: 60%;
+    }
+
+    #submicik{
+        margin-top: 3%;
+        height: 20%;
+        margin-bottom: 10px;
+    }
+    
+}
+
+
+
