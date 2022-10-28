@@ -12,7 +12,7 @@ main > div{
     position: relative;
     display: flex;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-    transition: 2s ease;
+    transition: 1s ease;
 }
 
 main > div > div:not(:nth-of-type(5)){
@@ -157,7 +157,7 @@ img{
     opacity: 0;
     transform: rotateY(180deg);
     z-index: 5;
-    transition: 2s ease;
+    transition: 1s ease;
 }
 
 .two{
@@ -194,17 +194,17 @@ a{
 /* po najechaniu */
 main > div:hover{
     transform: rotateY(180deg);
-    transition: 2s ease;
+    transition: 1s ease;
     position: relative;
 }
 
 main > div:hover > div{
-    transition: 2s ease;
+    transition: 1s ease;
 }
 
 main > div:hover .hoverDiv{
     opacity: 1;
-    transition: 2s ease;
+    transition: 1s ease;
 }
 
 
