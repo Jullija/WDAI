@@ -1,0 +1,49 @@
+body{
+    background-color: rgb(241, 211, 216);
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.menuContainer{
+    width: 500px;
+    border-radius: 10px;
+    overflow: hidden; 
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.toClick{
+    display: block;
+    position: relative;
+    padding: 20px;
+    background-color: palevioletred;
+}
+
+
+.menuInside{
+    background-color: rgb(179, 73, 108);
+    overflow: hidden;
+    transition: max-height .5s;
+    max-height: 0;
+}
+
+.menuInside a{
+    display: block;
+    padding: 20px;
+    position: relative;
+}
+
+.menuInside a:hover{
+    background-color: rgb(129, 49, 76)
+}
+
+li:target .menuInside{
+    max-height: 200px;
+}
+
+

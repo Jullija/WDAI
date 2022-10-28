@@ -1,0 +1,474 @@
+/* background: url(blue.png), red;
+        background-blend-mode: luminosity; */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+body{
+    margin: 75px;
+    background-color: pink;
+    font-family: 'Open Sans', sans-serif;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.forShoe{
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    height: 500px;
+    background-image: linear-gradient(to bottom right, blue, rgb(57, 118, 197)) ;
+}
+
+.forIcons{
+    display: flex;
+    justify-content: space-between;
+}
+
+#nike{
+    width: 80px;
+    height: 80px;
+    margin-left: 20px;
+}
+
+#share{
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
+#shoe{
+    width: 600px;
+    height: 400px;
+    transform: rotate(-15deg);
+    margin-left: -180px;
+}
+
+.forShoe > p{
+    z-index: 0;
+    position: absolute;
+    opacity: 0.2;
+    font-family: 'Montserrat', sans-serif;
+    font-size:170px;
+    margin-top: 50px;
+    color: white;
+}
+
+
+
+.forChoosing{
+    height: 600px;
+    background-color: white;
+    width: 500px;
+    padding: 10px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.title{
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-bottom: 1px solid grey;
+}
+
+.titleFirst{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    font-size: 20px;
+    margin-bottom: -25px;
+}
+
+#new{
+    width: 50px;
+    height: 40px;
+    background-color: rgb(41, 98, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 3px;
+}
+
+.title > p{
+    margin-top: 0px;
+}
+
+
+.info{
+    height: 27%;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-bottom: 1px solid grey;
+}
+
+.info > h2{
+    margin-top: 0;
+    margin-bottom: -10px;
+}
+
+.info > p{
+    font-size: 20px;
+}
+
+.color{
+    height: 18%;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-bottom: 1px solid grey;
+    display: flex;
+    flex-direction: column;
+}
+
+.color > h2{
+    margin-top: 0;
+}
+
+
+
+input[type="radio"]{
+    appearance: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: grid;
+    place-content: center;
+    margin-right: 30px;
+    z-index: 3;
+    position: absolute;
+}
+
+/* position */
+
+input[id="blueColor"] {    
+    background-color: blue;
+    margin-top: 120px;
+    margin-left: 60px;
+}
+
+input[id="redColor"] {
+    background-color: red;
+    margin-top: 120px;
+    margin-left: 160px;
+}
+
+input[id="greenColor"] {
+    background-color: green;
+    margin-top: 120px;
+    margin-left: 260px;
+}
+
+input[id="orangeColor"] {
+    background-color: orange;
+    margin-top: 120px;
+    margin-left: 360px;
+}
+
+input[id="blackColor"] {
+    background-color: black;
+    margin-top: 120px;
+    margin-left: 460px;
+}
+
+input[type="radio"]::before{
+    content: "";
+    width: 35px;
+    height: 35px;
+    border: 2px solid grey;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+input[type="radio"]:checked::before{
+    transform: scale(1);
+}
+
+
+
+/*zmiana tła */
+input[id="blueColor"]:checked ~.forShoe{
+    background-image: linear-gradient(to bottom right, blue, rgb(57, 118, 197)) ;
+    transition: .5s ease;
+}
+
+input[id="redColor"]:checked ~.forShoe{
+    background-image: linear-gradient(to bottom right, red, rgb(201, 68, 68)) ;
+    transition: .5s ease;
+}
+
+input[id="greenColor"]:checked ~.forShoe{
+    background-image: linear-gradient(to bottom right, green, rgb(52, 206, 52)) ;
+    transition: .5s ease;
+}
+
+input[id="orangeColor"]:checked ~.forShoe{
+    background-image: linear-gradient(to bottom right, orange, rgb(243, 194, 103)) ;
+    transition: .5s ease;
+}
+
+input[id="blackColor"]:checked ~.forShoe{
+    background-image: linear-gradient(to bottom right, black, rgb(56, 56, 56)) ;
+    transition: .5s ease;
+}
+
+
+
+
+/*new color change */
+input[id="blueColor"]:checked ~.forChoosing > .title > .titleFirst > #new {
+    background-color: blue;
+    transition: .5s ease;
+}
+
+input[id="redColor"]:checked ~.forChoosing > .title > .titleFirst > #new {
+    background-color: red;
+    transition: .5s ease;
+}
+
+input[id="greenColor"]:checked ~.forChoosing > .title > .titleFirst > #new {
+    background-color: green;
+    transition: .5s ease;
+}
+
+input[id="orangeColor"]:checked ~.forChoosing > .title > .titleFirst > #new {
+    background-color: orange;
+    transition: .5s ease;
+}
+
+input[id="blackColor"]:checked ~.forChoosing > .title > .titleFirst > #new {
+    background-color: black;
+    transition: .5s ease;
+}
+
+
+/*size color change */
+
+input[id="blueColor"]:checked ~.forChoosing > .size > .sizeChoose > a:nth-of-type(3) {
+    background-color: blue;
+    transition: .5s ease;
+}
+
+input[id="redColor"]:checked ~.forChoosing > .size > .sizeChoose > a:nth-of-type(3) {
+    background-color: red;
+    transition: .5s ease;
+}
+
+input[id="greenColor"]:checked ~.forChoosing > .size > .sizeChoose > a:nth-of-type(3) {
+    background-color: green;
+    transition: .5s ease;
+}
+
+input[id="orangeColor"]:checked ~.forChoosing > .size > .sizeChoose > a:nth-of-type(3) {
+    background-color: orange;
+    transition: .5s ease;
+}
+
+input[id="blackColor"]:checked ~.forChoosing > .size > .sizeChoose > a:nth-of-type(3) {
+    background-color: black;
+    transition: .5s ease;
+}
+
+
+
+
+/*card color change */
+input[id="blueColor"]:checked ~.forChoosing > .basket > .add{
+    background-color: blue;
+    transition: .5s ease;
+}
+
+input[id="redColor"]:checked ~.forChoosing > .basket > .add{
+    background-color: red;
+    transition: .5s ease;
+}
+
+input[id="greenColor"]:checked ~.forChoosing > .basket > .add {
+    background-color: green;
+    transition: .5s ease;
+}
+
+input[id="orangeColor"]:checked ~.forChoosing > .basket > .add {
+    background-color: orange;
+    transition: .5s ease;
+}
+
+input[id="blackColor"]:checked ~.forChoosing > .basket > .add {
+    background-color: black;
+    transition: .5s ease;
+}
+
+
+
+/* obrazek */
+input[id="blueColor"]:checked ~.forShoe > img{
+    filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+    transition: .5s ease;
+}
+
+input[id="redColor"]:checked ~.forShoe > img{
+    filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-60deg) saturate(900%) contrast(1);
+    transition: .5s ease;
+}
+
+input[id="greenColor"]:checked ~.forShoe > img{
+    filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(50deg) saturate(1000%) contrast(1);
+    transition: .5s ease;
+}
+
+input[id="orangeColor"]:checked ~.forShoe > img{
+    filter: grayscale(100%) brightness(100%) sepia(100%) hue-rotate(1deg) saturate(700%) contrast(1);
+    transition: .5s ease;
+}
+
+input[id="blackColor"]:checked ~.forShoe > img{
+    filter: invert(30%) grayscale(100%) brightness(70%) contrast(1.7);
+    transition: .5s ease;
+}
+
+
+
+
+.size{
+    height: 20%;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-bottom: 1px solid grey;
+}
+
+.size > h2{
+    margin-top: 0;
+}
+
+.sizeChoose{
+    display: flex;
+    flex-direction: row;
+}
+
+.sizeChoose > a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+    width: 40px;
+    height: 40px;
+    background-color: grey;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.sizeChoose > a:nth-of-type(3){
+    background-color: blue;
+    color:white;
+}
+
+.basket{
+    height: 15%;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add{
+    width: 200px;
+    height: 50px;
+    color: white;
+    background-color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.basket > p{
+    font-size: 45px;
+    font-weight: 900;
+}
+
+.add > img{
+    width: 30px;
+    height: 30px;
+}
+
+
+
+
+
+
+
+@media screen and (max-width:1200px) {
+    main{
+        flex-direction: column;
+    }
+
+    .forShoe{
+        height: 320px;
+        width: 550px;
+    }
+
+    #shoe{
+        transform: rotate(-5deg);
+        margin-top: -90px;
+        margin-left: -30px;
+        width: 550px;
+    }
+
+    .forShoe > p{
+        margin-left: 10px;
+        font-size: 200px;
+    }
+
+
+    .forChoosing{
+        width: 530px;
+    }
+
+
+
+    input[id="blueColor"] {    
+        margin-top: 420px;
+        margin-left: -430px;
+    }
+    
+    input[id="redColor"] {
+        margin-top: 420px;
+        margin-left: -330px;
+    }
+    
+    input[id="greenColor"] {
+        margin-top: 420px;
+        margin-left: -230px;
+    }
+    
+    input[id="orangeColor"] {
+        margin-top: 420px;
+        margin-left: -130px;
+    }
+    
+    input[id="blackColor"] {
+        margin-top: 420px;
+        margin-left: -30px;
+    }
+
+}

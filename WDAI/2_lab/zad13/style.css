@@ -254,9 +254,52 @@ label{
     margin-right: 2%;
 }
 
-input[type=radio]{
+input[type="radio"]{
+    appearance: none;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    display: grid;
+    place-content: center;
+    margin-right: 30px;
+    z-index: 3;
+    position: absolute;
+    background-color: green;
+}
+
+input[type="radio"]::before{
+    content: "";
     width: 20px;
     height: 20px;
+    border: 2px solid grey;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+input[type="radio"]:checked::before{
+    transform: scale(1);
+}
+
+input[id="huge"]{
+   margin-left: 20%;
+}
+
+input[id="small"]{
+    margin-left: 1%;
+ }
+
+#smallLabel{
+    position: sticky;
+    margin-left: 7%;
+    width: 40%;
+}
+
+#hugeLabel{
+    position: sticky;
+    margin-left:0%;
+    width: 40%;
 }
 
 #submicik{
@@ -317,8 +360,6 @@ input[type=radio]{
         margin-top: 3%;
        
     } 
-
-
 }
 
 
@@ -329,16 +370,24 @@ input[type=radio]{
         grid-template-areas: "head "
                              "nav"
                              "main"
-                             "side "
-                             "."
                              "ad"
                              "foot";
-        grid-template-rows: 10vh 10vh auto auto 10vh 10vh;
+        grid-template-rows: 10vh 10vh auto 10vh 10vh 25vh;
         grid-template-columns: 100%;
     }
 
     .cardClass{
         font-size: 15px;
+        display:flex;
+        width:100%;
+        height:fit-content;
+        flex-direction: row;
+        position:fixed;
+        align-items: center;
+        justify-content: space-evenly;
+        top:75%;
+        z-index: 4;
+        background-color: pink;
     }
 
     .cardClass > div > p:nth-of-type(3){
@@ -346,7 +395,7 @@ input[type=radio]{
     }
 
     .cardClass > img{
-        width: 40%;
+        width: 60%;
         height: auto;
         margin-bottom: 0;
     }
@@ -381,7 +430,15 @@ input[type=radio]{
         height: 20%;
         margin-bottom: 10px;
     }
+
+    #smallLabel{
+        width: 30%;
+    }
     
+    #hugeLabel{
+        width: 30%;
+        margin-left: 10%;
+    }
 }
 
 
