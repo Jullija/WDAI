@@ -186,7 +186,7 @@ input[id="blackColor"] {
     margin-left: 460px;
 }
 
-input[type="radio"]::before{
+main > input[type="radio"]::before{
     content: "";
     width: 35px;
     height: 35px;
@@ -261,27 +261,27 @@ input[id="blackColor"]:checked ~.forChoosing > .title > .titleFirst > #new {
 
 /*size color change */
 
-input[id="blueColor"]:checked ~.forChoosing > .size > .sizeChoose > a:nth-of-type(3) {
+input[id="blueColor"]:checked ~.forChoosing > .size > .sizeChoose > input:checked {
     background-color: blue;
     transition: .5s ease;
 }
 
-input[id="redColor"]:checked ~.forChoosing > .size > .sizeChoose > a:nth-of-type(3) {
+input[id="redColor"]:checked ~.forChoosing > .size > .sizeChoose > input:checked {
     background-color: red;
     transition: .5s ease;
 }
 
-input[id="greenColor"]:checked ~.forChoosing > .size > .sizeChoose > a:nth-of-type(3) {
+input[id="greenColor"]:checked ~.forChoosing > .size > .sizeChoose > input:checked {
     background-color: green;
     transition: .5s ease;
 }
 
-input[id="orangeColor"]:checked ~.forChoosing > .size > .sizeChoose > a:nth-of-type(3) {
+input[id="orangeColor"]:checked ~.forChoosing > .size > .sizeChoose > input:checked {
     background-color: orange;
     transition: .5s ease;
 }
 
-input[id="blackColor"]:checked ~.forChoosing > .size > .sizeChoose > a:nth-of-type(3) {
+input[id="blackColor"]:checked ~.forChoosing > .size > .sizeChoose > input:checked {
     background-color: black;
     transition: .5s ease;
 }
@@ -362,7 +362,7 @@ input[id="blackColor"]:checked ~.forShoe > img{
     flex-direction: row;
 }
 
-.sizeChoose > a{
+.sizeChoose > input{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -373,12 +373,66 @@ input[id="blackColor"]:checked ~.forShoe > img{
     background-color: grey;
     border-radius: 10px;
     margin-right: 20px;
+    border: none;
+    cursor: pointer;
 }
 
-.sizeChoose > a:nth-of-type(3){
-    background-color: blue;
-    color:white;
+
+.sizeChoose > input[value="8"]{
+    margin-left: 60px;
 }
+
+.sizeChoose > input[value="9"]{
+    margin-left: 120px;
+}
+
+.sizeChoose > input[value="10"]{
+    margin-left: 180px;
+}
+
+.sizeChoose > input[value="11"]{
+    margin-left: 240px;
+}
+
+
+.sizeChoose > label{
+    color: white;
+    margin-top: 8px;
+    z-index: 3;
+    cursor: pointer;
+    position: relative;
+}
+
+/*text inside radio button */
+.sizeChoose > label:nth-of-type(1){
+    margin-left: 20px;
+}
+
+.sizeChoose > label:nth-of-type(2){
+    margin-left: 44px;
+}
+
+.sizeChoose > label:nth-of-type(3){
+    margin-left: 48px;
+}
+
+.sizeChoose > label:nth-of-type(4){
+    margin-left: 42px;
+}
+
+.sizeChoose > label:nth-of-type(5){
+    margin-left: 38px;
+}
+
+
+.sizeChoose > input::before{
+    content: "";
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+
 
 .basket{
     height: 15%;
