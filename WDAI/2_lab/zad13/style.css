@@ -395,8 +395,8 @@ input[id="small"]{
     }
 
     .cardClass > img{
-        width: 60%;
-        height: auto;
+        width: auto;
+        height: 200px;
         margin-bottom: 0;
     }
 

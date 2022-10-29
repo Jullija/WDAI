@@ -6,44 +6,112 @@ body{
 }
 
 .menuContainer{
-    width: 500px;
+    width: 400px;
     border-radius: 10px;
     overflow: hidden; 
     list-style: none;
-}
-
-a{
-    text-decoration: none;
+    background-color: palevioletred;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: relative;
+    height: auto;
     color: white;
 }
 
-.toClick{
-    display: block;
+
+.menuContainer > div{
+    display: flex;
+    flex-direction: column;
     position: relative;
-    padding: 20px;
-    background-color: palevioletred;
+    width: 100%;
 }
 
+.menuContainer > div > label{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    transition: .5s ease;
+}
 
-.menuInside{
+.menuContainer > div > input[type="radio"]{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.pos{
+    width: 100%;
+    height: 100%;
+}
+
+.pos:hover{
     background-color: rgb(179, 73, 108);
-    overflow: hidden;
-    transition: max-height .5s;
-    max-height: 0;
 }
 
-.menuInside a{
-    display: block;
-    padding: 20px;
-    position: relative;
+.menuContainer > div > input[class="mainInput"]:checked ~.pos{
+    background-color: rgb(179, 73, 108);
 }
 
-.menuInside a:hover{
-    background-color: rgb(129, 49, 76)
+
+input[class="item"]{
+    width: 100%;
+    height: 100%;
 }
 
-li:target .menuInside{
-    max-height: 200px;
+
+.menuContainer > div > input[class="item"] + label{
+    display: none;
 }
+
+.labelI{
+    background-color: rgb(139, 41, 74);
+}
+
+.labelI:hover{
+    background-color: rgb(73, 11, 32);
+}
+
+.menuContainer > div > input[class="mainInput"]:checked ~label{
+    display: flex;
+}
+
+
+
+
+.menuContainer > div > .pos2{
+    display: none;
+}
+
+.menuContainer > div > input[id="first"]:checked ~.pos{
+    display: none;
+}
+
+
+
+.menuContainer > div > .pos2{
+    display: none;
+}
+
+.menuContainer > div > input[id="second"]:checked ~.pos{
+    display: none;
+}
+
+.menuContainer > div > .pos2{
+    display: none;
+}
+
+.menuContainer > div > input[id="third"]:checked ~.pos{
+    display: none;
+}
+
+
+
+
+
+
+
 
 
