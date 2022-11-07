@@ -10,3 +10,10 @@ function changePhoto(){
         idx = 0;
     }
 }
+
+document.getElementById("buttonik").addEventListener("click", changePhoto);
+
+
+
+//elem.setAttribute("src", image[flag%ile])
+//elements.className = "image" + (flag%ile)
