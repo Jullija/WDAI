@@ -1,23 +1,12 @@
-document.getElementById("first").onclick = function(){
-    document.getElementById("mountainId").style.visibility = "hidden";
-    document.getElementById("seaId").style.visibility = "visible";
-    document.getElementById("first").style.visibility = "hidden";
-    document.getElementById("second").style.visibility = "visible";
+let idx = 1;
+let elements = [["red", "mountain.jpg"], ["blue", "sea.jpg"], ["green", "forest.jpg"]]
+
+function changePhoto(){
+    document.getElementsByTagName("img")[0].style.borderColor = elements[idx][0];
+    document.getElementsByTagName("img")[0].src=elements[idx][1];
     
-}
-
-document.getElementById("second").onclick = function(){
-    document.getElementById("seaId").style.visibility = "hidden";
-    document.getElementById("forestId").style.visibility = "visible";
-    document.getElementById("second").style.visibility = "hidden";
-    document.getElementById("third").style.visibility = "visible";
-
-}
-
-document.getElementById("third").onclick = function(){
-    document.getElementById("forestId").style.visibility = "hidden";
-    document.getElementById("mountainId").style.visibility = "visible";
-    document.getElementById("third").style.visibility = "hidden";
-    document.getElementById("first").style.visibility = "visible";
-
+    idx += 1;
+    if(idx == 3){
+        idx = 0;
+    }
 }
