@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header></header>
+    <nav></nav>
+    <main>
+        <div class="container">
+
+            <h1>Książka adresowa</h1>
+            <div id="addedData"></div>
+
+
+            <div id="placeToWrite">
+                <form action="#">
+
+                    <div id="fil">
+                        <label for="nameAndSurname">Imię i nazwisko</label>
+                        <input type="text" name="nameAndSurname" id="nameAndSurname" required = "true" class="inpucik" required pattern="[A-Z]{1}[a-z]+[ ]{1}[A-Z]{1}[a-z]+">
+
+                        <label for="phone">Numer telefonu</label>
+                        <input type="text" name="phone" id="phone" required = "true" class="inpucik" required pattern="[0-9]{9}">
+                        <!-- required pattern="([]{0,}[0-9][]{0,}){9}|([]{0,}[+]?([]{0,}[0-9][]{0,}){12})" -->
+                    </div>
+
+                    <input type="submit" id="submit" value="Dodaj">
+
+
+
+                </form>
+
+
+
+            </div>
+
+
+
+
+        </div>
+    </main>
+    <footer></footer>
+
+
+</body>
+</html>
