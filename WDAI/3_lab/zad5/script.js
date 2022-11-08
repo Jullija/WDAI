@@ -4,12 +4,27 @@ var changeOrder = false;
 
 //stop propagation kliknięte -> wtedy klikam na 3 i tylko 3 się klika.
 
-
 function addPoints(i, color, bound){ //funkcja do dodawania punktów
     if (pointsVar < bound){
         pointsVar += i;
         document.getElementById("points").textContent = "Aktualna liczba punktów: " + pointsVar;
-        document.getElementById("infoHere").textContent = "Nacisnąłeś " + color + " przycisk o wartości " + i;
+
+        let info3 = document.getElementById("infoHere3").textContent
+        let info2 = document.getElementById("infoHere2").textContent;
+        let info1 = document.getElementById("infoHere1").textContent
+
+        if (changeOrder == false){
+            document.getElementById("infoHere1").textContent = "Nacisnąłeś " + color + " przycisk o wartości " + i;
+            document.getElementById("infoHere2").textContent = info1;
+            document.getElementById("infoHere3").textContent = info2;
+        }
+        else{
+            document.getElementById("infoHere3").textContent = "Nacisnąłeś " + color + " przycisk o wartości " + i;
+            document.getElementById("infoHere2").textContent = info3;
+            document.getElementById("infoHere1").textContent = info2;
+        }
+
+        
     }
     
     if(pointsVar > 30){
@@ -59,6 +74,9 @@ document.getElementById("reset").onclick = function(){
     document.getElementById("second").style.backgroundColor = "red";
     document.getElementById("third").style.backgroundColor = "yellow";
     document.getElementById("propagation").innerText = "STOP PROPAGATION";
+    document.getElementById("infoHere1").textContent = "";
+    document.getElementById("infoHere2").textContent = "";
+    document.getElementById("infoHere3").textContent = "";
     stopPropagation = false;
 }
 
@@ -87,6 +105,8 @@ document.getElementById("change").onclick = function(){
         firstBlock.addEventListener("click", firstBlockFunction, true);
         secondBlock.addEventListener("click", secondBlockFunction, true);
         thirdBlock.addEventListener("click", thirdBlockFunction, true);
+
+
     }
     else{
         changeOrder = false;
