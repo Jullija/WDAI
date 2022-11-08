@@ -6,12 +6,13 @@ body{
 
 #container{
     width: 800px;
-    height: 500px;
+    height: 700px;
     background-color: lightblue;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    position: relative;
 }
 
 #middle{
@@ -22,14 +23,36 @@ body{
     padding: 10px;
     width: 100%;
     height: 70%;
+    position: relative;
+    margin-top: -60px;
 }
 
-#middleMain{
-    width: 60%;
+#middleMainDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+    width: 200%;
+    height: 70%;
+    position: absolute;
+}
+
+.middleMain{
+    width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    z-index: 0;
+    position: absolute;
+}
+
+.leftMain{
+    transform: translate(-132%);
+}
+.rightMain{
+    transform: translate(132%);
 }
 
 button{
@@ -43,11 +66,61 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 2;
+    position: absolute;
 }
+
+#left{
+    left:70px;
+}
+
+#right{
+    right: 70px;
+}
+
+#leftBlock{
+    background:linear-gradient(90deg, white 76.7%,lightblue 76.7%);
+    width: 600px;
+    height: 400px;
+    position: absolute;
+    left:-450px;
+    z-index: 1;
+    
+}
+
+#rightBlock{
+    background:linear-gradient(90deg, lightblue 23.3%, white 23.3%);
+    width: 600px;
+    height: 400px;
+    position: absolute;
+    right: -450px;
+}
+
+
 
 img{
     width: 150px;
     height: 150px;
     border-radius: 50%;
     border: 3px solid white;
+}
+
+h1{
+    margin-top: -20px;
+    margin-bottom: -20px;
+}
+
+#lotto{
+    width: 150px;
+    height: 150px;
+    font-size: 120px;
+    bottom: 0;
+    background-color: transparent;
+}
+
+#lotto:hover{
+    transform: rotate(720deg);
+    transition: 2s ease;
 }
