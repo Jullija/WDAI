@@ -15,9 +15,28 @@
     <main>
         <div id="container">
             <form action="#">
-                <label for="newPassword">New password</label>
-                <input type="password" id="newPassword" name="newPassword" required pattern=""
+                <label for="newPassword">New password</label><br />
+                <input type="password" id="newPassword" name="newPassword"><img src="hide.png" id="first"><br />
+                <label for="repeatPassword">Pepeat new password</label><br />
+                <input type="password" id="repeatPassword" name="repeatPassword"><img src="hide.png" id="second">
             </form>
+
+            <div id="requirements">
+                <p>Password requirements</p>
+                <ul class="list">
+                    <li><img src="cross.png" id="eight">at least 8 characters</li>
+                    <li><img src="cross.png" id="special">at least one special character</li>
+                    <li><img src="cross.png" id="capital">at least one capital letter</li>
+                    <li><img src="cross.png" id="digit">at least one digit</li>
+
+                
+                
+                </ul>
+            </div>
+
+
+
+
         </div>
     </main>
     <footer></footer>
