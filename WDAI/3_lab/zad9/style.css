@@ -13,46 +13,33 @@ body{
     justify-content: space-evenly;
     align-items: center;
     position: relative;
+    overflow: hidden;
 }
 
 #middle{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    row-gap: 140px;
     align-items: center;
     padding: 10px;
-    width: 100%;
+    width: auto;
     height: 70%;
     position: relative;
     margin-top: -60px;
+    margin-left: 3600px;
 }
 
-#middleMainDiv{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 10px;
-    width: 200%;
-    height: 70%;
-    position: absolute;
-}
 
 .middleMain{
-    width: 400px;
+    width:400px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    z-index: 0;
-    position: absolute;
-}
-
-.leftMain{
-    transform: translate(-132%);
-}
-.rightMain{
-    transform: translate(132%);
+    height: 400px;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 
 button{
@@ -80,26 +67,6 @@ button{
     right: 70px;
 }
 
-#leftBlock{
-    background:linear-gradient(90deg, white 76.7%,lightblue 76.7%);
-    width: 600px;
-    height: 400px;
-    position: absolute;
-    left:-450px;
-    z-index: 1;
-    
-}
-
-#rightBlock{
-    background:linear-gradient(90deg, lightblue 23.3%, white 23.3%);
-    width: 600px;
-    height: 400px;
-    position: absolute;
-    right: -450px;
-}
-
-
-
 img{
     width: 150px;
     height: 150px;
@@ -124,3 +91,4 @@ h1{
     transform: rotate(720deg);
     transition: 2s ease;
 }
+
