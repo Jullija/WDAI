@@ -46,10 +46,10 @@ function reachTheEnd(){
 
 function random(){
     let min = 0;
-    let max = 7;
+    let max = 8;
     let chosen = Math.floor(Math.random() * (max - min + 1));
     if (chosen % 2 != 0){
-        chosen += 1;
+        chosen -= 1;
     }
 
     mainCarousel.style.marginLeft = chosen * 600 + "px";
