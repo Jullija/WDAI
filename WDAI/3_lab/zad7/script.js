@@ -69,29 +69,15 @@ async function b(data){
 
 
 //PODPUNKT C
+
 async function c(data){
     var json = data;
 
-    var citiesAndDentensity = new Array;
-
-    for (var i in json){
-        citiesAndDentensity.push([json[i].name, json[i].dentensity]);
-    }
+   json.sort(function(a, b){ 
+        return (b.dentensity - a.dentensity) });;    
 
 
-   citiesAndDentensity.sort(function(a, b){ // 0 gdy równe, -1 gdy pierwszy wiekszy od drugiego, 1 gdy pierwszy mniejszy od drugiego -> porównuję dentensity
-        if (a[1] == b[1]){
-            return 0;
-        }
-        else if(a[1] < b[1]){
-            return 1;
-        }
-        else{
-            return -1;
-        }
-    });
-
-    document.getElementById("cAnswer").textContent = citiesAndDentensity[4][0];
+    document.getElementById("cAnswer").textContent = json[4].name;
 }
 
 
@@ -152,7 +138,7 @@ async function f(data){
     var json = data;
 
     var filtered = json.filter(function (enter){
-        return enter.province[0] == "p";
+        return enter.township[0] == "P";
     })
 
     var sum = 0;
@@ -192,11 +178,13 @@ async function g(data){
 
     if (counterLess == 0){
         document.getElementById("gAnswer1").textContent = "Czy miasta z województwa pomorskiego są większe od 5000 osób? TAK";
-        document.getElementById("gAnswer2").textContent = "Liczba takich miast: " + counterMore;
+        document.getElementById("gAnswer2").textContent = "Liczba miast większych: " + counterMore;
+        document.getElementById("gAnswer3").textContent = "Liczba miast mniejszych: 0.";
     }
     else{
         document.getElementById("gAnswer1").textContent = "Czy miasta z województwa pomorskiego są większe od 5000 osób? NIE";
-        document.getElementById("gAnswer2").textContent = "Liczba takich miast: " + (counterMore - counterLess);
+        document.getElementById("gAnswer2").textContent = "Liczba miast większych: " + counterMore;
+        document.getElementById("gAnswer3").textContent = "Liczba miast mniejszych: " + counterLess;
     }
 }
 
