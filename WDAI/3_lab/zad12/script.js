@@ -1,7 +1,7 @@
 var board = document.getElementById("board");
 var pointsCounter = document.getElementById("points");
 var pointsVar = 0;
-var idx = 0; //ile zombiaczków już jest
+var idx = 0;
 var zombieRunTime = {};
 var health
 var gameRunning;
@@ -12,8 +12,8 @@ var gameRunning;
 var cursor = document.getElementById("customCursor");
 
 function moveCursor(event){
-    cursor.style.top = (event.pageY - 67.5) + "px";
-    cursor.style.left = (event.pageX - 67.5) + "px";
+    cursor.style.top = event.clientY + "px";
+    cursor.style.left = event.clientX + "px";
 }
 
 //POINTS
@@ -30,7 +30,7 @@ function score(){
 
 //zombie was shot 
 function zombieShot(){
-    pointsVar += 12;
+    pointsVar += 18; //bo odejmuje mi 6 za kliknięcie w board, więc aby było 12 to 18-6
     score();
     clearInterval(zombieRunTime[this.id]); //aby nie animować tego zombiaczka
     this.remove(); //usuwamy tego zombiaczka
@@ -47,7 +47,6 @@ function missedShot(){
 //zdjęcie ma wymiary 2000 x 312 px, więc jeden zombiaczek to 200 x 312 px
 function walkingZombie(newZombie, speed){
     var interval; //jak często będziemy sprawdzać pozycje zombiaczka
-    var startingPosition = 200; //od tych px zaczynamy ruszać zombiaczka
     var curBackgroundPosition = 0; //zmiana na kolejne ruchy zombiaczka
     var curPosition = 0; //przesuwanie się zombiaczka po ekranie
 
@@ -71,20 +70,20 @@ function walkingZombie(newZombie, speed){
 
 
     zombieRunTime[newZombie.id] = setInterval ( () => {
-        newZombie.style.backgroundPosition = curBackgroundPosition + startingPosition +"px";
-        newZombie.style.left = 101 - curPosition + "vw";
-        curBackgroundPosition -= startingPosition;
+        newZombie.style.backgroundPosition = curBackgroundPosition + 200 + "px";
+        newZombie.style.right = curPosition + "vw";
+        curBackgroundPosition -= 200;
         curPosition++;
 
-        if (curBackgroundPosition==-1800) //ponowna animacja zombiaczka -> wykonał wszystkie ruchy z obrazka, więc robi je ponownie
+        if (curBackgroundPosition==1800) //ponowna animacja zombiaczka -> wykonał wszystkie ruchy z obrazka, więc robi je ponownie
             curBackgroundPosition=0;
 
-        if(curPosition==115){ //curPosition jest w vw, więc gdy wyjdzie nam poza obszar ekranu
+        if(curPosition==105){ //curPosition jest w vw, więc gdy wyjdzie nam poza obszar ekranu
             newZombie.remove();
             pointsVar -= 6;
             health -= 1;
             score();
-            if(health <= 0){
+            if(health == 0){
                 endGame();
             }
                 
@@ -107,13 +106,13 @@ function createZombie(speed, size, distanceFromBottom, howFarFromStart){
     var newZombie = document.createElement("div");
     newZombie.classList.add("zombie");
     newZombie.setAttribute("id", idx);
+    newZombie.addEventListener("click", zombieShot);
 
     newZombie.style.transform = "scale(" + size + ")";
-    newZombie.style.bottom = distanceFromBottom + "px";
+    newZombie.style.bottom = distanceFromBottom + "vh";
     newZombie.style.right = 100 + howFarFromStart + "vw";
 
     board.appendChild(newZombie);
-    newZombie.addEventListener("click", zombieShot);
     idx += 1;
 
     walkingZombie(newZombie, speed);
@@ -124,7 +123,7 @@ function createZombie(speed, size, distanceFromBottom, howFarFromStart){
 function generateAttributes(){
     var speed = Math.floor(Math.random() * 5) + 1;
     var size = Math.random() + 0.5; 
-    var distanceFromBottom = Math.floor(Math.random() * 400);
+    var distanceFromBottom = Math.floor(Math.random() * 40);
     var howFarFromStart = Math.floor(Math.random() * 20);
 
     createZombie(speed, size, distanceFromBottom, howFarFromStart);
