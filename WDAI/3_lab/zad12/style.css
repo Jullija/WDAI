@@ -30,6 +30,7 @@ body{
     width: 200px;
     height: 312px;
     background: url(images/walkingdead.png);
+    right: -20vw;
 }
 
 #customCursor{
@@ -51,7 +52,6 @@ body{
     width: 25px;
     background-color: red;
     border-radius: 50%;
-    pointer-events: none;
 }
 
 #lose{
@@ -64,8 +64,8 @@ body{
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    bottom: 100%;
-    left: 32%;
+    bottom: -100vh;
+    margin-left: 32vw;
     z-index: 5;
 }
 

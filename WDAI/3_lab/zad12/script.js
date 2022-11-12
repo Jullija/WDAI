@@ -1,121 +1,37 @@
+var cursor = document.getElementById("customCursor");
 var board = document.getElementById("board");
-var pointsCounter = document.getElementById("points");
+var currScore = document.getElementById("points");
 var pointsVar = 0;
 var idx = 0;
-var zombieRunTime = {};
-var health
-var gameRunning;
+var runningZombies = {};
+var health;
 
 
 
 //CUSTOM CURSOR
-var cursor = document.getElementById("customCursor");
-
 function moveCursor(event){
     cursor.style.top = event.clientY + "px";
     cursor.style.left = event.clientX + "px";
 }
 
-//POINTS
-function score(){
-    pointsCounter.textContent = pointsVar;
+function updateScore(){
+    currScore.textContent = pointsVar;
 }
-
-
-
 
 
 
 //ZOMBIE
 
-//zombie was shot 
 function zombieShot(){
-    pointsVar += 18; //bo odejmuje mi 6 za kliknięcie w board, więc aby było 12 to 18-6
-    score();
-    clearInterval(zombieRunTime[this.id]); //aby nie animować tego zombiaczka
-    this.remove(); //usuwamy tego zombiaczka
-    
+    pointsVar += 18 //bo 18-6 = 2 (odejmuje mi 6 za kliknięcie w planszę)
+    updateScore();
+    clearInterval(runningZombies[this.id]);
+    this.remove();
 }
 
-//missed shot
 function missedShot(){
     pointsVar -= 6;
-    score();
-}
-
-
-//zdjęcie ma wymiary 2000 x 312 px, więc jeden zombiaczek to 200 x 312 px
-function walkingZombie(newZombie, speed){
-    var interval; //jak często będziemy sprawdzać pozycje zombiaczka
-    var curBackgroundPosition = 0; //zmiana na kolejne ruchy zombiaczka
-    var curPosition = 0; //przesuwanie się zombiaczka po ekranie
-
-    switch (speed){
-        case 1:
-            interval = 60;
-            break;
-        case 2:
-            interval = 50;
-            break;
-        case 3:
-            interval = 40;
-            break;
-        case 4:
-            interval = 30;
-            break;
-        default:
-            interval = 20;
-            break;
-    }
-
-
-    zombieRunTime[newZombie.id] = setInterval ( () => {
-        newZombie.style.backgroundPosition = curBackgroundPosition + 200 + "px";
-        newZombie.style.right = curPosition + "vw";
-        curBackgroundPosition -= 200;
-        curPosition++;
-
-        if (curBackgroundPosition==1800) //ponowna animacja zombiaczka -> wykonał wszystkie ruchy z obrazka, więc robi je ponownie
-            curBackgroundPosition=0;
-
-        if(curPosition==105){ //curPosition jest w vw, więc gdy wyjdzie nam poza obszar ekranu
-            newZombie.remove();
-            pointsVar -= 6;
-            health -= 1;
-            score();
-            if(health == 0){
-                endGame();
-            }
-                
-            clearInterval(zombieRunTime[newZombie.id]);
-        }
-    }
-    , interval );
-}
-
-
-
-
-
-
-
-
-//create zombie with attributes
-function createZombie(speed, size, distanceFromBottom, howFarFromStart){
-
-    var newZombie = document.createElement("div");
-    newZombie.classList.add("zombie");
-    newZombie.setAttribute("id", idx);
-    newZombie.addEventListener("click", zombieShot);
-
-    newZombie.style.transform = "scale(" + size + ")";
-    newZombie.style.bottom = distanceFromBottom + "vh";
-    newZombie.style.right = 100 + howFarFromStart + "vw";
-
-    board.appendChild(newZombie);
-    idx += 1;
-
-    walkingZombie(newZombie, speed);
+    updateScore();
 }
 
 
@@ -124,62 +40,165 @@ function generateAttributes(){
     var speed = Math.floor(Math.random() * 5) + 1;
     var size = Math.random() + 0.5; 
     var distanceFromBottom = Math.floor(Math.random() * 40);
-    var howFarFromStart = Math.floor(Math.random() * 20);
 
-    createZombie(speed, size, distanceFromBottom, howFarFromStart);
+    createZombie(speed, size, distanceFromBottom);
 }
 
 
 
+//create zombie with attributes
+function createZombie(speed, size, distanceFromBottom){
+
+    var newZombie = document.createElement("div");
+    newZombie.classList.add("zombie");
+    newZombie.setAttribute("id", idx);
+    newZombie.addEventListener("click", zombieShot);
+
+    newZombie.style.transform = "scale(" + size + ")";
+    newZombie.style.bottom = distanceFromBottom + "vh";
+
+    board.appendChild(newZombie);
+    idx += 1;
+
+    walkingZombie(newZombie, speed);
+}
+
+
+//adding the walking animation
+function walkingZombie(newZombie, speed){
+    var howOftenChangePosition;
+
+    switch (speed){
+        case 1:
+            howOftenChangePosition = 60;
+            break;
+        case 2:
+            howOftenChangePosition = 50;
+            break;
+        case 3:
+            howOftenChangePosition = 40;
+            break;
+        case 4:
+            howOftenChangePosition = 30;
+            break;
+        default:
+            howOftenChangePosition = 20;
+            break;
+    }
+
+
+    var animationPosition = 2000; //px
+    var zombiePosition = -20; //vw
+
+    //animation
+    runningZombies[newZombie.id] = setInterval( () => {
+        
+        //zamiana tła zombie
+        newZombie.style.backgroundPosition = animationPosition - 200 + "px";
+        animationPosition -= 200;
+        if (animationPosition == 0){
+            animationPosition = 2000;
+        }
+
+
+
+        zombiePosition++;
+        newZombie.style.right = zombiePosition + "vw";
+
+        //gdy wyjdzie poza mapę
+        if (zombiePosition == 105){
+            clearInterval(runningZombies[newZombie.id]);
+            newZombie.remove();
+            health -= 1;
+            pointsVar -= 6;
+            updateScore();
+            if (health == 0){
+                endGame();
+            }
+        }
+
+
+
+
+
+    }, howOftenChangePosition);
+
+}
+
+
+
+
+var intervalForCreatingZombies;
 
 function startGame(){
+    //wartości początkowe
     health = 3;
     pointsVar = 0;
-    score();
+    idx = 0;
+    updateScore();
 
-    document.body.style.cursor="none";
-    board.addEventListener("click", missedShot);
+    //odpowiedni kursor
+    document.querySelector("body").style.cursor = "none";
     window.addEventListener("mousemove", moveCursor);
 
-    document.getElementById("lose").style.transform = "translateY(-120%)";
+    board.addEventListener("click", missedShot);
+
+    //tablica z przegraną usuwa się
+    document.getElementById("lose").style.transform = "translateY(125vh)";
     document.getElementById("lose").style.transition = "1s ease";
 
-
-    //usuwam zombiaczki z mapy
-    zombies = document.querySelectorAll("div.zombie");
-       for (var i = 0; i <zombies.length; i++) {
-        zombies[i].remove();
-    }; 
-
-     gameRunning = setInterval ( () => {
-        generateAttributes();
+    //usuwanie zombiaczków, które były na ekranie w momencie przegrania
+    activeZombies = document.querySelectorAll("div.zombie");
+    for (var i =0; i< activeZombies.length; i++){
+        activeZombies[i].remove();
     }
-    , 750); //jak często tworzę nowe zombiaczki
+
+    
+    //tworzenie nowych zombiaczków co 750ms
+    intervalForCreatingZombies = setInterval( () => {
+        generateAttributes();
+    }, 750);
 
 }
 
 
-
-
-//END GAME
 function endGame(){
-    clearInterval(gameRunning); //aby się więcej zombiaków nie tworzyło
-    //aby zatrzymały się te, które już są na mapie
-    Object.keys(zombieRunTime).forEach(function(key) {
-        clearInterval(zombieRunTime[key]);
-    });
-
-    document.getElementById("board").removeEventListener("click", missedShot);
-    window.removeEventListener("mousemove", moveCursor);
-    document.body.style.cursor="default";
-    
-    document.getElementById("lose").style.transform = "translateY(120%)";
+    //tablica z przegraną pojawia się
+    document.getElementById("lose").style.transform = "translateY(-125vh)";
     document.getElementById("lose").style.transition = "1s ease";
+
+    //kursor zmienia się na normalny
+    window.removeEventListener("mousemove", moveCursor);
+    document.querySelector("body").style.cursor = "default";
+
+    board.removeEventListener("click", missedShot);
+
+    //aby nie tworzyło się więcej nowych zombiaczków
+    clearInterval(intervalForCreatingZombies);
+
+    //wyczyszczę dotychczasowe zombiaki
+    activeZombies = document.querySelectorAll("div.zombie");
+    for (var i =0; i< activeZombies.length; i++){
+        clearInterval(runningZombies[activeZombies[i].id]);
+        activeZombies[i].remove();
+    }
+
     document.getElementById("playAgain").addEventListener("click", startGame);
-    
+
+
 }
+
+
 
 startGame();
+
+
+
+
+
+
+
+
 
 
 
