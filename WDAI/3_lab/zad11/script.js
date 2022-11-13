@@ -42,16 +42,31 @@ async function subregionsFunction(data){
 
 
 function changePage(){
-    var pageId=this.id; 
-    var idArr = pageId.match(/\d+/);
-    var id = idArr[0]; //na to klikam
-    var whichContainer = document.getElementById("container" + id);
-    console.log(whichContainer);
+    var idFirst=this.id; 
+    var idArr = idFirst.match(/\d+/); //daje mi indeks subregionu
+    var id = idArr[0]; //id subregionu
+    var pageId = idFirst[idFirst.length - 1]; //numer klikniętego przycisku
+    var container = document.getElementById("container" + id);
+    var allCountries = container.querySelectorAll("div.countryData");
 
-    whichContainer.querySelectorAll("div.countryData");
-    console.log(whichContainer.querySelectorAll("div.countryData"));
+
+    var transform_value = -pageId * 250;
+
+    for (var i = 0; i < allCountries.length; i++){
+        allCountries[i].style.transform = "translateY(" + transform_value + "px)";
+        allCountries[i].style.transition = "1s ease";
+        allCountries[i].style.zIndex = 2;
+    }
 }
 
+
+
+function pushData(id, i, sortedBySubregions, countryName, countryCapital, countryPopulation, countryArea){
+    countryName.textContent = sortedBySubregions[id][1][i].name.official;
+    countryCapital.textContent = sortedBySubregions[id][1][i].capital;
+    countryPopulation.textContent = sortedBySubregions[id][1][i].population;
+    countryArea.textContent = sortedBySubregions[id][1][i].area; 
+}
 
 
 
@@ -61,13 +76,15 @@ function subregionCountries(id){
     container.classList.add("container");
     container.setAttribute("id", "container" + id);
     container.style.height = 0 + "px";
+    container.style.overflow = "hidden";
     document.getElementById("allData").appendChild(container);
 
     //paginacja
     if (sortedBySubregions[id][1].length > 5){
         var pagination = document.createElement("div");
-        pagination.setAttribute("id", id);
+        pagination.setAttribute("id", "pagination" + id);
         pagination.classList.add("pagination");
+        pagination.style.zIndex = 1;
         container.appendChild(pagination);
         
 
@@ -76,7 +93,7 @@ function subregionCountries(id){
         for (var i = 0; i < howManyPages; i++){
             var page = document.createElement("div");
             page.classList.add("page");
-            page.setAttribute("id", "page" + i);
+            page.setAttribute("id", "page" + id + "x" + i);
             page.textContent = i;
             pagination.appendChild(page);
             page.addEventListener("click", changePage);
@@ -93,20 +110,17 @@ function subregionCountries(id){
 
         var countryName = document.createElement("p");
         countryName.style.width = 25 + "%";
-        countryName.textContent = sortedBySubregions[id][1][i].name.official;
 
         var countryCapital = document.createElement("p");
         countryCapital.style.width = 25 + "%";
-        countryCapital.textContent = sortedBySubregions[id][1][i].capital;
 
         var countryPopulation = document.createElement("p");
         countryPopulation.style.width = 25 + "%";
-        countryPopulation.textContent = sortedBySubregions[id][1][i].population;
 
         var countryArea = document.createElement("p");
         countryArea.style.width = 25 + "%";
-        countryArea.textContent = sortedBySubregions[id][1][i].area;
 
+        pushData(id, i, sortedBySubregions, countryName, countryCapital, countryPopulation, countryArea);
 
 
         countryData.appendChild(countryName);
@@ -126,9 +140,11 @@ function clickedSubregion(){
         var children = 50 * document.getElementById("container" + id).childElementCount;
         if (children <= 250){
             document.getElementById("container" + id).style.height = children  + "px";
+            document.getElementById("container" + id).style.transition = "1s ease";
         }
         else{
              document.getElementById("container" + id).style.height = 300  + "px";
+             document.getElementById("container" + id).style.transition = "1s ease";
         }
        
         subregionClicked = true;
@@ -146,7 +162,6 @@ function createSubregionsDiv(sortedBySubregions){
     for (var i = 0; i < subregions.size; i++){
 
         var subregionDiv = document.createElement("div");
-        subregionDiv.style.type = "checkbox";
         subregionDiv.classList.add("subregion");
         subregionDiv.setAttribute("id", i);
         document.getElementById("allData").appendChild(subregionDiv);
@@ -167,19 +182,29 @@ function createSubregionsDiv(sortedBySubregions){
 }
 
 
-//paginacja
 
+//sortowanie wyników
+function sortAnswers(){
+    var sortCheckbox = document.getElementById("sortPleaseName");
 
+    if (sortCheckbox.classList.contains("checked")){
+        for (var i = 0; i < subregions.size; i++){
 
+            sortedBySubregions[i][1].sort(function (a, b){
+              return a.name.official.localeCompare(b.name.official);
+                            
+            }) 
+        }
+    }
 
-
-
+}
 
 
 async function answer(){
     var json = await getData();
     subregionsFunction(json);
     createSubregionsDiv(sortedBySubregions);
+    sortAnswers();
 }   
 
 
