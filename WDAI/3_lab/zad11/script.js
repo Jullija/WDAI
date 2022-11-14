@@ -61,14 +61,6 @@ function changePage(){
 
 
 
-function pushData(id, i, sortedBySubregions, countryName, countryCapital, countryPopulation, countryArea){
-    countryName.textContent = sortedBySubregions[id][1][i].name.official;
-    countryCapital.textContent = sortedBySubregions[id][1][i].capital;
-    countryPopulation.textContent = sortedBySubregions[id][1][i].population;
-    countryArea.textContent = sortedBySubregions[id][1][i].area; 
-}
-
-
 
 function subregionCountries(id){
 
@@ -105,22 +97,32 @@ function subregionCountries(id){
     
     for (var i = 0; i < sortedBySubregions[id][1].length; i++){
         var countryData = document.createElement("div");
+        countryData.classList.add("countryData" + id);
         countryData.classList.add("countryData");
+        countryData.setAttribute("id", sortedBySubregions[id][1][i].name.official);
         container.appendChild(countryData);
 
         var countryName = document.createElement("p");
+        countryName.setAttribute("id", "countryName" + id+ "_" + i);
         countryName.style.width = 25 + "%";
 
         var countryCapital = document.createElement("p");
+        countryCapital.setAttribute("id", "countryCapital" + id + "_" + i);
         countryCapital.style.width = 25 + "%";
 
         var countryPopulation = document.createElement("p");
+        countryPopulation.setAttribute("id", "countryPopulation" + id+ "_" + i);
         countryPopulation.style.width = 25 + "%";
 
         var countryArea = document.createElement("p");
+        countryArea.setAttribute("id", "countryArea" + id+ "_" + i);
         countryArea.style.width = 25 + "%";
 
-        pushData(id, i, sortedBySubregions, countryName, countryCapital, countryPopulation, countryArea);
+        countryName.textContent = sortedBySubregions[id][1][i].name.official;
+        countryCapital.textContent = sortedBySubregions[id][1][i].capital;
+        countryPopulation.textContent = sortedBySubregions[id][1][i].population;
+        countryArea.textContent = sortedBySubregions[id][1][i].area; 
+       
 
 
         countryData.appendChild(countryName);
@@ -143,15 +145,19 @@ function clickedSubregion(){
             document.getElementById("container" + id).style.transition = "1s ease";
         }
         else{
-             document.getElementById("container" + id).style.height = 300  + "px";
-             document.getElementById("container" + id).style.transition = "1s ease";
+            document.getElementById("container" + id).style.height = 300  + "px";
+            document.getElementById("container" + id).style.transition = "1s ease";
         }
        
         subregionClicked = true;
 
     }
     else{
-        document.getElementById("container" + id).style.height = 0 + "px";
+        var all = document.querySelectorAll("div.container");
+        all.forEach(container =>{
+            container.style.height = 0 + "px";
+        })
+
         subregionClicked = false;
 
     }
@@ -182,22 +188,90 @@ function createSubregionsDiv(sortedBySubregions){
 }
 
 
+function pushData(sortedBySubregions){
+
+    var minPeople = document.getElementById("minPeople").value;
+    var maxPeople = document.getElementById("maxPeople").value;
+    var minArea = document.getElementById("minArea").value;
+    var maxArea = document.getElementById("maxArea").value;
+
+    for (var i = 0; i < subregions.size; i++){
+        for (var j = 0; j < sortedBySubregions[i][1].length; j++){
+            if (sortedBySubregions[i][1][j].population >= minPeople && sortedBySubregions[i][1][j].population <= maxPeople && sortedBySubregions[i][1][j].area >= minArea && sortedBySubregions[i][1][j].area <= maxArea){
+                document.getElementById("countryName" + i + "_" + j).textContent = sortedBySubregions[i][1][j].name.official;
+                document.getElementById("countryCapital" + i+ "_" + j).textContent = sortedBySubregions[i][1][j].capital;
+                document.getElementById("countryPopulation" + i+ "_" + j).textContent = sortedBySubregions[i][1][j].population;
+                document.getElementById("countryArea" + i+ "_" + j).textContent = sortedBySubregions[i][1][j].area;
+            }
+            else{
+                document.getElementById("countryName" + i + "_" + j).textContent = "-";
+                document.getElementById("countryCapital" + i+ "_" + j).textContent = "- ";
+                document.getElementById("countryPopulation" + i+ "_" + j).textContent = " -";
+                document.getElementById("countryArea" + i+ "_" + j).textContent = "- ";
+            }
+                        
+        }
+    }
+}
+
 
 //sortowanie wyników
 function sortAnswers(){
-    var sortCheckbox = document.getElementById("sortPleaseName");
+    var sortCheckboxName = document.getElementById("sortPleaseName");
+    var sortCheckboxCapital = document.getElementById("sortPleaseCapital");
+    var sortCheckboxPopulation = document.getElementById("sortPleasePopulation");
+    var sortCheckboxArea = document.getElementById("sortPleaseArea");
 
-    if (sortCheckbox.classList.contains("checked")){
+   
+
+    if (sortCheckboxName.classList.contains("checked")){
+        for (var i = 0; i < subregions.size; i++){ 
+            sortedBySubregions[i][1].sort(function (a, b){
+                    return a.name.official.localeCompare(b.name.official);              
+            })};
+            
+        }
+        pushData(sortedBySubregions);
+    
+    
+
+    if (sortCheckboxCapital.classList.contains("checked")){
+        for (var i = 0; i < subregions.size; i++){
+            sortedBySubregions[i][1].sort(function (a, b){
+                if (b.capital != null && a.capital != null){
+                    return a.capital[0].localeCompare(b.capital[0]);
+                }             
+            }) 
+        }
+        pushData(sortedBySubregions);
+    }
+
+    if (sortCheckboxPopulation.classList.contains("checked")){
         for (var i = 0; i < subregions.size; i++){
 
             sortedBySubregions[i][1].sort(function (a, b){
-              return a.name.official.localeCompare(b.name.official);
+              return a.population - b.population;
                             
             }) 
         }
+        pushData(sortedBySubregions);
     }
 
+    if (sortCheckboxArea.classList.contains("checked")){
+        for (var i = 0; i < subregions.size; i++){
+
+            sortedBySubregions[i][1].sort(function (a, b){
+              return a.area - b.area
+                            
+            }) 
+        }
+        pushData(sortedBySubregions);
+    }
 }
+
+
+
+
 
 
 async function answer(){
@@ -205,6 +279,76 @@ async function answer(){
     subregionsFunction(json);
     createSubregionsDiv(sortedBySubregions);
     sortAnswers();
+
+    document.querySelectorAll("input").forEach(element => element.addEventListener("keypress", function(event){
+        if (event.key == "Enter"){
+            pushData(sortedBySubregions);
+            }
+            }
+    )
+    );
+
+
+
+
+
+
+
+
+    document.getElementById("sortPleaseName").addEventListener("click", e => {
+        if (document.getElementById("sortPleaseName").classList.contains("checked")){
+            document.getElementById("sortPleaseName").classList.remove("checked");
+        }
+        else{
+            document.getElementById("sortPleaseName").classList.add("checked");
+            document.getElementById("sortPleaseCapital").classList.remove("checked");
+            document.getElementById("sortPleasePopulation").classList.remove("checked");
+            document.getElementById("sortPleaseArea").classList.remove("checked");
+            sortAnswers();
+        }
+    })
+
+    document.getElementById("sortPleaseCapital").addEventListener("click", e => {
+        if (document.getElementById("sortPleaseCapital").classList.contains("checked")){
+            document.getElementById("sortPleaseCapital").classList.remove("checked");
+        }
+        else{
+            document.getElementById("sortPleaseName").classList.remove("checked");
+            document.getElementById("sortPleaseCapital").classList.add("checked");
+            document.getElementById("sortPleasePopulation").classList.remove("checked");
+            document.getElementById("sortPleaseArea").classList.remove("checked");
+            sortAnswers();
+        }
+    })
+
+    document.getElementById("sortPleasePopulation").addEventListener("click", e => {
+        if (document.getElementById("sortPleasePopulation").classList.contains("checked")){
+            document.getElementById("sortPleasePopulation").classList.remove("checked");
+        }
+        else{
+            document.getElementById("sortPleaseName").classList.remove("checked");
+            document.getElementById("sortPleaseCapital").classList.remove("checked");
+            document.getElementById("sortPleasePopulation").classList.add("checked");
+            document.getElementById("sortPleaseArea").classList.remove("checked");
+            sortAnswers();
+        }
+    })
+
+    document.getElementById("sortPleaseArea").addEventListener("click", e => {
+        if (document.getElementById("sortPleaseArea").classList.contains("checked")){
+            document.getElementById("sortPleaseArea").classList.remove("checked");
+        }
+        else{
+            document.getElementById("sortPleaseName").classList.remove("checked");
+            document.getElementById("sortPleaseCapital").classList.remove("checked");
+            document.getElementById("sortPleasePopulation").classList.remove("checked");
+            document.getElementById("sortPleaseArea").classList.add("checked");
+            sortAnswers();
+        }
+    })
+
+
+
 }   
 
 
