@@ -1,0 +1,53 @@
+<div id="container">
+
+<div id="top">
+    <ng-container *ngIf="showBasics">
+        <h1>The Basics</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam voluptatem quis recusandae</p>
+    </ng-container>
+
+    <ng-container *ngIf="showComponents">
+        <h1>Components</h1>
+        <p>With components, you can split logic (and markup) into separate building blocks and then combine those building blocks (and re-use them) to build powerful user interfaces.</p>
+    </ng-container>
+
+    <ng-container *ngIf="showEvents">
+        <h1></h1>
+        <p>Events allow you to trigger code on demand!</p>
+    </ng-container>
+</div>
+
+
+<div id="main">
+    <h1>Wybierz Temat</h1>
+
+    <div id="toChoose">
+
+        <div class="choose" id="left">
+            <h2>The Basics</h2>
+            <p>Core Angular basics you have to know</p>
+            <button (click)="basicsButton()">Learn More</button>
+        </div>
+
+        <div class="choose" id="middle">
+            <h2>Components</h2>
+            <p>Components are a core concept for building Angular Uls and apps</p>
+            <button (click)="componentsButton()">Learn More</button>
+        </div>
+
+        <div class="choose" id="right">
+            <h2>Events</h2>
+            <p>Events are important in Angular</p>
+            <button (click)="eventsButton()">Learn More</button>
+        </div>
+
+
+
+    </div>
+
+
+</div>
+
+
+</div>
+

@@ -1,0 +1,24 @@
+#body{
+    background-color: pink;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+select{
+    width: 60%;
+}
+
+.container{
+    height: 100px;
+}
+
+#third{
+    height: 200px;
+}
+
+#third > p {
+    font-size: 20px;
+}

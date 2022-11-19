@@ -1,0 +1,49 @@
+{"cars":[
+	{ "brand" : "Audi", "model" : "A1", "color" : "Srebrny"},
+	{ "brand" : "Audi", "model" : "A1", "color" : "Czarny"},
+	{ "brand" : "Audi", "model" : "A1", "color" : "Czerwony"},
+	{ "brand" : "Audi", "model" : "A4", "color" : "Srebrny"},
+	{ "brand" : "Audi", "model" : "A4", "color" : "Czarny"},
+	{ "brand" : "Audi", "model" : "A4", "color" : "Czerwony"},
+	{ "brand" : "Audi", "model" : "A4", "color" : "Granitowy"},
+	{ "brand" : "Audi", "model" : "A6", "color" : "Srebrny"},
+	{ "brand" : "Audi", "model" : "A6", "color" : "Czarny"},
+	{ "brand" : "Audi", "model" : "A6", "color" : "Czerwony"},
+
+	{ "brand" : "BMW", "model" : "X5", "color" : "Biały"},
+	{ "brand" : "BMW", "model" : "X5", "color" : "Czerwony"},
+	{ "brand" : "BMW", "model" : "X5", "color" : "Czarny"},
+	{ "brand" : "BMW", "model" : "X7", "color" : "Biały"},
+	{ "brand" : "BMW", "model" : "X7", "color" : "Czerwony"},
+	{ "brand" : "BMW", "model" : "X7", "color" : "Czarny"},
+	{ "brand" : "BMW", "model" : "X7", "color" : "Biały"},
+	{ "brand" : "BMW", "model" : "Z4", "color" : "Czerwony"},
+	{ "brand" : "BMW", "model" : "Z4", "color" : "Czarny"},
+    { "brand" : "BMW", "model" : "Z4", "color" : "Różowy"},
+
+    { "brand" : "Tesla", "model" : "S", "color" : "Czarny"},
+    { "brand" : "Tesla", "model" : "S", "color" : "Biały"},
+    { "brand" : "Tesla", "model" : "S", "color" : "Czerwony"},
+    { "brand" : "Tesla", "model" : "X", "color" : "Czarny"},
+    { "brand" : "Tesla", "model" : "X", "color" : "Biały"},
+    { "brand" : "Tesla", "model" : "X", "color" : "Czerwony"},
+    { "brand" : "Tesla", "model" : "X", "color" : "Niebieski"},
+    { "brand" : "Tesla", "model" : "Y", "color" : "Czarny"},
+    { "brand" : "Tesla", "model" : "Y", "color" : "Biały"},
+    { "brand" : "Tesla", "model" : "Y", "color" : "Czerwony"},
+
+    { "brand" : "Mercedes", "model" : "C", "color" : "Biały"},
+    { "brand" : "Mercedes", "model" : "C", "color" : "Czarny"},
+    { "brand" : "Mercedes", "model" : "C", "color" : "Srebrny"},
+    { "brand" : "Mercedes", "model" : "CLA", "color" : "Biały"},
+    { "brand" : "Mercedes", "model" : "CLA", "color" : "Czarny"},
+    { "brand" : "Mercedes", "model" : "CLA", "color" : "Srebrny"},
+    { "brand" : "Mercedes", "model" : "CLA", "color" : "Czerwony"},
+    { "brand" : "Mercedes", "model" : "E", "color" : "Biały"},
+    { "brand" : "Mercedes", "model" : "E", "color" : "Czarny"},
+    { "brand" : "Mercedes", "model" : "E", "color" : "Srebrny"}
+
+]
+}
+
+
