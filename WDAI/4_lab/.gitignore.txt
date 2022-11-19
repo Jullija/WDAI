@@ -1,2 +1,2 @@
-/angular
+/.angular
 /node_modules
