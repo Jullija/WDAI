@@ -66,6 +66,9 @@ label{
     background-color: green;
     border-radius: 10px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 

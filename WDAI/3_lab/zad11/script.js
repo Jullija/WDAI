@@ -118,7 +118,7 @@ function subregionCountries(id){
         countryArea.setAttribute("id", "countryArea" + id+ "_" + i);
         countryArea.style.width = 25 + "%";
 
-        countryName.textContent = sortedBySubregions[id][1][i].name.official;
+        countryName.textContent = sortedBySubregions[id][1][i].flag;
         countryCapital.textContent = sortedBySubregions[id][1][i].capital;
         countryPopulation.textContent = sortedBySubregions[id][1][i].population;
         countryArea.textContent = sortedBySubregions[id][1][i].area; 
