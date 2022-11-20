@@ -1,0 +1,29 @@
+<div id="body">
+    <div id="reservation">
+        <h2 [ngStyle]="{'background-color': howManyReservations(reserved) > 10 ? 'rgb(87, 197, 87)': 'rgb(236, 61, 61)'}">
+            Liczba aktualnie zarezerwowanych wycieczek wynosi: {{howManyReservations(reserved)}}</h2>
+    </div>
+
+    <div class="journeysDiv"> 
+        <div class="journeyDiv" *ngFor="let journey of journeys"
+        [ngClass] = "{'mostExpensive': journey.cenaJednostkowa == mostExpensiveJourney(journeys),
+                    'theCheapest': journey.cenaJednostkowa == theCheapestJourney(journeys)}">
+            <img src="{{journey.zdjecie}}">
+            <h2>{{journey.nazwa | uppercase}}</h2>
+            <h3>{{journey.docelowyKraj | uppercase}}</h3>
+            <p class="date">{{journey.dataRozpoczecia + " - " + journey.dataZakonczenia}}</p>
+            <p class="price">Cena: {{journey.cenaJednostkowa + " " + journey.waluta}} </p>
+            <p class="howMany" [ngStyle] = "{'color': journey.maxIloscMiejsc < 4 ? 'rgb(236, 61, 61)': 'black',
+                                              'font-size': journey.maxIloscMiejsc < 4 ? '25px': '15px'}"
+             *ngIf = "journey.maxIloscMiejsc != 0; else zeroPoints">Ilość miejsc: {{journey.maxIloscMiejsc}}</p>
+            <ng-template #zeroPoints>Brak dostępnych wycieczek</ng-template>
+            <p class="desc">{{journey.opis}}</p>
+            <div class="addRemoveButtons">
+                <button class="button1 add" (click)="addClick(journey)"
+                [ngStyle] = "{'display': journey.maxIloscMiejsc == 0 ? 'none': 'block'}">+</button>
+                <button class="button1 remove" (click)="removeClick(journey)">-</button>
+            </div>
+        </div>
+    </div>
+
+</div>
