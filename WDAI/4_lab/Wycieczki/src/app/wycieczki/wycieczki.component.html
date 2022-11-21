@@ -6,16 +6,18 @@
 
     <div class="journeysDiv"> 
         <div class="journeyDiv" *ngFor="let journey of journeys"
-        [ngClass] = "{'mostExpensive': journey.cenaJednostkowa == mostExpensiveJourney(journeys),
-                    'theCheapest': journey.cenaJednostkowa == theCheapestJourney(journeys)}">
+        [ngClass] = "{'mostExpensive': journey.cenaWZlotowkach == mostExpensiveJourney(journeys),
+                    'theCheapest': journey.cenaWZlotowkach == theCheapestJourney(journeys)}">
+            <div class="delete" (click)="removeJourney(journey)">Usuń</div>
             <img src="{{journey.zdjecie}}">
             <h2>{{journey.nazwa | uppercase}}</h2>
             <h3>{{journey.docelowyKraj | uppercase}}</h3>
-            <p class="date">{{journey.dataRozpoczecia + " - " + journey.dataZakonczenia}}</p>
-            <p class="price">Cena: {{journey.cenaJednostkowa + " " + journey.waluta}} </p>
-            <p class="howMany" [ngStyle] = "{'color': journey.maxIloscMiejsc < 4 ? 'rgb(236, 61, 61)': 'black',
+            <div class="date">{{journey.dataRozpoczecia + " - " + journey.dataZakonczenia}}</div>
+            <div class="price">Cena: {{journey.cenaJednostkowa + " " + journey.waluta}} 
+            <div class="newPriceContainer" *ngIf = "journey.waluta != 'zł';">Cena w złotówkach: {{journey.cenaWZlotowkach}} zł</div></div>
+            <div class="howMany" [ngStyle] = "{'color': journey.maxIloscMiejsc < 4 ? 'rgb(236, 61, 61)': 'black',
                                               'font-size': journey.maxIloscMiejsc < 4 ? '25px': '15px'}"
-             *ngIf = "journey.maxIloscMiejsc != 0; else zeroPoints">Ilość miejsc: {{journey.maxIloscMiejsc}}</p>
+             *ngIf = "journey.maxIloscMiejsc != 0; else zeroPoints">Ilość miejsc: {{journey.maxIloscMiejsc}}</div>
             <ng-template #zeroPoints>Brak dostępnych wycieczek</ng-template>
             <p class="desc">{{journey.opis}}</p>
             <div class="addRemoveButtons">

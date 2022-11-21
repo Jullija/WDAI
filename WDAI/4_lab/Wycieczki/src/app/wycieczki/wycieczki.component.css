@@ -30,7 +30,39 @@
     margin-bottom: 40px;
     background-color: rgb(245, 205, 211);
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    position: relative;
 }
+
+
+.price{
+    font-weight: bold;
+    text-align: center;
+    width: 80%;
+    border-bottom: 1px solid rgb(248, 150, 167);
+    padding-bottom: 10px;
+    height: 40px;
+}
+
+.journeyDiv > h2{
+    margin-bottom: -20px;
+    font-size: 25px;
+    text-align: center;
+    height: 30px;
+
+}
+.journeyDiv > h3{
+    text-align: center;
+    width: 80%;
+    border-bottom: 1px solid rgb(248, 150, 167);
+    padding-bottom: 10px;
+    margin: 0;
+}
+
+.newPriceContainer{
+    margin-top: 0px;
+    font-size: 13px;
+}
+
 
 img{
     border-radius: 50%;
@@ -40,6 +72,21 @@ img{
 
 .desc{
     font-style: italic;
+}
+
+.delete{
+    position: absolute;
+    right: 0px;
+    width: 50px;
+    top: 0px;
+    height: 30px;
+    border-radius: 0 10px 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    cursor: pointer;
+    background-color:  rgb(236, 61, 61);
 }
 
 #reservation > h2{
@@ -86,4 +133,9 @@ img{
 .theCheapest{
     border: 3px solid rgb(236, 61, 61);
 }
+
+
+
+
+
 
