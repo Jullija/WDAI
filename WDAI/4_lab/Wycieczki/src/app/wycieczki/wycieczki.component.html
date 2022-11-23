@@ -20,12 +20,17 @@
              *ngIf = "journey.maxIloscMiejsc != 0; else zeroPoints">Ilość miejsc: {{journey.maxIloscMiejsc}}</div>
             <ng-template #zeroPoints>Brak dostępnych wycieczek</ng-template>
             <p class="desc">{{journey.opis}}</p>
+            <!-- <div class="rating"><app-ocena-wycieczki></app-ocena-wycieczki></div> -->
             <div class="addRemoveButtons">
                 <button class="button1 add" (click)="addClick(journey)"
                 [ngStyle] = "{'display': journey.maxIloscMiejsc == 0 ? 'none': 'block'}">+</button>
                 <button class="button1 remove" (click)="removeClick(journey)">-</button>
             </div>
         </div>
+
     </div>
+
+    <div class="formularz"><app-dodaj-wycieczki (formSubmitEvent) = "formularzEvent($event)"></app-dodaj-wycieczki></div>
+
 
 </div>

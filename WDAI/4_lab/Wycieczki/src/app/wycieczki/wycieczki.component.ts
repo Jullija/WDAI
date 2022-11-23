@@ -12,6 +12,8 @@ export class WycieczkiComponent implements OnInit {
   json:any;
   journeys: Wycieczka[] = [];
   reserved:number = 0;
+  
+  //przeliczniki cen
   dolar:number = 4.59;
   euro:number = 4.70;
   korona:number = 0.19;
@@ -64,62 +66,83 @@ export class WycieczkiComponent implements OnInit {
 
 }
   
-addClick(data: Wycieczka){
-  if (data.maxIloscMiejsc - 1 >= 0){
-    this.reserved += 1;
-    data.maxIloscMiejsc -= 1;
-  }
+  addClick(data: Wycieczka){
+    if (data.maxIloscMiejsc - 1 >= 0){
+      this.reserved += 1;
+      data.maxIloscMiejsc -= 1;
+    }
 
-  if (data.maxIloscMiejsc == 0){
-    data.wyprzedana = true;
-  }
-}
-
-removeClick(data: Wycieczka){
-  if (data.maxIloscMiejsc + 1 <= data.maxIloscMiejsc2){
-    this.reserved -= 1;
-    data.maxIloscMiejsc += 1;
-  }
-
-  if (data.maxIloscMiejsc == 1){
-    data.wyprzedana = false;
-  }
-
-}
-
-
-howManyReservations(data: number){
-  return this.reserved;
-}
-
-
-mostExpensiveJourney(data: Wycieczka[]) : number{
-  let maxi = 0;
-  for (let wycieczka of data){
-    if (wycieczka.cenaWZlotowkach > maxi &&  wycieczka.wyprzedana == false){
-      maxi = wycieczka.cenaWZlotowkach;
+    if (data.maxIloscMiejsc == 0){
+      data.wyprzedana = true;
     }
   }
-  console.log(maxi)
-  return maxi;
-}
 
-theCheapestJourney(data: Wycieczka[]) : number{
-  let mini = 10**9;
-  for (let wycieczka of data){
-    if (wycieczka.cenaWZlotowkach < mini &&  wycieczka.wyprzedana == false){
-      mini = wycieczka.cenaWZlotowkach;
+  removeClick(data: Wycieczka){
+    if (data.maxIloscMiejsc + 1 <= data.maxIloscMiejsc2){
+      this.reserved -= 1;
+      data.maxIloscMiejsc += 1;
     }
+
+    if (data.maxIloscMiejsc == 1){
+      data.wyprzedana = false;
+    }
+
   }
-  return mini;
-
-}
 
 
-removeJourney(data: Wycieczka){
-  const index = this.journeys.indexOf(data);
-  this.journeys.splice(index, 1);
-}
+  howManyReservations(data: number){
+    return this.reserved;
+  }
+
+
+  mostExpensiveJourney(data: Wycieczka[]) : number{
+    let maxi = 0;
+    for (let wycieczka of data){
+      if (wycieczka.cenaWZlotowkach > maxi &&  wycieczka.wyprzedana == false){
+        maxi = wycieczka.cenaWZlotowkach;
+      }
+    }
+    console.log(maxi)
+    return maxi;
+  }
+
+  theCheapestJourney(data: Wycieczka[]) : number{
+    let mini = 10**9;
+    for (let wycieczka of data){
+      if (wycieczka.cenaWZlotowkach < mini &&  wycieczka.wyprzedana == false){
+        mini = wycieczka.cenaWZlotowkach;
+      }
+    }
+    return mini;
+
+  }
+
+
+  removeJourney(data: Wycieczka){
+    this.reserved -= data.maxIloscMiejsc2 - data.maxIloscMiejsc;
+    const index = this.journeys.indexOf(data);
+    this.journeys.splice(index, 1);
+  }
+
+  formularzEvent(data: Wycieczka){
+
+    if (data.waluta != "zł"){
+      if (data.waluta == "euro"){
+        data.cenaWZlotowkach = data.cenaJednostkowa * this.euro;
+      }
+      else if (data.waluta == "$"){
+        data.cenaWZlotowkach = data.cenaJednostkowa * this.dolar;
+      }
+      else if (data.waluta == "jen"){
+        data.cenaWZlotowkach = data.cenaJednostkowa * this.jen;
+      }
+      else{
+        data.cenaWZlotowkach = data.cenaJednostkowa * this.korona;
+      }
+      
+    }
+    this.journeys.push(data);
+  }
 
 
 }

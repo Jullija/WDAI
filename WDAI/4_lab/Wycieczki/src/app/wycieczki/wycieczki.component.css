@@ -1,7 +1,6 @@
 #body{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     justify-content: center;
     background-color: rgb(247, 220, 224);
@@ -134,6 +133,20 @@ img{
     border: 3px solid rgb(236, 61, 61);
 }
 
+
+
+.formularz{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: pink;
+    margin-top: 200px;
+    margin-bottom: 200px;
+    border:2px solid rgb(248, 150, 167);
+    border-radius: 10px;
+    padding: 10px;
+}
 
 
 
