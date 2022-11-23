@@ -12,6 +12,7 @@ export class WycieczkiComponent implements OnInit {
   json:any;
   journeys: Wycieczka[] = [];
   reserved:number = 0;
+  reservedList = new Map<string, [number, number]>(); //"nazwa wycieczki", [cenaWZlotowkach, ile rezerwacji]
   
   //przeliczniki cen
   dolar:number = 4.59;
@@ -60,9 +61,13 @@ export class WycieczkiComponent implements OnInit {
           zdjecie: i.zdjecie,
           wyprzedana: false
         } as Wycieczka)   
-        
+
+        this.reservedList.set(i.nazwa, [priceChange, 0]);
+       
       }
   })
+
+  
 
 }
   
@@ -70,6 +75,14 @@ export class WycieczkiComponent implements OnInit {
     if (data.maxIloscMiejsc - 1 >= 0){
       this.reserved += 1;
       data.maxIloscMiejsc -= 1;
+
+      for (let i of this.reservedList.entries()){
+        if (i[0] == data.nazwa){
+          i[1][1] += 1
+          break;
+        }
+      }
+
     }
 
     if (data.maxIloscMiejsc == 0){
@@ -81,6 +94,13 @@ export class WycieczkiComponent implements OnInit {
     if (data.maxIloscMiejsc + 1 <= data.maxIloscMiejsc2){
       this.reserved -= 1;
       data.maxIloscMiejsc += 1;
+      
+      for (let i of this.reservedList.entries()){
+        if (i[0] == data.nazwa){
+          i[1][1] -= 1
+          break;
+        }
+      }
     }
 
     if (data.maxIloscMiejsc == 1){
@@ -102,7 +122,6 @@ export class WycieczkiComponent implements OnInit {
         maxi = wycieczka.cenaWZlotowkach;
       }
     }
-    console.log(maxi)
     return maxi;
   }
 
@@ -120,6 +139,7 @@ export class WycieczkiComponent implements OnInit {
 
   removeJourney(data: Wycieczka){
     this.reserved -= data.maxIloscMiejsc2 - data.maxIloscMiejsc;
+    this.reservedList.delete(data.nazwa);
     const index = this.journeys.indexOf(data);
     this.journeys.splice(index, 1);
   }
@@ -142,7 +162,9 @@ export class WycieczkiComponent implements OnInit {
       
     }
     this.journeys.push(data);
+    this.reservedList.set(data.nazwa, [data.cenaWZlotowkach, 0])
   }
+
 
 
 }

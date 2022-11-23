@@ -1,0 +1,44 @@
+.basket2{
+    width: 80px;
+    height: 80px;
+    background-color: rgb(248, 150, 167);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+img{
+    width: 70px;
+    height: 70px;
+}
+
+.insideBasket{
+    background-color: rgba(247, 154, 168, 0.7);
+    width: 80vw;
+    height: 70vh;
+    position: absolute;
+    left: -85vw;
+    border: 2px solid rgb(248, 150, 167);
+    top: 15vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 30px;
+    overflow: auto;
+}
+
+.insideBasket > div > div{
+    padding: 10px;
+}
+
+#close{
+    position: absolute;
+    right: 5px;
+    top: 0;
+    cursor: pointer;
+    font-size: 40px;
+}

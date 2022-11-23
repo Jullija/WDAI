@@ -1,0 +1,9 @@
+<div class="basket2" (click)="showBasket()"><img src="assets/images/shopping-cart.png"></div>
+<div class="insideBasket" *ngIf="showBasketBool">
+    <div *ngFor="let journeyInCart of reservedList | keyvalue">
+        <div *ngIf="journeyInCart.value[1] != 0">{{journeyInCart.value[1]}} x {{journeyInCart.key}}</div>
+    </div>
+    <div id="close" (click)="exitClick()">X</div>
+    <p>Łączna kwota: ${{getCartSum()}}</p>
+
+</div>
