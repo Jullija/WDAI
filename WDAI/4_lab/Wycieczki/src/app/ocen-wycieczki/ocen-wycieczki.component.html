@@ -1,0 +1,13 @@
+<div class="stars" id={{whichJourney}}>
+    <input type="radio" name={{whichJourney}}1 id="five" value="5" (click)="isClicked($event)">
+    <label for="five"></label>
+    <input type="radio" name={{whichJourney}}1 id="four" value="4" (click)="isClicked($event)">
+    <label for="four"></label>
+    <input type="radio" name={{whichJourney}}1 id="three" value="3" (click)="isClicked($event)">
+    <label for="three"></label>
+    <input type="radio" name={{whichJourney}}1 id="two" value="2" (click)="isClicked($event)">
+    <label for="two"></label>
+    <input type="radio" name={{whichJourney}}1 id="one" value="1" (click)="isClicked($event)">
+    <label for="one"></label>
+</div>
+<div class="result">Sumaryczna ocena: {{allRates.get(whichJourney)}}</div>

@@ -13,7 +13,9 @@ export class WycieczkiComponent implements OnInit {
   journeys: Wycieczka[] = [];
   reserved:number = 0;
   reservedList = new Map<string, [number, number]>(); //"nazwa wycieczki", [cenaWZlotowkach, ile rezerwacji]
-  
+  allRates = new Map<string, number>(); //"nazwa", ocena
+
+
   //przeliczniki cen
   dolar:number = 4.59;
   euro:number = 4.70;
@@ -63,6 +65,7 @@ export class WycieczkiComponent implements OnInit {
         } as Wycieczka)   
 
         this.reservedList.set(i.nazwa, [priceChange, 0]);
+        this.allRates.set(i.nazwa, 0);
        
       }
   })
@@ -76,11 +79,9 @@ export class WycieczkiComponent implements OnInit {
       this.reserved += 1;
       data.maxIloscMiejsc -= 1;
 
-      for (let i of this.reservedList.entries()){
-        if (i[0] == data.nazwa){
-          i[1][1] += 1
-          break;
-        }
+      let curr = this.reservedList.get(data.nazwa);
+      if (curr !== undefined){
+        curr[1] += 1;
       }
 
     }
@@ -95,19 +96,17 @@ export class WycieczkiComponent implements OnInit {
       this.reserved -= 1;
       data.maxIloscMiejsc += 1;
       
-      for (let i of this.reservedList.entries()){
-        if (i[0] == data.nazwa){
-          i[1][1] -= 1
-          break;
-        }
+      let curr = this.reservedList.get(data.nazwa);
+      if (curr !== undefined){
+        curr[1] -= 1;
       }
-    }
+      
 
     if (data.maxIloscMiejsc == 1){
       data.wyprzedana = false;
     }
 
-  }
+  }}
 
 
   howManyReservations(data: number){

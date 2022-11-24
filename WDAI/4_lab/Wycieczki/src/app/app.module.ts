@@ -8,6 +8,7 @@ import { WycieczkiComponent } from './wycieczki/wycieczki.component';
 import { HomeComponent } from './home/home.component';
 import { DodajWycieczkiComponent } from './dodaj-wycieczki/dodaj-wycieczki.component';
 import { KoszykComponent } from './koszyk/koszyk.component';
+import { OcenWycieczkiComponent } from './ocen-wycieczki/ocen-wycieczki.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { KoszykComponent } from './koszyk/koszyk.component';
     HomeComponent,
     DodajWycieczkiComponent,
     KoszykComponent,
+    OcenWycieczkiComponent,
 
   ],
   imports: [

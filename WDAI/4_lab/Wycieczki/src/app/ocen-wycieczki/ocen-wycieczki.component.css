@@ -1,0 +1,63 @@
+.stars{
+    width: 400px;
+    height: 100%;
+    position: relative;
+    margin-top: -10px;
+    margin-bottom: -5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    -moz-transform: scale(-1, 1);
+}
+
+
+.stars input{
+    border: 0px;
+    width: 40px;
+    height: 40px;
+    z-index: 1;
+    opacity: 0;
+    margin-left: 5px;
+    cursor: pointer;
+    transform: translate(50%, -1%);
+}
+
+.stars label{
+    margin-left: 10px;
+    font-size: 40px;
+    color: lightgrey;
+    text-shadow: 1px 1px #bbb;
+    transform: translate(-85%, -1%); 
+}
+
+.stars label:before{
+    content: '★';
+}
+
+.stars input:checked ~ label{
+    color: gold;
+    text-shadow: 1px 1px #c60;
+}
+
+.stars input:hover ~label{
+    color: gold;
+}
+
+/*najeżdżanie na gwiazdkę, która nie jest kliknięta */
+.stars:not(:checked) > label:hover,
+.stars:not(:checked) > label:hover ~ label{
+  color: gold;
+}
+
+.stars input:checked > label:hover,
+.stars input:checked > label:hover ~ label{
+  color: gold;
+  text-shadow: 1px 1px goldenrod;
+}
+
+.result{
+    text-align: center;
+    color: grey;
+}
+
+
