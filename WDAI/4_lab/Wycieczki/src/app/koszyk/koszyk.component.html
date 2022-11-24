@@ -4,6 +4,6 @@
         <div *ngIf="journeyInCart.value[1] != 0">{{journeyInCart.value[1]}} x {{journeyInCart.key}}</div>
     </div>
     <div id="close" (click)="exitClick()">X</div>
-    <p>Łączna kwota: ${{getCartSum()}}</p>
+    <p>Łączna kwota: {{getCartSum()}} zł</p>
 
 </div>
