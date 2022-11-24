@@ -162,6 +162,7 @@ export class WycieczkiComponent implements OnInit {
     }
     this.journeys.push(data);
     this.reservedList.set(data.nazwa, [data.cenaWZlotowkach, 0])
+    this.allRates.set(data.nazwa, 0);
   }
 
 

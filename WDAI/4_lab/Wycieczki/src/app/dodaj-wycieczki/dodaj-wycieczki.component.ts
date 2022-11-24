@@ -26,7 +26,7 @@ export class DodajWycieczkiComponent implements OnInit {
       nazwa2: ['', Validators.required],
       docelowyKraj2: ['', [Validators.required, Validators.minLength(4), Validators.pattern('[A-Z]{1}[a-z]+')]],
       dataRozpoczecia2: ['', [Validators.required, Validators.pattern('([0-9]{1}[0-9]{1}[.]){2}[0-9]{4}')]],
-      dataZakonczenia2: ['', [Validators.required, Validators.pattern('([0-9]{1}[0-9]{1}[.]){2}[0-9]{4}')]],
+      dataZakonczenia2: ['', [Validators.required, Validators.pattern('([0-9]{1}[0-9]{1}[.]){2}[0-9]{4}')]], //'(?:0[1-9]|[12][0-9]|3[01])[-/.](?:0[1-9]|1[012])[-/.](2022|20\d{2})'
       cenaJednostkowa2:['', [Validators.required, Validators.pattern('[0-9]+')]],
       waluta2: ['', Validators.required],
       maxIloscMiejsc2: ['', [Validators.required,  Validators.pattern('[0-9]+')]],
