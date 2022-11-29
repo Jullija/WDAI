@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-ocen-wycieczki',
@@ -11,28 +11,28 @@ export class OcenWycieczkiComponent implements OnInit {
 
   @Input() allRates:Map<string, number>;
   @Input() whichJourney:string;
+  @Output() ratingSubmitEvent = new EventEmitter();
 
   ngOnInit(): void {
-    console.log(this.whichJourney)
   }
   
 
+  
+
   isClicked(event:any){
-    console.log(this.whichJourney)
     if (event.target.id == "one"){
       let curr1 = this.allRates.get(this.whichJourney);
-      let curr2 = this.allRates.get(this.whichJourney);
       
       if (curr1 == 0){
         this.allRates.set(this.whichJourney, 1);
+        this.ratingSubmitEvent.emit(this.allRates);
         return;
       }
 
-      if (curr1 !== undefined && curr2 !== undefined){
+      if (curr1 !== undefined){
         curr1 += 1;
         curr1 /= 2;
         curr1 = Math.round(curr1);
-        curr1.toFixed(2);
         this.allRates.set(this.whichJourney, curr1);
       }
     }
@@ -42,6 +42,7 @@ export class OcenWycieczkiComponent implements OnInit {
 
       if (curr1 == 0){
         this.allRates.set(this.whichJourney, 2);
+        this.ratingSubmitEvent.emit(this.allRates);
         return;
       }
 
@@ -58,6 +59,7 @@ export class OcenWycieczkiComponent implements OnInit {
 
       if (curr1 == 0){
         this.allRates.set(this.whichJourney, 3);
+        this.ratingSubmitEvent.emit(this.allRates);
         return;
       }
 
@@ -74,6 +76,7 @@ export class OcenWycieczkiComponent implements OnInit {
 
       if (curr1 == 0){
         this.allRates.set(this.whichJourney, 4);
+        this.ratingSubmitEvent.emit(this.allRates);
         return;
       }
 
@@ -90,6 +93,7 @@ export class OcenWycieczkiComponent implements OnInit {
 
       if (curr1 == 0){
         this.allRates.set(this.whichJourney, 5);
+        this.ratingSubmitEvent.emit(this.allRates);
         return;
       }
 
@@ -100,6 +104,7 @@ export class OcenWycieczkiComponent implements OnInit {
         this.allRates.set(this.whichJourney, curr1);
       }
     }
+    this.ratingSubmitEvent.emit(this.allRates);
 
 
 }

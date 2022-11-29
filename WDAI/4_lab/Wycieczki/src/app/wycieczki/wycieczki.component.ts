@@ -16,6 +16,7 @@ export class WycieczkiComponent implements OnInit {
   allRates = new Map<string, number>(); //"nazwa", ocena
 
 
+
   //przeliczniki cen
   dolar:number = 4.59;
   euro:number = 4.70;
@@ -165,6 +166,10 @@ export class WycieczkiComponent implements OnInit {
     this.allRates.set(data.nazwa, 0);
   }
 
+
+  journeyRated(data: Map<string, number>){
+    this.allRates = data;
+  }
 
 
 }
