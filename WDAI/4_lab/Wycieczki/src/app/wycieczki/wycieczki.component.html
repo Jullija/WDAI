@@ -1,4 +1,6 @@
 <div id="body">
+    <app-filtrowanie [allJourneysList] = "journeys"></app-filtrowanie>
+
     <div id="reservation">
         <h2 [ngStyle]="{'background-color': howManyReservations(reserved) > 10 ? 'rgb(87, 197, 87)': 'rgb(236, 61, 61)'}">
             Liczba aktualnie zarezerwowanych wycieczek wynosi: {{howManyReservations(reserved)}}</h2>

@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { DodajWycieczkiComponent } from './dodaj-wycieczki/dodaj-wycieczki.component';
 import { KoszykComponent } from './koszyk/koszyk.component';
 import { OcenWycieczkiComponent } from './ocen-wycieczki/ocen-wycieczki.component';
+import { FiltrowanieComponent } from './filtrowanie/filtrowanie.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 @NgModule({
@@ -19,12 +21,13 @@ import { OcenWycieczkiComponent } from './ocen-wycieczki/ocen-wycieczki.componen
     DodajWycieczkiComponent,
     KoszykComponent,
     OcenWycieczkiComponent,
-
+    FiltrowanieComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

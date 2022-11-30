@@ -1,0 +1,13 @@
+<div id="mainDiv">
+    <div id="localisation" class="filter">Sortowanie względem lokalizacji:
+        <select (click)="allCountries()">
+            <option></option>
+                <option *ngFor = "let country of countries">
+                    {{ country }}
+                </option>
+        </select>
+    </div>
+    <div id="price" class="filter">Sortowanie względem ceny:</div>
+    <div id="date" class="filter">Sortowanie względem daty:</div>
+    <div id="rating" class="filter">Sortowanie po ocenie</div>
+</div>

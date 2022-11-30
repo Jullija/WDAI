@@ -195,3 +195,12 @@ export class Wycieczka{
   wyprzedana:boolean;
 }
 
+
+export class Filtered{
+  countries: string[];
+  minPrice: number;
+  maxPrice: number;
+  startDate: string;
+  endDate: string;
+  rating: number;
+}
