@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WycieczkiPipe } from '../filtrowanie/wycieczki.pipe';
 
 @Component({
   selector: 'app-wycieczki',
@@ -22,6 +23,16 @@ export class WycieczkiComponent implements OnInit {
   euro:number = 4.70;
   korona:number = 0.19;
   jen:number = 0.032;
+
+
+  filter = {
+    countries: [],
+    minPrice: 0,
+    maxPrice: 10**9,
+    startDate: '',
+    endDate: '',
+    rates: []
+  } as WycieczkaFilter
 
 
 
@@ -62,19 +73,19 @@ export class WycieczkiComponent implements OnInit {
           maxIloscMiejsc2: i.maxIloscMiejsc,
           opis: i.opis,
           zdjecie: i.zdjecie,
-          wyprzedana: false
+          wyprzedana: false,
+          howManyRatings: 0
         } as Wycieczka)   
 
         this.reservedList.set(i.nazwa, [priceChange, 0]);
         this.allRates.set(i.nazwa, 0);
-       
+      
       }
+
   })
 
-  
-
 }
-  
+
   addClick(data: Wycieczka){
     if (data.maxIloscMiejsc - 1 >= 0){
       this.reserved += 1;
@@ -115,8 +126,11 @@ export class WycieczkiComponent implements OnInit {
   }
 
 
-  mostExpensiveJourney(data: Wycieczka[]) : number{
+  mostExpensiveJourney(data: Wycieczka[], filter: WycieczkaFilter){
     let maxi = 0;
+    let journeyPipe = new WycieczkiPipe();
+    data = journeyPipe.transform(data, filter)
+    
     for (let wycieczka of data){
       if (wycieczka.cenaWZlotowkach > maxi &&  wycieczka.wyprzedana == false){
         maxi = wycieczka.cenaWZlotowkach;
@@ -125,16 +139,19 @@ export class WycieczkiComponent implements OnInit {
     return maxi;
   }
 
-  theCheapestJourney(data: Wycieczka[]) : number{
+  theCheapestJourney(data: Wycieczka[], filter: WycieczkaFilter){
     let mini = 10**9;
+    let journeyPipe = new WycieczkiPipe();
+    data = journeyPipe.transform(data, filter)
+
     for (let wycieczka of data){
       if (wycieczka.cenaWZlotowkach < mini &&  wycieczka.wyprzedana == false){
         mini = wycieczka.cenaWZlotowkach;
       }
     }
     return mini;
-
   }
+
 
 
   removeJourney(data: Wycieczka){
@@ -142,6 +159,7 @@ export class WycieczkiComponent implements OnInit {
     this.reservedList.delete(data.nazwa);
     const index = this.journeys.indexOf(data);
     this.journeys.splice(index, 1);
+    console.log(this.journeys)
   }
 
   formularzEvent(data: Wycieczka){
@@ -169,8 +187,20 @@ export class WycieczkiComponent implements OnInit {
 
   journeyRated(data: Map<string, number>){
     this.allRates = data;
+    for (let i of data){
+      for (let j of this.journeys){
+        if (i[0] == j.nazwa){
+          j.howManyRatings = i[1];
+          return
+        }
+      }
+    }
   }
 
+
+  filterGiven(filter: WycieczkaFilter){
+    this.filter = filter;
+  }
 
 }
 
@@ -193,14 +223,14 @@ export class Wycieczka{
   opis:string;
   zdjecie: string;
   wyprzedana:boolean;
+  howManyRatings:number;
 }
 
-
-export class Filtered{
+export class WycieczkaFilter{
   countries: string[];
   minPrice: number;
   maxPrice: number;
   startDate: string;
   endDate: string;
-  rating: number;
+  rates: number[];
 }

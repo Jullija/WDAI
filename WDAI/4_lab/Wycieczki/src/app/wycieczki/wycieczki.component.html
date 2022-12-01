@@ -1,15 +1,16 @@
 <div id="body">
-    <app-filtrowanie [allJourneysList] = "journeys"></app-filtrowanie>
+
+    <app-filtrowanie [journeys]="journeys" [allRates] = "allRates" (filterEmit)="filterGiven($event)"></app-filtrowanie>
 
     <div id="reservation">
         <h2 [ngStyle]="{'background-color': howManyReservations(reserved) > 10 ? 'rgb(87, 197, 87)': 'rgb(236, 61, 61)'}">
             Liczba aktualnie zarezerwowanych wycieczek wynosi: {{howManyReservations(reserved)}}</h2>
     </div>
 
-    <div class="journeysDiv"> 
-        <div class="journeyDiv" *ngFor="let journey of journeys"
-        [ngClass] = "{'mostExpensive': journey.cenaWZlotowkach == mostExpensiveJourney(journeys),
-                    'theCheapest': journey.cenaWZlotowkach == theCheapestJourney(journeys)}">
+    <div class="journeysDiv" *ngIf="journeys != []"> 
+        <div class="journeyDiv" *ngFor="let journey of journeys | filterJourneys: filter"
+        [ngClass] = "{'mostExpensive': journey.cenaWZlotowkach == mostExpensiveJourney(journeys, filter),
+                    'theCheapest': journey.cenaWZlotowkach == theCheapestJourney(journeys, filter)}">
             <div class="delete" (click)="removeJourney(journey)">Usuń</div>
             <img src="{{journey.zdjecie}}">
             <h2>{{journey.nazwa | uppercase}}</h2>

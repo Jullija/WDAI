@@ -58,7 +58,8 @@ export class DodajWycieczkiComponent implements OnInit {
       zdjecie: data.get("zdjecie2").value,
       cenaWZlotowkach: data.get("cenaJednostkowa2").value,
       maxIloscMiejsc2: data.get("maxIloscMiejsc2").value,
-      wyprzedana: false
+      wyprzedana: false,
+      howManyRatings: 0
 
     }
     this.formSubmitEvent.emit(nowaWycieczka);
@@ -88,4 +89,5 @@ export class Wycieczka{
   opis:string;
   zdjecie: string;
   wyprzedana:boolean;
+  howManyRatings:number;
 }
