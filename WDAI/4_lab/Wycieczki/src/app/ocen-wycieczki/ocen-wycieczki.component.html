@@ -1,13 +1,16 @@
 <div class="stars" id={{whichJourney}}>
-    <input type="radio" name={{whichJourney}}1 id="five{{whichJourney}}" (click)="isClicked(5)">
-    <label for="five{{whichJourney}}1"></label>
-    <input type="radio" name={{whichJourney}}1 id="four{{whichJourney}}1" (click)="isClicked(4)">
-    <label for="four{{whichJourney}}1"></label>
-    <input type="radio" name={{whichJourney}}1 id="three{{whichJourney}}1"(click)="isClicked(3)">
-    <label for="three{{whichJourney}}1"></label>
-    <input type="radio" name={{whichJourney}}1 id="two{{whichJourney}}1" (click)="isClicked(2)">
-    <label for="two{{whichJourney}}1"></label>
-    <input type="radio" name={{whichJourney}}1 id="one{{whichJourney}}1" (click)="isClicked(1)">
-    <label for="one{{whichJourney}}1"></label>
+    <input type="radio" name={{whichJourney.nazwa}} value="5" (click)="isClicked($event)">
+    <label for="5"></label>
+    <input type="radio" name={{whichJourney.nazwa}} value="4" (click)="isClicked($event)">
+    <label for="4"></label>
+    <input type="radio" name={{whichJourney.nazwa}} value="3" (click)="isClicked($event)">
+    <label for="31"></label>
+    <input type="radio" name={{whichJourney.nazwa}} value="2" (click)="isClicked($event)">
+    <label for="2"></label>
+    <input type="radio" name={{whichJourney.nazwa}} value="1" (click)="isClicked($event)">
+    <label for="1"></label>
 </div>
-<div class="result">Sumaryczna ocena: {{allRates.get(whichJourney)}}</div>
+<div class="result">Sumaryczna ocena: {{whichJourney.rating}}</div>
+
+
+

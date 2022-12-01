@@ -17,21 +17,18 @@ export class WycieczkiPipe implements PipeTransform {
         return new Date(date[1] + '/' + date[0] + '/' + date[2]);
     }
 
-    transform(journeys: Wycieczka[], filter: WycieczkaFilter) :Wycieczka[] {
+    transform(journeys: Wycieczka[], filter: WycieczkaFilter) {
     if (!journeys || !filter) {
         return journeys
     }
 
-    for (let i of journeys){
-        console.log(i.howManyRatings)
-    }
 
     return journeys.filter(journey => {
         return ((filter.countries.length == 0) || filter.countries.includes(journey.docelowyKraj) && //kraje
         (journey.cenaWZlotowkach >= filter.minPrice && journey.cenaWZlotowkach <= filter.maxPrice)&& //cena
         (filter.startDate == null || filter.startDate == '' || (this.changeDateFormat(journey.dataRozpoczecia) >= new Date(filter.startDate))) && //data
         (filter.endDate == null || filter.endDate == '' || (this.changeDateFormat(journey.dataZakonczenia) <= new Date(filter.endDate))) &&
-       (filter.rates.length == 0 || filter.rates.includes(journey.howManyRatings))
+        (filter.rates.length == 0 || filter.rates.includes(0) || filter.rates.includes(journey.rating))
         
         )
     })

@@ -9,7 +9,6 @@ import { Wycieczka, WycieczkaFilter } from '../wycieczki/wycieczki.component';
 export class FiltrowanieComponent implements OnInit {
 
   @Input() journeys: Wycieczka[];
-  @Input() allRates: Map<string, number>;
   @Output() filterEmit = new EventEmitter();
 
   countries: string[]=[];

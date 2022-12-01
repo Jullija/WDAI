@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Wycieczka } from '../wycieczki/wycieczki.component';
 
 @Component({
   selector: 'app-dodaj-wycieczki',
@@ -59,6 +60,8 @@ export class DodajWycieczkiComponent implements OnInit {
       cenaWZlotowkach: data.get("cenaJednostkowa2").value,
       maxIloscMiejsc2: data.get("maxIloscMiejsc2").value,
       wyprzedana: false,
+      rating: 0,
+      sumRating: 0,
       howManyRatings: 0
 
     }
@@ -76,18 +79,3 @@ export class DodajWycieczkiComponent implements OnInit {
 
 
 
-export class Wycieczka{
-  nazwa: string;
-  docelowyKraj: string;
-  dataRozpoczecia: string;
-  dataZakonczenia: string;
-  cenaJednostkowa: number;
-  waluta: string;
-  cenaWZlotowkach:number;
-  maxIloscMiejsc: number;
-  maxIloscMiejsc2: number;
-  opis:string;
-  zdjecie: string;
-  wyprzedana:boolean;
-  howManyRatings:number;
-}
