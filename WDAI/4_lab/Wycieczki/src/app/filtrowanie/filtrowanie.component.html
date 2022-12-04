@@ -18,8 +18,8 @@
 
     <div id="priceFilter" class="filterDiv">
         <p>Filtruj po cenie:</p>
-        <p class="priceDiv">Od {{minPrice}}</p>
-        <p class="priceDiv">Do {{maxPrice}}</p>
+        <p class="priceDiv">Od {{getMinPrice(journeys)}}</p>
+        <p class="priceDiv">Do {{getMaxPrice(journeys)}}</p>
         <mat-slider (change)="filterChange()" step="1" min="{{getMinPrice(journeys)}}" max="{{getMaxPrice(journeys)}}">
             <input matSliderStartThumb value = "{{getMinPrice(journeys)}}" [(ngModel)]="minPrice">
             <input matSliderEndThumb value = "{{getMaxPrice(journeys)}}" [(ngModel)]="maxPrice">

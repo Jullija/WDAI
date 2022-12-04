@@ -27,7 +27,7 @@ export class DodajWycieczkiComponent implements OnInit {
       nazwa2: ['', Validators.required],
       docelowyKraj2: ['', [Validators.required, Validators.minLength(4), Validators.pattern('[A-Z]{1}[a-z]+')]],
       dataRozpoczecia2: ['', [Validators.required, Validators.pattern('([0-9]{1}[0-9]{1}[.]){2}[0-9]{4}')]],
-      dataZakonczenia2: ['', [Validators.required, Validators.pattern('([0-9]{1}[0-9]{1}[.]){2}[0-9]{4}')]], //'(?:0[1-9]|[12][0-9]|3[01])[-/.](?:0[1-9]|1[012])[-/.](2022|20\d{2})'
+      dataZakonczenia2: ['', [Validators.required, Validators.pattern('([0-9]{1}[0-9]{1}[.]){2}[0-9]{4}')]], 
       cenaJednostkowa2:['', [Validators.required, Validators.pattern('[0-9]+')]],
       waluta2: ['', Validators.required],
       maxIloscMiejsc2: ['', [Validators.required,  Validators.pattern('[0-9]+')]],
@@ -36,12 +36,38 @@ export class DodajWycieczkiComponent implements OnInit {
     });
   }
 
+  checkValidation(data1:string, data2:string){
+    let data1Split = data1.split('.'); //start
+    let data2Split = data2.split('.'); //end
+
+    if (data2Split[2] > data1Split[2]){
+      return true;
+    }
+    else if (data2Split[2] == data1Split[2]){ 
+
+      if (data2Split[1] > data1Split[1] && data1Split[1] <= '12' && data2Split[1] <= '12'){
+        return true;
+      }
+      else if (data2Split[1] == data1Split[1] && data1Split[1] <= '12'){
+        return (data2Split[0] >= data1Split[0] && data2Split[0] <= '31' && data1Split[0] <= '31');
+      }
+      else{
+        return false
+      }
+      }
+    else{
+      return false;
+    }
+
+
+  }
+
 
   onSubmit(data:any){
     this.error = false;
     this.okay = false;
 
-    if (!data.valid){
+    if (!data.valid || !this.checkValidation(data.get("dataRozpoczecia2").value, data.get("dataZakonczenia2").value) ){
       this.error = true;
       return
     }

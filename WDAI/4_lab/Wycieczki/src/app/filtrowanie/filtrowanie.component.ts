@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Wycieczka, WycieczkaFilter } from '../wycieczki/wycieczki.component';
+import { Options, LabelType } from "@angular-slider/ngx-slider";
 
 @Component({
   selector: 'app-filtrowanie',
@@ -30,7 +31,6 @@ export class FiltrowanieComponent implements OnInit {
     }
   }
 
-
   getMinPrice(journeys: Wycieczka[]){
     let minPrice = 1000000;
     for (let journey of journeys){
@@ -50,7 +50,6 @@ export class FiltrowanieComponent implements OnInit {
     }
     return maxPrice;
   }
-
 
 
   filterChange(){

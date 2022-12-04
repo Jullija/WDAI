@@ -159,7 +159,6 @@ export class WycieczkiComponent implements OnInit {
     this.reservedList.delete(data.nazwa);
     const index = this.journeys.indexOf(data);
     this.journeys.splice(index, 1);
-    console.log(this.journeys)
   }
 
   formularzEvent(data: Wycieczka){

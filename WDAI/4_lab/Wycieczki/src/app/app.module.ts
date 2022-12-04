@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FiltrowanieComponent } from './filtrowanie/filtrowanie.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { WycieczkiPipe } from './filtrowanie/wycieczki.pipe';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { WycieczkiPipe } from './filtrowanie/wycieczki.pipe';
     MatSliderModule, 
     BrowserAnimationsModule,
     MatAutocompleteModule,
-    FormsModule
+    FormsModule,
+    NgxSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
