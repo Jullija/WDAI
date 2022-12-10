@@ -1,0 +1,42 @@
+<div id="body">
+
+    <div id="menu"><a routerLink="">Strona główna</a> </div>
+
+    <app-filtrowanie [journeys]="journeys" (filterEmit)="filterGiven($event)"></app-filtrowanie>
+
+    <div id="reservation">
+        <h2 [ngStyle]="{'background-color': howManyReservations(reserved) > 10 ? 'rgb(87, 197, 87)': 'rgb(236, 61, 61)'}">
+            Liczba aktualnie zarezerwowanych wycieczek wynosi: {{howManyReservations(reserved)}}</h2>
+    </div>
+
+    <div class="journeysDiv" *ngIf="journeys != []"> 
+        <div class="journeyDiv" *ngFor="let journey of journeys | filterJourneys: filter"
+        [ngClass] = "{'mostExpensive': journey.cenaWZlotowkach == mostExpensiveJourney(journeys, filter),
+                    'theCheapest': journey.cenaWZlotowkach == theCheapestJourney(journeys, filter)}">
+            <div class="delete" (click)="removeJourney(journey)">Usuń</div>
+            <img src="{{journey.zdjecie}}">
+            <h2>{{journey.nazwa | uppercase}}</h2>
+            <h3>{{journey.docelowyKraj | uppercase}}</h3>
+            <div class="date">{{journey.dataRozpoczecia + " - " + journey.dataZakonczenia}}</div>
+            <div class="price">Cena: {{journey.cenaJednostkowa + " " + journey.waluta}} 
+            <div class="newPriceContainer" *ngIf = "journey.waluta != 'zł';">Cena w złotówkach: {{journey.cenaWZlotowkach}} zł</div></div>
+            <div class="howMany" [ngStyle] = "{'color': journey.maxIloscMiejsc < 4 ? 'rgb(236, 61, 61)': 'black',
+                                              'font-size': journey.maxIloscMiejsc < 4 ? '25px': '15px'}"
+             *ngIf = "journey.maxIloscMiejsc != 0; else zeroPoints">Ilość miejsc: {{journey.maxIloscMiejsc}}</div>
+            <ng-template #zeroPoints>Brak dostępnych wycieczek</ng-template>
+            <p class="desc">{{journey.opis}}</p>
+            <app-ocen-wycieczki [whichJourney] = "journey"></app-ocen-wycieczki>
+            <div class="addRemoveButtons">
+                <button class="button1 add" (click)="addClick(journey)"
+                [ngStyle] = "{'display': journey.maxIloscMiejsc == 0 ? 'none': 'block'}">+</button>
+                <button class="button1 remove" (click)="removeClick(journey)">-</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="formularz"><a routerLink="/dodajWycieczki">Dodaj nową wycieczkę.</a></div>
+
+    <div class="basket"><a routerLink="/koszyk"><img src="assets/images/shopping-cart.png" id="basketPhoto"></a></div>
+
+</div>
