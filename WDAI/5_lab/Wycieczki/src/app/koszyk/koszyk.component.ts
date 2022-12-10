@@ -15,13 +15,8 @@ export class KoszykComponent implements OnInit {
   totalPrice: number = 0;
 
   ngOnInit(): void {
-    console.log(this.reservedList)
-    this.basketInfoService.giveTravels(this.reservedList);
-
-
-    this.basketInfoService.getTravels().subscribe(reservedList => {
-      this.reservedList = reservedList;
-    })
+    this.reservedList = this.basketInfoService.getReservedList();
+    this.totalPrice = this.basketInfoService.getTotalPrice();
   }
 
 

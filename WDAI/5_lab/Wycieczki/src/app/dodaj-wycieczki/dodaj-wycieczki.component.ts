@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BasketInfoService } from '../basket-info.service';
 import { Wycieczka } from '../wycieczki/wycieczki.component';
 
 @Component({
@@ -15,12 +16,10 @@ export class DodajWycieczkiComponent implements OnInit {
   okay = false;
 
   
-  constructor(private formBuilder : FormBuilder) {}
+  constructor(private formBuilder : FormBuilder, private basketInfoService: BasketInfoService) {}
 
   @Output() formSubmitEvent = new EventEmitter<Wycieczka>();
 
-//formBuilder tworzy nam FormGroup i FormControl za pomocą metody group
-//Metoda group() tworzy nam nową instancję FormGroup, a każde pole obiektu, tworzy nową instancję FormControl.
 
   ngOnInit(): void { 
     this.modelForm = this.formBuilder.group({
@@ -91,7 +90,8 @@ export class DodajWycieczkiComponent implements OnInit {
       howManyRatings: 0
 
     }
-    this.formSubmitEvent.emit(nowaWycieczka);
+    this.basketInfoService.addNewJourney(nowaWycieczka);
+    // this.formSubmitEvent.emit(nowaWycieczka);
     this.okay = true;
     data.reset();
    

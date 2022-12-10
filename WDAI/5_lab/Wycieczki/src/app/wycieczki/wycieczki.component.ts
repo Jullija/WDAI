@@ -11,18 +11,18 @@ export class WycieczkiComponent implements OnInit {
 
   constructor(private basketInfoService: BasketInfoService) { }
 
-  json:any;
   journeys: Wycieczka[] = [];
+
   reserved:number = 0;
+  totalPrice:number = 0;
   reservedList = new Map<string, [number, number]>(); //"nazwa wycieczki", [cenaWZlotowkach, ile rezerwacji]
-
-
 
   //przeliczniki cen
   dolar:number = 4.59;
   euro:number = 4.70;
   korona:number = 0.19;
   jen:number = 0.032;
+
 
 
   filter = {
@@ -37,101 +37,11 @@ export class WycieczkiComponent implements OnInit {
 
 
   ngOnInit(): void {
-    fetch(`./assets/wycieczkiJson.json`)
-    .then(res => res.json())
-    .then(res => {
-      this.json = res;
-
-      for (let i of this.json.wycieczki){
-        let priceChange = i.cenaJednostkowa;
-
-        if (i.waluta != "zł"){
-          if (i.waluta == "euro"){
-            priceChange = i.cenaJednostkowa * this.euro;
-          }
-          else if (i.waluta == "$"){
-            priceChange = i.cenaJednostkowa * this.dolar;
-          }
-          else if (i.waluta == "jen"){
-            priceChange = i.cenaJednostkowa * this.jen;
-          }
-          else{
-            priceChange = i.cenaJednostkowa * this.korona;
-          }
-          
-        }
-        
-        this.journeys.push({
-          nazwa: i.nazwa,
-          docelowyKraj: i.docelowyKraj,
-          dataRozpoczecia: i.dataRozpoczecia,
-          dataZakonczenia: i.dataZakonczenia,
-          cenaJednostkowa: i.cenaJednostkowa,
-          waluta: i.waluta,
-          cenaWZlotowkach: priceChange,
-          maxIloscMiejsc: i.maxIloscMiejsc,
-          maxIloscMiejsc2: i.maxIloscMiejsc,
-          opis: i.opis,
-          zdjecie: i.zdjecie,
-          wyprzedana: false,
-          rating: 0,
-          sumRating: 0,
-          howManyRatings: 0
-        } as Wycieczka)   
-
-        this.reservedList.set(i.nazwa, [priceChange, 0]);
-      
-      }
-
-  })
-  this.basketInfoService.giveTravels(this.reservedList);
-  this.basketInfoService.getTravels().subscribe(reservedList => {
-    this.reservedList = reservedList;
-   
-  })
-
-
-
-
-}
-
-  addClick(data: Wycieczka){
-    if (data.maxIloscMiejsc - 1 >= 0){
-      this.reserved += 1;
-      data.maxIloscMiejsc -= 1;
-
-      let curr = this.reservedList.get(data.nazwa);
-      if (curr !== undefined){
-        curr[1] += 1;
-      }
-
-    }
-
-    if (data.maxIloscMiejsc == 0){
-      data.wyprzedana = true;
-    }
-  }
-
-  removeClick(data: Wycieczka){
-    if (data.maxIloscMiejsc + 1 <= data.maxIloscMiejsc2){
-      this.reserved -= 1;
-      data.maxIloscMiejsc += 1;
-      
-      let curr = this.reservedList.get(data.nazwa);
-      if (curr !== undefined){
-        curr[1] -= 1;
-      }
-      
-
-    if (data.maxIloscMiejsc == 1){
-      data.wyprzedana = false;
-    }
-
-  }}
-
-
-  howManyReservations(data: number){
-    return this.reserved;
+    this.reservedList = this.basketInfoService.getReservedList();
+    this.reserved = this.basketInfoService.howManyReservations();
+    this.totalPrice = this.basketInfoService.getTotalPrice();
+    this.journeys = this.basketInfoService.getTravels();
+    console.log(this.journeys, this.totalPrice);
   }
 
 
@@ -162,13 +72,27 @@ export class WycieczkiComponent implements OnInit {
   }
 
 
-
-  removeJourney(data: Wycieczka){
-    this.reserved -= data.maxIloscMiejsc2 - data.maxIloscMiejsc;
-    this.reservedList.delete(data.nazwa);
-    const index = this.journeys.indexOf(data);
-    this.journeys.splice(index, 1);
+  removeClick(journey: Wycieczka){
+    this.basketInfoService.removeClick(journey);
   }
+
+  
+  addClick(journey: Wycieczka){
+    this.basketInfoService.addClick(journey);
+  }
+
+  removeJourney(journey: Wycieczka){
+    this.basketInfoService.removeJourney(journey);
+  }
+
+  howManyReservations(){
+    return this.basketInfoService.howManyReservations();
+  }
+
+  getTotalPrice(){
+    return this.basketInfoService.getTotalPrice();
+  }
+  
 
   formularzEvent(data: Wycieczka){
 
