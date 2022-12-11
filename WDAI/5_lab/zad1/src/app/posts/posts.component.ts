@@ -50,7 +50,9 @@ export class PostsComponent implements OnInit{
       body: data.get("body").value
     }
 
-    this.postsService.givePost(JSON.stringify(newPost)).subscribe(cos=>console.log(cos)); //JSON.stringify konwertuje wartosć na typ JSON
+    this.postsService.givePost(JSON.stringify(newPost)).subscribe(posts => {
+      this.posts.splice(0, 0, newPost);
+    }); //JSON.stringify konwertuje wartosć na typ JSON
     alert("Post został dodany");
     data.reset();
 
