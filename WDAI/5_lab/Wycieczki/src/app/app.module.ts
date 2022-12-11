@@ -24,6 +24,7 @@ import { WycieczkiPipe } from './filtrowanie/wycieczki.pipe';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BasketInfoService } from './basket-info.service';
+import { SzczegolyWycieczkiComponent } from './szczegoly-wycieczki/szczegoly-wycieczki.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { BasketInfoService } from './basket-info.service';
     KoszykComponent,
     OcenWycieczkiComponent,
     FiltrowanieComponent, 
-    WycieczkiPipe, PageNotFoundComponent
+    WycieczkiPipe, PageNotFoundComponent, SzczegolyWycieczkiComponent
   ],
   imports: [
     BrowserModule,

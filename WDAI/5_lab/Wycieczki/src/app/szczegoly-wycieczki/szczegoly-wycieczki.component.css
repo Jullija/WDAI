@@ -1,26 +1,11 @@
-#body{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(247, 220, 224);
-    width: 100%;
-}
-
-#our{
-    font-size: 50px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-
 .journeysDiv{
     width: 90%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
+    margin-top: 60px;
 }
 
 .journeyDiv{
@@ -131,88 +116,76 @@ img{
 }
 
 
-.mostExpensive{
-    border: 3px solid rgb(87, 197, 87);
-}
-
-.theCheapest{
-    border: 3px solid rgb(236, 61, 61);
-}
-
-
-
-.formularz{
+form{
+    width: 50vw;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    background-color: pink;
-    margin-top: 100px;
-    margin-bottom: 200px;
-    border:2px solid rgb(248, 150, 167);
+}
+
+form > div{
+    padding: 20px;
+    border: 1px solid rgb(248, 150, 167);
+    margin-bottom: 20px;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
     border-radius: 10px;
-    padding: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+input{
+    margin-left: 20px;
+    width: 20vw;
+    height: 25px;
+    border-radius: 10px;
+    
+}
+
+form > div > #opinionInput{
+    height: 100px;
+}
+
+#submitButton{
+    background-color: pink;
+    border: 1px solid rgb(248, 150, 167);
+    width: 100px;
     height: 50px;
-    width: 250px;
-}
-.formularz > a{
-    text-decoration: none;
-    color: black;
-    width: 110%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
-
-.basket{
-    position: absolute;
-    right: 10px;
-    top: 10px;  
-    width: 80px;
-    height: 80px;
+#submitButton:hover{
+    color: white;
     background-color: rgb(248, 150, 167);
-    border-radius: 10px;
+}
+
+#all{
+    width: 50vw;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
-    cursor: pointer;  
+    justify-content: space-evenly;
 }
 
-#basketPhoto{
-    border-radius: 0;
-    width: 70px;
-    height: 70px;
-}
-
-
-
-
-#menu{
-    position: absolute;
-    top:10px;
-    left:10px;
-    border:2px solid rgb(248, 150, 167);
-    border-radius: 10px;
-    background-color: pink;
-    width: 80px;
-    height: 80px;
-   
-}
-
-#menu > a{
-    width: 100%;
-    height: 100%;
+.opinionDiv{
+    width: 300px;
+    height: 400px;
     display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
+    border: 1px solid rgb(248, 150, 167);
+    border-radius: 10px;
+    padding: 20px;
 }
-
 
 
 

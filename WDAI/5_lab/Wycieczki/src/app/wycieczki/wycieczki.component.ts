@@ -41,7 +41,6 @@ export class WycieczkiComponent implements OnInit {
     this.reserved = this.basketInfoService.howManyReservations();
     this.totalPrice = this.basketInfoService.getTotalPrice();
     this.journeys = this.basketInfoService.getTravels();
-    console.log(this.journeys, this.totalPrice);
   }
 
 
@@ -129,6 +128,7 @@ export class WycieczkiComponent implements OnInit {
 
 
 export class Wycieczka{
+  id: number;
   nazwa: string;
   docelowyKraj: string;
   dataRozpoczecia: string;

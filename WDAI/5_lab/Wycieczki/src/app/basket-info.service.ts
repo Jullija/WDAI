@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { KoszykComponent } from './koszyk/koszyk.component';
+import { Opinion } from './szczegoly-wycieczki/szczegoly-wycieczki.component';
 import { Wycieczka } from './wycieczki/wycieczki.component';
 
 @Injectable({
@@ -8,7 +9,9 @@ import { Wycieczka } from './wycieczki/wycieczki.component';
 })
 export class BasketInfoService {
 
-  flag = true;
+  flag:boolean = true;
+  nextIndex:number = -1;
+  opinionNextIndex:number = -1;
   private totalPrice: number = 0;
   private reservedList: Map<string, [number, number]> = new Map<string, [number, number]>;
 
@@ -22,6 +25,7 @@ export class BasketInfoService {
   korona:number = 0.19;
   jen:number = 0.032;
 
+  opinions: Map<string, Opinion[]> = new Map<string, Opinion[]>();
 
   constructor() { }
 
@@ -48,13 +52,15 @@ export class BasketInfoService {
     .then(res => res.json())
     .then(res => {
       this.json = res;
-
+      let index = 0;
       for (let i of this.json.wycieczki){
+        
         let priceChange = i.cenaJednostkowa;
         priceChange = this.priceChangeFunction(i.waluta, i.cenaJednostkowa, priceChange)
           
               
         this.journeys.push({
+          id: index,
           nazwa: i.nazwa,
           docelowyKraj: i.docelowyKraj,
           dataRozpoczecia: i.dataRozpoczecia,
@@ -72,17 +78,28 @@ export class BasketInfoService {
           howManyRatings: 0
         } as Wycieczka)   
 
+        index += 1;
         this.reservedList.set(i.nazwa, [priceChange, 0]);
-      
       }
+      
+      this.flag = false;
+
+      for (let journey of this.journeys){
+        if (journey.id  > this.nextIndex){
+          this.nextIndex = journey.id;
+        }
+      }
+      this.nextIndex += 1;
 
   })
     }
-    this.flag = false;
     return this.journeys;
   }
 
 
+
+
+//DODAWANIE I USUWANIE WYCIECZEK----------------------------------
 
   removeJourney(data: Wycieczka){
     this.reserved -= data.maxIloscMiejsc2 - data.maxIloscMiejsc;
@@ -101,6 +118,9 @@ export class BasketInfoService {
     this.journeys.push(journey);
     this.reservedList.set(journey.nazwa, [journey.cenaWZlotowkach, 0])
   }
+//-----------------------------------------------------------------
+
+
 
 
   getTotalPrice(){
@@ -114,11 +134,34 @@ export class BasketInfoService {
 
   }
 
+
+
+
+  //INDEXY WYCIECZEK-----------------------------
+  setNewNextIndex(i: number){
+    this.nextIndex = i;
+  }
+
+  getNextIndex(){
+    return this.nextIndex;
+  }
+//-------------------------------------------------
+
+
+
+
+
   howManyReservations(){
-    console.log(this.reserved);
     return this.reserved;
   }
 
+
+
+
+
+
+
+  //REZERWACJE WYCIECZEK--------------------------------------
   removeClick(data: Wycieczka){
     if (data.maxIloscMiejsc + 1 <= data.maxIloscMiejsc2){
       this.reserved -= 1;
@@ -154,6 +197,15 @@ export class BasketInfoService {
     }
   }
 
+//-----------------------------------------------------------
+
+
+
+
+
+
+
+
   getReservedList1(reservedList: Map<string, [number, number]>){
     this.reservedList = reservedList;
 
@@ -162,5 +214,56 @@ export class BasketInfoService {
     return this.reservedList; 
   }
 
+  getJourneyById(id: number){
+    let wantedJourney = {
+      id: -1,
+      nazwa: '',
+      docelowyKraj: '',
+      dataRozpoczecia: '',
+      dataZakonczenia: '',
+      cenaJednostkowa: -1,
+      waluta: '',
+      cenaWZlotowkach:-1,
+      maxIloscMiejsc: -1,
+      maxIloscMiejsc2: -1,
+      opis:'',
+      zdjecie: '',
+      wyprzedana: false,
+      rating: -1,
+      sumRating: -1,
+      howManyRatings:-1
+    } 
+
+    for (let journey of this.journeys){
+      if (journey.id == id){
+        wantedJourney = journey;
+        return wantedJourney;
+      }
+    }
+    return wantedJourney;
+  }
+
+
+
+  //FORMULARZ DODANIA OPINII-------------------------------------
+
+  getOpinionsForThisJourney(journeyName: string){
+    if (!this.opinions.has(journeyName)){
+      this.opinions.set(journeyName, [])
+    }
+
+    if (this.opinions.get(journeyName) !== undefined){
+      return this.opinions.get(journeyName);
+    }
+
+    return [];
+  }
+
+
+  setOpinionsForJourney(journeyName: string, journeyOpinions: Opinion[]){
+    this.opinions.set(journeyName, journeyOpinions);
+  }
+
+  //------------------------------------------------------------
 
 }

@@ -1,0 +1,40 @@
+<div class="journeysDiv"> 
+    <div class="journeyDiv">
+        <img src="{{journey.zdjecie}}">
+        <h2>{{journey.nazwa | uppercase}}</h2>
+        <h3>{{journey.docelowyKraj | uppercase}}</h3>
+        <div class="date">{{journey.dataRozpoczecia + " - " + journey.dataZakonczenia}}</div>
+        <div class="price">Cena: {{journey.cenaJednostkowa + " " + journey.waluta}} 
+        <div class="newPriceContainer" *ngIf = "journey.waluta != 'zł';">Cena w złotówkach: {{journey.cenaWZlotowkach}} zł</div></div>
+        <div class="howMany" [ngStyle] = "{'color': journey.maxIloscMiejsc < 4 ? 'rgb(236, 61, 61)': 'black',
+                                          'font-size': journey.maxIloscMiejsc < 4 ? '25px': '15px'}"
+         *ngIf = "journey.maxIloscMiejsc != 0; else zeroPoints">Ilość miejsc: {{journey.maxIloscMiejsc}}</div>
+        <ng-template #zeroPoints>Brak dostępnych wycieczek</ng-template>
+        <p class="desc">{{journey.opis}}</p>
+        <app-ocen-wycieczki [whichJourney] = "journey"></app-ocen-wycieczki>
+        <div class="addRemoveButtons">
+            <button class="button1 add" (click)="addClick(journey)"
+            [ngStyle] = "{'display': journey.maxIloscMiejsc == 0 ? 'none': 'block'}">+</button>
+            <button class="button1 remove" (click)="removeClick(journey)">-</button>
+        </div>
+    </div>
+
+    <h2>Napisz opinię</h2>
+    <form [formGroup]="modelForm" (ngSubmit)="onSubmit(modelForm)">
+        <div><label>Nick:</label><input name="nick" formControlName="nick"></div>
+        <div><label>Nazwa Wycieczki:</label><input name="name" formControlName="name"></div>
+        <div><label>Treść opinii:</label><input name="opinion" formControlName="opinion" id="opinionInput"></div>
+        <div><label>Data wycieczki:</label><input type="date" min="2022-12-12" max="2025-12-12" name="date" formControlName="date"></div>
+        <button type="submit" id="submitButton">Dodaj opinię</button>
+    </form>
+
+    <div id="all">
+    <div *ngFor="let opinion of opinions" class="opinionDiv">
+        <p><b>Nick:</b> {{opinion.nick}}</p>
+        <p><b>Nazwa wycieczki:</b> {{opinion.name}}</p>
+        <p><b>Opinia:</b> {{opinion.opinion}}</p>
+        <p><b>Data:</b> {{opinion.date}}</p>
+    </div>
+    </div>
+
+</div>

@@ -4,10 +4,12 @@ import { DodajWycieczkiComponent } from './dodaj-wycieczki/dodaj-wycieczki.compo
 import { HomeComponent } from './home/home.component';
 import { KoszykComponent } from './koszyk/koszyk.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SzczegolyWycieczkiComponent } from './szczegoly-wycieczki/szczegoly-wycieczki.component';
 import { WycieczkiComponent } from './wycieczki/wycieczki.component';
 
 const routes: Routes = [
   {path: 'wycieczki', component: WycieczkiComponent},
+  {path: 'szczegolyWycieczki/:id', component: SzczegolyWycieczkiComponent},
   {path: '', component: HomeComponent},
   {path: 'dodajWycieczki', component: DodajWycieczkiComponent},
   {path: 'koszyk', component: KoszykComponent},
