@@ -1,0 +1,7 @@
+<p id="clickInfo"> Aby zobaczyć samo zdjęcie, kliknij na nie.</p>
+<div class="all">
+    <div *ngFor="let photo of allPhotos" class="singlePhotoDiv">
+            <a routerLink="/photos/{{ photo.id }}"><img src="{{photo.thumbnailUrl}}"></a>
+            <p>title: {{ photo.title }}</p>
+    </div>
+</div>

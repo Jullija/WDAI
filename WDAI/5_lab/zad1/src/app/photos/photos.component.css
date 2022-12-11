@@ -1,0 +1,23 @@
+#clickInfo{
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.all{
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.singlePhotoDiv{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+}

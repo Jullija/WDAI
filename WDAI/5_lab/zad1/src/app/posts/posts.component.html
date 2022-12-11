@@ -1,0 +1,17 @@
+<h2>Napisz post</h2>
+<form [formGroup]="modelForm" (ngSubmit)="onSubmit(modelForm)">
+    <div><label>Title</label><input name="title" formControlName="title"></div>
+    <div><label>Body</label><input name="body" formControlName="body"></div>
+    <button type="submit">Dodaj post</button>
+</form>
+
+
+
+
+<h2>Posty</h2>
+<div id="postsDiv">
+    <div class="singlePost" *ngFor="let post of posts">
+        <p>{{ post.title }}</p>
+        <p>{{ post.body }}</p>
+    </div>
+</div>
