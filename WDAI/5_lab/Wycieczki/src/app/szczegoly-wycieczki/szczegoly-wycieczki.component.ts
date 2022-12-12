@@ -65,7 +65,7 @@ export class SzczegolyWycieczkiComponent implements OnInit{
     
     this.modelForm = this.formBuilder.group({
       nick:['', Validators.required],
-      name:['', Validators.required],
+      name:['', [Validators.required, Validators.pattern(this.journey.nazwa)]],
       opinion:['', [Validators.required, Validators.minLength(50), Validators.maxLength(500)]],
       date:[''],
 
@@ -98,7 +98,8 @@ export class SzczegolyWycieczkiComponent implements OnInit{
       required: 'Podanie nicku jest konieczne'
     },
     name:{
-      required: 'Podanie nazwy wycieczki jest konieczne'
+      required: 'Podanie nazwy wycieczki jest konieczne',
+      pattern: 'Niepoprawna nazwa wycieczki - możesz oceniać tylko wycieczkę, której szczegóły widzisz'
     },
     opinion:{
       required: 'Napisanie opinii jest konieczne',

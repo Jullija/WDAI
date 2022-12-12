@@ -20,5 +20,9 @@ export class KoszykComponent implements OnInit {
   }
 
 
+  buyJourney(){
+    
+  }
+
 
 }

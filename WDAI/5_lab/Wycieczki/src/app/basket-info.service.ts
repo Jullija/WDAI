@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { historyTrip } from './historia-zakupow/historia-zakupow.component';
 import { KoszykComponent } from './koszyk/koszyk.component';
 import { Opinion } from './szczegoly-wycieczki/szczegoly-wycieczki.component';
 import { Wycieczka } from './wycieczki/wycieczki.component';
@@ -26,6 +27,7 @@ export class BasketInfoService {
   jen:number = 0.032;
 
   opinions: Map<string, Opinion[]> = new Map<string, Opinion[]>();
+  historyTrips: historyTrip[] = [];
 
   constructor() { }
 
@@ -265,5 +267,25 @@ export class BasketInfoService {
   }
 
   //------------------------------------------------------------
+
+
+  getTripsFromHistory(){
+    return this.historyTrips;
+  }
+
+  addTripTtoHistoryTrips(journey: Wycieczka, amount: number, date: Date){
+    let todayDate = new Date;
+
+    let journeyToAddToHistory = {
+      howManyBought: amount,
+      whenBought: date,
+      info: journey
+    }
+
+    this.historyTrips.push(journeyToAddToHistory);
+  }
+
+
+
 
 }
