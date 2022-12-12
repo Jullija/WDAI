@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BasketInfoService } from '../basket-info.service';
 import { Wycieczka } from '../wycieczki/wycieczki.component';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ControlConfig, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 
 
 export interface Opinion{
@@ -65,7 +65,7 @@ export class SzczegolyWycieczkiComponent implements OnInit{
     
     this.modelForm = this.formBuilder.group({
       nick:['', Validators.required],
-      name:['', [Validators.required, Validators.pattern("[A-Z]{1}[a-z]*" )]],
+      name:['', Validators.required],
       opinion:['', [Validators.required, Validators.minLength(50), Validators.maxLength(500)]],
       date:[''],
 
@@ -83,9 +83,58 @@ export class SzczegolyWycieczkiComponent implements OnInit{
   }
 
 
+
+
+
+  //FORMULARZ DODANIA OPINII--------------------------------------------------------
+  formErrors = {
+    nick: '',
+    name: '',
+    opinion: ''
+  }
+
+  private validationMessages = {
+    nick:{
+      required: 'Podanie nicku jest konieczne'
+    },
+    name:{
+      required: 'Podanie nazwy wycieczki jest konieczne'
+    },
+    opinion:{
+      required: 'Napisanie opinii jest konieczne',
+      minlength: 'Opinia musi mieć co najmniej 50 znaków',
+      maxlength: 'Opinia może mieć maksymalnie 500 znaków'
+    }
+  }
+
+  onControlValueChange(){
+    const form = this.modelForm;
+
+    for (let field in this.formErrors){
+      if (field == 'nick' || field == 'name' || field == 'opinion'){
+        this.formErrors[field] = '';
+        let control = form.get(field); //wpisana zawartość
+
+        if (control && !control.valid){//control.dirty -> dirty, jeśli użytkownik zmienił wartość w UI
+          const validationMessages = this.validationMessages[field];
+          for (const key in control.errors){
+            this.formErrors[field] += validationMessages[key as keyof typeof validationMessages]  + '';
+            
+          }
+          alert(this.formErrors[field]) 
+        } 
+      }
+
+
+      
+    }
+    
+  }
+
+
   onSubmit(data: any){
     if (!data.valid){
-      alert("Formularz wypełniony niepoprawnie");
+      this.onControlValueChange();
       return
     }
 
