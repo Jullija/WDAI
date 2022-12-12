@@ -11,7 +11,7 @@ export class KoszykComponent implements OnInit {
 
 
   constructor(private basketInfoService: BasketInfoService) { }
-  reservedList: Map<string, [number, number]> = new Map<string, [number, number]>();
+  reservedList: Map<Wycieczka, number> = new Map<Wycieczka, number>();
   totalPrice: number = 0;
 
   ngOnInit(): void {
@@ -20,8 +20,24 @@ export class KoszykComponent implements OnInit {
   }
 
 
-  buyJourney(){
-    
+  buyJourney(journeyToBuy: Wycieczka, howManyToBuy: number){
+    let dateOfPayment = new Date;
+
+    //delete from basket, move to history
+    this.reservedList.delete(journeyToBuy);
+    this.basketInfoService.setReservedList(this.reservedList);
+    this.basketInfoService.addTripTtoHistoryTrips(journeyToBuy, howManyToBuy, dateOfPayment);
+
+    //update totalPrice
+    this.totalPrice -= howManyToBuy * journeyToBuy.cenaWZlotowkach;
+    this.basketInfoService.setTotalPrice(this.totalPrice);
+    //update reservations
+    let reservationsBeforeBuying = this.basketInfoService.howManyReservations();
+    this.basketInfoService.setHowManyReservations(reservationsBeforeBuying - howManyToBuy);
+    //update maxPeople in journey
+    journeyToBuy.maxIloscMiejsc2 -= howManyToBuy;
+
+
   }
 
 

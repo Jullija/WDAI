@@ -21,11 +21,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FiltrowanieComponent } from './filtrowanie/filtrowanie.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { WycieczkiPipe } from './filtrowanie/wycieczki.pipe';
-import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BasketInfoService } from './basket-info.service';
 import { SzczegolyWycieczkiComponent } from './szczegoly-wycieczki/szczegoly-wycieczki.component';
 import { HistoriaZakupowComponent } from './historia-zakupow/historia-zakupow.component';
+import { DatePipe } from '@angular/common'
 
 @NgModule({
   declarations: [
@@ -52,10 +52,9 @@ import { HistoriaZakupowComponent } from './historia-zakupow/historia-zakupow.co
     MatSliderModule, 
     BrowserAnimationsModule,
     MatAutocompleteModule,
-    FormsModule,
-    NgxSliderModule
+    FormsModule
   ],
-  providers: [BasketInfoService],
+  providers: [BasketInfoService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

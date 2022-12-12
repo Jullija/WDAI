@@ -15,7 +15,7 @@ export class WycieczkiComponent implements OnInit {
 
   reserved:number = 0;
   totalPrice:number = 0;
-  reservedList = new Map<string, [number, number]>(); //"nazwa wycieczki", [cenaWZlotowkach, ile rezerwacji]
+  reservedList = new Map<Wycieczka, number>();
 
   //przeliczniki cen
   dolar:number = 4.59;
@@ -37,9 +37,9 @@ export class WycieczkiComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.reservedList = this.basketInfoService.getReservedList();
-    this.reserved = this.basketInfoService.howManyReservations();
-    this.totalPrice = this.basketInfoService.getTotalPrice();
+    //this.reservedList = this.basketInfoService.getReservedList();
+    // this.reserved = this.basketInfoService.howManyReservations();
+    // this.totalPrice = this.basketInfoService.getTotalPrice();
     this.journeys = this.basketInfoService.getTravels();
   }
 
@@ -111,7 +111,7 @@ export class WycieczkiComponent implements OnInit {
       
     }
     this.journeys.push(data);
-    this.reservedList.set(data.nazwa, [data.cenaWZlotowkach, 0])
+    this.reservedList.set(data, 0)
   }
 
 
@@ -136,8 +136,8 @@ export class Wycieczka{
   cenaJednostkowa: number;
   waluta: string;
   cenaWZlotowkach:number;
-  maxIloscMiejsc: number;
-  maxIloscMiejsc2: number;
+  maxIloscMiejsc: number; //ile zostanie po rezerwacji
+  maxIloscMiejsc2: number; //max ilość dostępnych miejsc
   opis:string;
   zdjecie: string;
   wyprzedana:boolean;

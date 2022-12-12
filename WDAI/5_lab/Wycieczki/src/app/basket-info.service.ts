@@ -13,8 +13,8 @@ export class BasketInfoService {
   flag:boolean = true;
   nextIndex:number = -1;
   opinionNextIndex:number = -1;
-  private totalPrice: number = 0;
-  private reservedList: Map<string, [number, number]> = new Map<string, [number, number]>;
+  totalPrice: number = 0;
+  reservedList: Map<Wycieczka, number> = new Map<Wycieczka, number>;
 
   json:any;
   journeys: Wycieczka[] = [];
@@ -81,7 +81,6 @@ export class BasketInfoService {
         } as Wycieczka)   
 
         index += 1;
-        this.reservedList.set(i.nazwa, [priceChange, 0]);
       }
       
       this.flag = false;
@@ -105,7 +104,7 @@ export class BasketInfoService {
 
   removeJourney(data: Wycieczka){
     this.reserved -= data.maxIloscMiejsc2 - data.maxIloscMiejsc;
-    this.reservedList.delete(data.nazwa);
+    this.totalPrice -= (data.maxIloscMiejsc2 - data.maxIloscMiejsc) * data.cenaWZlotowkach;
     const index = this.journeys.indexOf(data);
     this.journeys.splice(index, 1);
   }
@@ -118,7 +117,6 @@ export class BasketInfoService {
     
     
     this.journeys.push(journey);
-    this.reservedList.set(journey.nazwa, [journey.cenaWZlotowkach, 0])
   }
 //-----------------------------------------------------------------
 
@@ -126,14 +124,12 @@ export class BasketInfoService {
 
 
   getTotalPrice(){
-    let totalPrice = 0;
-    for (let i of this.reservedList.values()){
-      if (i[1] != 0){
-        totalPrice += i[1] * i[0];
-      }
-    }
-    return totalPrice;
+    return this.totalPrice;
 
+  }
+
+  setTotalPrice(price: number){
+    this.totalPrice = price;
   }
 
 
@@ -157,6 +153,10 @@ export class BasketInfoService {
     return this.reserved;
   }
 
+  setHowManyReservations(reservations: number){
+    this.reserved = reservations;
+  }
+
 
 
 
@@ -164,16 +164,14 @@ export class BasketInfoService {
 
 
   //REZERWACJE WYCIECZEK--------------------------------------
-  removeClick(data: Wycieczka){
+  removeClick(data: Wycieczka){ 
     if (data.maxIloscMiejsc + 1 <= data.maxIloscMiejsc2){
       this.reserved -= 1;
       data.maxIloscMiejsc += 1;
+      this.totalPrice -= data.cenaWZlotowkach;
       
-      let curr = this.reservedList.get(data.nazwa);
-      if (curr !== undefined){
-        curr[1] -= 1;
-      }
-      
+      this.reservedList.set(data, data.maxIloscMiejsc2 - data.maxIloscMiejsc)
+     
 
     if (data.maxIloscMiejsc == 1){
       data.wyprzedana = false;
@@ -186,12 +184,9 @@ export class BasketInfoService {
     if (data.maxIloscMiejsc - 1 >= 0){
       this.reserved += 1;
       data.maxIloscMiejsc -= 1;
+      this.totalPrice += data.cenaWZlotowkach;
 
-      let curr = this.reservedList.get(data.nazwa);
-      if (curr !== undefined){
-        curr[1] += 1;
-      }
-
+      this.reservedList.set(data, data.maxIloscMiejsc2 - data.maxIloscMiejsc)
     }
 
     if (data.maxIloscMiejsc == 0){
@@ -208,7 +203,7 @@ export class BasketInfoService {
 
 
 
-  getReservedList1(reservedList: Map<string, [number, number]>){
+  setReservedList(reservedList: Map<Wycieczka, number>){
     this.reservedList = reservedList;
 
   }
