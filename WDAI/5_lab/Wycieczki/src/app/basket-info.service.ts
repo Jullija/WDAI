@@ -77,7 +77,8 @@ export class BasketInfoService {
           wyprzedana: false,
           rating: 0,
           sumRating: 0,
-          howManyRatings: 0
+          howManyRatings: 0,
+          bought: false
         } as Wycieczka)   
 
         index += 1;
@@ -228,7 +229,8 @@ export class BasketInfoService {
       wyprzedana: false,
       rating: -1,
       sumRating: -1,
-      howManyRatings:-1
+      howManyRatings:-1,
+      bought: false
     } 
 
     for (let journey of this.journeys){
@@ -278,6 +280,8 @@ export class BasketInfoService {
     }
 
     this.historyTrips.push(journeyToAddToHistory);
+    journey.bought = true;
+    console.log(this.journeys);
   }
 
 

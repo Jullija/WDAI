@@ -19,6 +19,7 @@ export class FiltrowanieComponent implements OnInit {
   endDate = '';
   rates: number[] = [];
   selectedCountries: string[]=[];
+  status: boolean[] = [];
 
   ngOnInit(): void {
   }
@@ -59,8 +60,10 @@ export class FiltrowanieComponent implements OnInit {
       maxPrice: this.maxPrice,
       startDate: this.startDate,
       endDate: this.endDate,
-      rates: this.rates
+      rates: this.rates,
+      status: this.status
     }
+    console.log(this.status);
 
     this.filterEmit.emit(filter);
   }

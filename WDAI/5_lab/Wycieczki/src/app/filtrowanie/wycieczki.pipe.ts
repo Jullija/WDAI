@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core'
 import { Wycieczka, WycieczkaFilter } from '../wycieczki/wycieczki.component'
-import { DatePipe } from '@angular/common';
+
 
 @Pipe({
     name: 'filterJourneys',
@@ -28,7 +28,8 @@ export class WycieczkiPipe implements PipeTransform {
         (journey.cenaWZlotowkach >= filter.minPrice && journey.cenaWZlotowkach <= filter.maxPrice)&& //cena
         (filter.startDate == null || filter.startDate == '' || (this.changeDateFormat(journey.dataRozpoczecia) >= new Date(filter.startDate))) && //data
         (filter.endDate == null || filter.endDate == '' || (this.changeDateFormat(journey.dataZakonczenia) <= new Date(filter.endDate))) &&
-        (filter.rates.length == 0 || filter.rates.includes(0) || filter.rates.includes(journey.rating))
+        (filter.rates.length == 0 || filter.rates.includes(0) || filter.rates.includes(journey.rating))&&
+        (filter.status.length == 0 || filter.status.includes(journey.bought))
         
         )
     })

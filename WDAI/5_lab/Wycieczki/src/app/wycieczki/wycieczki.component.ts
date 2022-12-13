@@ -32,7 +32,8 @@ export class WycieczkiComponent implements OnInit {
     maxPrice: 10**9,
     startDate: '',
     endDate: '',
-    rates: []
+    rates: [],
+    status: []
   } as WycieczkaFilter
 
 
@@ -166,6 +167,7 @@ export class Wycieczka{
   rating: number;
   sumRating: number;
   howManyRatings:number;
+  bought: boolean;
 }
 
 export class WycieczkaFilter{
@@ -175,4 +177,5 @@ export class WycieczkaFilter{
   startDate: string;
   endDate: string;
   rates: number[];
+  status: boolean[];
 }

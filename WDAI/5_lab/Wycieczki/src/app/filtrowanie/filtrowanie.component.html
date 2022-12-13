@@ -58,5 +58,18 @@
             </mat-select>
         </mat-form-field>
     </div>
+
+
+
+    <!-- FILTROWANIE PO STATUSIE -->
+    <div id="statusFilter" class="filterDiv">
+        <p>Filtruj po statusie:</p>
+        <mat-form-field>
+            <mat-select [(ngModel)] = "status" multiple (selectionChange) = "filterChange()">
+                <mat-option [value]="true">kupiona</mat-option>
+                <mat-option [value]="false">nie kupiona</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
 </div>
 

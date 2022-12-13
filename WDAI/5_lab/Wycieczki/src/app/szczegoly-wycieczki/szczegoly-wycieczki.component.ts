@@ -46,7 +46,8 @@ export class SzczegolyWycieczkiComponent implements OnInit{
       wyprzedana: false,
       rating: -1,
       sumRating: -1,
-      howManyRatings:-1
+      howManyRatings:-1,
+      bought: false
   }
 
   ngOnInit(): void{
