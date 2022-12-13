@@ -273,7 +273,7 @@ export class BasketInfoService {
 
     let journeyToAddToHistory = {
       howManyBought: amount,
-      whenBought: date,
+      whenBought: todayDate,
       info: journey
     }
 

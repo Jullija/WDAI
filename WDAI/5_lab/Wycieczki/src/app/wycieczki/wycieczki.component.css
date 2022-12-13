@@ -215,6 +215,16 @@ img{
 
 
 
+#closestJourney{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+    background-color: rgb(236, 61, 61);
+    border-radius: 20px;
+    padding: 10px;
+}
+
 
 
 

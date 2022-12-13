@@ -1,5 +1,6 @@
 <div id="body">
     <p id="our">Nasze wycieczki</p>
+    <div id="closestJourney"><p>Uwaga! Najbliższa wycieczka to: <b>{{closestJourneyFunction()}}</b></p></div>
 
     <app-filtrowanie [journeys]="journeys" (filterEmit)="filterGiven($event)"></app-filtrowanie>
 

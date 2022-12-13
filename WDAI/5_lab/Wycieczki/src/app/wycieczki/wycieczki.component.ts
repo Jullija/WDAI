@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { BasketInfoService } from '../basket-info.service';
 import { WycieczkiPipe } from '../filtrowanie/wycieczki.pipe';
@@ -9,7 +10,7 @@ import { WycieczkiPipe } from '../filtrowanie/wycieczki.pipe';
 })
 export class WycieczkiComponent implements OnInit {
 
-  constructor(private basketInfoService: BasketInfoService) { }
+  constructor(private basketInfoService: BasketInfoService, public datepipe: DatePipe) { }
 
   journeys: Wycieczka[] = [];
 
@@ -118,6 +119,27 @@ export class WycieczkiComponent implements OnInit {
   filterGiven(filter: WycieczkaFilter){
     this.filter = filter;
   }
+
+
+  closestJourneyFunction(){
+    let todayDate = this.datepipe.transform(new Date, 'yyyy.MM.dd');
+    let closestToToday = '31.12.3000';
+    let journeyName = '';
+
+    
+    for (let journey of this.journeys){
+      if (todayDate !== null){
+        let split = journey.dataRozpoczecia.split('.');
+        let journeyDateFormatted = split[2] + '.' + split[1] + '.' + split[0];
+        if (journeyDateFormatted >= todayDate && journeyDateFormatted < closestToToday){
+          closestToToday = journeyDateFormatted;
+          journeyName = journey.nazwa;
+        }
+      }
+    }
+    return journeyName
+  }
+
 
 }
 
