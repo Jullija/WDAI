@@ -1,0 +1,75 @@
+<div id="mainDiv" (click)="countriesFilt()">
+
+    <!-- FILTROWANIE PO KRAJACH -->
+
+    <div id="countryFilter" class="filterDiv">
+        <p>Filtruj po krajach:</p>
+        <mat-form-field>
+            <mat-select [(ngModel)] = "selectedCountries" multiple (selectionChange) = "filterChange()">
+                <mat-option *ngFor="let country of countries" [value]="country">
+                    {{country}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+
+    <!-- FILTROWANIE PO CENIE -->
+
+    <div id="priceFilter" class="filterDiv">
+        <p>Filtruj po cenie:</p>
+        <p class="priceDiv">Od {{getMinPrice(journeys)}}</p>
+        <p class="priceDiv">Do {{getMaxPrice(journeys)}}</p>
+        <mat-slider (change)="filterChange()" step="1" min="{{getMinPrice(journeys)}}" max="{{getMaxPrice(journeys)}}">
+            <input matSliderStartThumb value = "{{getMinPrice(journeys)}}" [(ngModel)]="minPrice">
+            <input matSliderEndThumb value = "{{getMaxPrice(journeys)}}" [(ngModel)]="maxPrice">
+        </mat-slider>
+    </div>
+
+
+    <!-- FILTROWANIE PO DACIE -->
+
+    <div id="dateFilter" class="filterDiv">
+        <p>Filtruj po dacie:</p>
+        <mat-form-field>
+            <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate [(ngModel)]="startDate" (ngModelChange)="filterChange()">
+                <input matEndDate [(ngModel)]="endDate" (ngModelChange)="filterChange()">
+              </mat-date-range-input>
+              <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+    </div>
+
+
+    <!-- FILTROWANIE PO OCENIE -->
+
+    <div id="ratingFilter" class="filterDiv">
+        <p>Filtruj po ocenie:</p>
+        <mat-form-field>
+            <mat-select [(ngModel)] = "rates" multiple (selectionChange) = "filterChange()">
+                <mat-option [value]="0">bez filtra</mat-option>
+                <mat-option [value]="1">★</mat-option>
+                <mat-option [value]="2">★★</mat-option>
+                <mat-option [value]="3">★★★</mat-option>
+                <mat-option [value]="4">★★★★</mat-option>
+                <mat-option [value]="5">★★★★★</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+
+
+    <!-- FILTROWANIE PO STATUSIE -->
+    <div id="statusFilter" class="filterDiv">
+        <p>Filtruj po statusie:</p>
+        <mat-form-field>
+            <mat-select [(ngModel)] = "status" multiple (selectionChange) = "filterChange()">
+                <mat-option [value]="true">kupiona</mat-option>
+                <mat-option [value]="false">nie kupiona</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+

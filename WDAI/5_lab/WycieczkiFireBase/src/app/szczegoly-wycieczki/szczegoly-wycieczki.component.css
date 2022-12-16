@@ -1,0 +1,195 @@
+.journeysDiv{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.journeyDiv{
+    display: flex;
+    flex-direction: column;
+    height: 700px;
+    width:400px;
+    border: 1px solid rgb(248, 150, 167);
+    border-radius: 20px;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 40px;
+    background-color: rgb(245, 205, 211);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    position: relative;
+}
+
+
+.price{
+    font-weight: bold;
+    text-align: center;
+    width: 80%;
+    border-bottom: 1px solid rgb(248, 150, 167);
+    padding-bottom: 10px;
+    height: 40px;
+}
+
+.journeyDiv > h2{
+    margin-bottom: -20px;
+    font-size: 25px;
+    text-align: center;
+    height: 30px;
+
+}
+.journeyDiv > h3{
+    text-align: center;
+    width: 80%;
+    border-bottom: 1px solid rgb(248, 150, 167);
+    padding-bottom: 10px;
+    margin: 0;
+}
+
+.newPriceContainer{
+    margin-top: 0px;
+    font-size: 13px;
+}
+
+
+img{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+.desc{
+    font-style: italic;
+}
+
+.delete{
+    position: absolute;
+    right: 0px;
+    width: 50px;
+    top: 0px;
+    height: 30px;
+    border-radius: 0 10px 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    cursor: pointer;
+    background-color:  rgb(236, 61, 61);
+}
+
+#reservation > h2{
+    padding: 10px;
+    width: 600px;
+    height: 50px;
+    text-align: center;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.addRemoveButtons{
+    display: flex;
+    justify-content: space-around;
+    width: 150px;
+}
+
+.button1{
+    width: 50px;
+    height: 50px;
+    border-radius:20px ;
+    border: none;
+    cursor: pointer;
+    font-weight: 1000;
+    color: white;
+}
+
+.add{
+    background-color: rgb(87, 197, 87);
+}
+
+.remove{
+    background-color: rgb(236, 61, 61);
+}
+
+
+form{
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+form > div{
+    padding: 20px;
+    border: 1px solid rgb(248, 150, 167);
+    margin-bottom: 20px;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+input{
+    margin-left: 20px;
+    width: 20vw;
+    height: 25px;
+    border-radius: 10px;
+    
+}
+
+form > div > #opinionInput{
+    height: 100px;
+}
+
+#submitButton{
+    background-color: pink;
+    border: 1px solid rgb(248, 150, 167);
+    width: 100px;
+    height: 50px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#submitButton:hover{
+    color: white;
+    background-color: rgb(248, 150, 167);
+}
+
+#all{
+    width: 50vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.opinionDiv{
+    width: 300px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 1px solid rgb(248, 150, 167);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,65 @@
+#title{
+    text-align: center;
+    margin-top: 50px;
+    font-size: 40px;
+    font-weight: bold;
+    width: 80%;
+    border: 2px solid rgb(248, 150, 167);
+    border-radius: 20px;
+    background-color: rgba(247, 154, 168, 0.7);
+    color: white;
+}
+
+#companyData{
+    margin-top: 20px;
+    padding: 10px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 2px solid rgb(248, 150, 167);
+    border-radius: 20px;
+    background-color: rgba(247, 154, 168, 0.6);
+}
+
+#companyData2{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+#photoMap{
+    padding: 20px;
+    width: 400px;
+    height: 300px;
+}
+
+
+#homeMain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+h2{
+    margin-top: 20px;
+    text-align: center;
+    width: 40%;
+    border: 2px solid rgb(248, 150, 167);
+    border-radius: 20px;
+    background-color: rgba(247, 154, 168, 0.6);
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h2 > a{
+    margin-left: 10px;
+    text-decoration: white wavy underline;
+    color: black;
+}
