@@ -63,7 +63,6 @@ export class FiltrowanieComponent implements OnInit {
       rates: this.rates,
       status: this.status
     }
-    console.log(this.status);
 
     this.filterEmit.emit(filter);
   }

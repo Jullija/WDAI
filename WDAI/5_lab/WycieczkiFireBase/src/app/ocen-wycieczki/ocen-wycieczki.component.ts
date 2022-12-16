@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FirebaseServiceService } from '../firebase-service.service';
 import { Wycieczka } from '../wycieczki/wycieczki.component';
 
 @Component({
@@ -8,7 +9,7 @@ import { Wycieczka } from '../wycieczki/wycieczki.component';
 })
 export class OcenWycieczkiComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fb: FirebaseServiceService) { }
 
   @Input() whichJourney: Wycieczka;
 
@@ -19,8 +20,7 @@ export class OcenWycieczkiComponent implements OnInit {
   
 
   isClicked(event:any){
-    this.whichJourney.howManyRatings += 1;
-    this.whichJourney.sumRating += Number(event.target.value);
-    this.whichJourney.rating = Math.round(this.whichJourney.sumRating / this.whichJourney.howManyRatings);
-}
+    this.fb.ratingFunction(this.whichJourney, event);
+    console.log(this.whichJourney);
+  }
 }

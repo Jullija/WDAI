@@ -18,7 +18,7 @@ export class WycieczkiComponent implements OnInit {
   reserved:number = 0;
   totalPrice:number = 0;
   reservedList = new Map<Wycieczka, number>();
-  nextIndex:number = -1;
+
 
   //przeliczniki cen
   dolar:number = 4.59;
@@ -85,16 +85,9 @@ export class WycieczkiComponent implements OnInit {
           bought: false
         } as Wycieczka) 
         index += 1;
-        console.log(this.journeys);  
       }
     })
 
-    for (let journey of this.journeys){
-      if (journey.id  > this.nextIndex){
-        this.nextIndex = journey.id;
-      }
-    }
-    this.nextIndex += 1;
     
   }
 

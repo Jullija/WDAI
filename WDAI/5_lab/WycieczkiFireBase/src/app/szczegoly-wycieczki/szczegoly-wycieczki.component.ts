@@ -31,7 +31,7 @@ export class SzczegolyWycieczkiComponent implements OnInit{
   modelForm: FormGroup;
   opinions: Opinion[] = [];
 
-  id: number = -1;
+  idx: number = -1;
   journey = {
       id: -1,
       nazwa: '',
@@ -54,13 +54,22 @@ export class SzczegolyWycieczkiComponent implements OnInit{
 
   ngOnInit(): void{
     this.route.params.subscribe(params => {
-      this.id = params['id'];
-      console.log(this.id);
+      this.idx = params['id'];
     })
 
-    this.journey = this.basketInfoService.getJourneyById(this.id);
-    console.log(this.journey)
+    this.journey = this.basketInfoService.getJourneyById(this.idx);
 
+
+    this.fb.getTravels().subscribe((journeys: any[]) => {
+
+      for (let journey of journeys){
+        if (journey.id == this.idx ){
+          this.journey = journey;
+          
+        }
+      }
+      
+    })
 
     //formularz dodania opinii
     let tmp = this.basketInfoService.getOpinionsForThisJourney(this.journey.nazwa);

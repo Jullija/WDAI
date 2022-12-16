@@ -74,7 +74,7 @@ export class DodajWycieczkiComponent implements OnInit {
 
 
     let nowaWycieczka ={
-      id: this.basketInfoService.getNextIndex(),
+      id: this.fb.getNextIndex(),
       nazwa: data.get("nazwa2").value,
       docelowyKraj: data.get("docelowyKraj2").value,
       dataRozpoczecia: data.get("dataRozpoczecia2").value,
@@ -92,7 +92,7 @@ export class DodajWycieczkiComponent implements OnInit {
       howManyRatings: 0
 
     }
-    this.basketInfoService.setNewNextIndex(nowaWycieczka.id + 1);
+    // this.fb.setNewNextIndex(nowaWycieczka.id + 1)
     this.fb.addNewJourney(nowaWycieczka);
     this.okay = true;
     data.reset();

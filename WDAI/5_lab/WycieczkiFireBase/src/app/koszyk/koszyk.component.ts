@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { Wycieczka } from '../wycieczki/wycieczki.component';
 import { BasketInfoService } from '../basket-info.service';
+import { FirebaseServiceService } from '../firebase-service.service';
 
 @Component({
   selector: 'app-koszyk',
@@ -10,7 +11,7 @@ import { BasketInfoService } from '../basket-info.service';
 export class KoszykComponent implements OnInit {
 
 
-  constructor(private basketInfoService: BasketInfoService) { }
+  constructor(private basketInfoService: BasketInfoService, private db: FirebaseServiceService) { }
   reservedList: Map<Wycieczka, number> = new Map<Wycieczka, number>();
   totalPrice: number = 0;
 
@@ -35,7 +36,8 @@ export class KoszykComponent implements OnInit {
     let reservationsBeforeBuying = this.basketInfoService.howManyReservations();
     this.basketInfoService.setHowManyReservations(reservationsBeforeBuying - howManyToBuy);
     //update maxPeople in journey
-    journeyToBuy.maxIloscMiejsc2 -= howManyToBuy;
+    this.db.moveJourneyToHistory(journeyToBuy, howManyToBuy);
+    //journeyToBuy.maxIloscMiejsc2 -= howManyToBuy;
 
 
   }

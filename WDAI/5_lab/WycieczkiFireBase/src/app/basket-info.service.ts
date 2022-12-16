@@ -67,13 +67,13 @@ export class BasketInfoService {
 
 
   //INDEXY WYCIECZEK-----------------------------
-  setNewNextIndex(i: number){
-    this.nextIndex = i;
-  }
+  // setNewNextIndex(i: number){
+  //   this.nextIndex = i;
+  // }
 
-  getNextIndex(){
-    return this.nextIndex;
-  }
+  // getNextIndex(){
+  //   return this.nextIndex;
+  // }
 //-------------------------------------------------
 
 
@@ -107,6 +107,7 @@ export class BasketInfoService {
     if (data.maxIloscMiejsc == 1){
       data.wyprzedana = false;
     }
+    console.log(this.totalPrice, data)
 
   }}
 
@@ -206,13 +207,11 @@ export class BasketInfoService {
     
 
     for (let journey of this.journeys){
-      console.log(this.journeys);
       if (journey.id == id){
         wantedJourney = journey;
         return wantedJourney;
       }
     }
-    console.log(wantedJourney);
     return wantedJourney;
   }
 
