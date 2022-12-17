@@ -66,20 +66,6 @@ export class BasketInfoService {
 
 
 
-  //INDEXY WYCIECZEK-----------------------------
-  // setNewNextIndex(i: number){
-  //   this.nextIndex = i;
-  // }
-
-  // getNextIndex(){
-  //   return this.nextIndex;
-  // }
-//-------------------------------------------------
-
-
-
-
-
   howManyReservations(){
     return this.reserved;
   }
@@ -100,14 +86,18 @@ export class BasketInfoService {
       this.reserved -= 1;
       data.maxIloscMiejsc += 1;
       this.totalPrice -= data.cenaWZlotowkach;
-      
+
+      for (let i of this.reservedList.keys()){
+        if (i.id == data.id){
+          this.reservedList.delete(i);
+        }
+      }
       this.reservedList.set(data, data.maxIloscMiejsc2 - data.maxIloscMiejsc)
-     
+
 
     if (data.maxIloscMiejsc == 1){
       data.wyprzedana = false;
     }
-    console.log(this.totalPrice, data)
 
   }}
 
@@ -118,7 +108,14 @@ export class BasketInfoService {
       data.maxIloscMiejsc -= 1;
       this.totalPrice += data.cenaWZlotowkach;
 
+      for (let i of this.reservedList.keys()){
+        if (i.id == data.id){
+          this.reservedList.delete(i);
+        }
+      }
+
       this.reservedList.set(data, data.maxIloscMiejsc2 - data.maxIloscMiejsc)
+      console.log(this.reservedList)
     }
 
     if (data.maxIloscMiejsc == 0){
@@ -146,7 +143,6 @@ export class BasketInfoService {
   getJourneyById(id: number){
     this.fb.getTravels().subscribe(tmp => {
       this.journeys = [];
-      let index = 0;
       for (let i of tmp){
         let priceChange = i.cenaJednostkowa;
         
@@ -154,7 +150,7 @@ export class BasketInfoService {
           
               
         this.journeys.push({
-          id: index,
+          id: i.id,
           nazwa: i.nazwa,
           docelowyKraj: i.docelowyKraj,
           dataRozpoczecia: i.dataRozpoczecia,
@@ -167,21 +163,14 @@ export class BasketInfoService {
           opis: i.opis,
           zdjecie: i.zdjecie,
           wyprzedana: false,
-          rating: 0,
-          sumRating: 0,
-          howManyRatings: 0,
-          bought: false
+          rating: i.rating,
+          sumRating: i.sumRating,
+          howManyRatings: i.howManyRatings,
+          bought: i.bought
         } as Wycieczka) 
-        index += 1;
       }
     })
 
-    for (let journey of this.journeys){
-      if (journey.id  > this.nextIndex){
-        this.nextIndex = journey.id;
-      }
-    }
-    this.nextIndex += 1;
     
 
     let wantedJourney = {
@@ -243,18 +232,6 @@ export class BasketInfoService {
     return this.historyTrips;
   }
 
-  addTripTtoHistoryTrips(journey: Wycieczka, amount: number, date: Date){
-    let todayDate = new Date;
-
-    let journeyToAddToHistory = {
-      howManyBought: amount,
-      whenBought: todayDate,
-      info: journey
-    }
-
-    this.historyTrips.push(journeyToAddToHistory);
-    journey.bought = true;
-  }
 
 
 

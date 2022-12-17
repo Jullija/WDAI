@@ -21,6 +21,5 @@ export class OcenWycieczkiComponent implements OnInit {
 
   isClicked(event:any){
     this.fb.ratingFunction(this.whichJourney, event);
-    console.log(this.whichJourney);
   }
 }

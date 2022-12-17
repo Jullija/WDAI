@@ -7,6 +7,7 @@ import { FirebaseServiceService } from '../firebase-service.service';
 import { first } from 'rxjs/operators';
 
 
+
 export interface Opinion{
   nick: string,
   name: string,
@@ -53,29 +54,31 @@ export class SzczegolyWycieczkiComponent implements OnInit{
   }
 
   ngOnInit(): void{
+
     this.route.params.subscribe(params => {
       this.idx = params['id'];
     })
 
+
+
     this.journey = this.basketInfoService.getJourneyById(this.idx);
 
-
-    this.fb.getTravels().subscribe((journeys: any[]) => {
-
-      for (let journey of journeys){
-        if (journey.id == this.idx ){
-          this.journey = journey;
-          
+    this.fb.getOpinions().subscribe(tmp => {
+      this.opinions = [];
+      for (let i of tmp){
+        if (this.journey.nazwa == i.name){
+          this.opinions.push({
+          date: i.date,
+          name: i.name,
+          nick: i.nick,
+          opinion: i.opinion
+        } as Opinion)
         }
+        
       }
-      
     })
 
-    //formularz dodania opinii
-    let tmp = this.basketInfoService.getOpinionsForThisJourney(this.journey.nazwa);
-    if (tmp !== undefined){
-      this.opinions = tmp;
-    }
+
     
     this.modelForm = this.formBuilder.group({
       nick:['', Validators.required],
@@ -89,10 +92,12 @@ export class SzczegolyWycieczkiComponent implements OnInit{
   }
 
   removeClick(journey: Wycieczka){
+    this.fb.removeClick(journey)
     this.basketInfoService.removeClick(journey);
   }
 
   addClick(journey: Wycieczka){
+    this.fb.addClick(journey)
     this.basketInfoService.addClick(journey);
   }
 
@@ -160,6 +165,7 @@ export class SzczegolyWycieczkiComponent implements OnInit{
       date: data.get("date").value
     } as Opinion
 
+    this.fb.setOpinionsForJourney(newOpinion);
     this.opinions.push(newOpinion);
     this.basketInfoService.setOpinionsForJourney(newOpinion.name, this.opinions)
     

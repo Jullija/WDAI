@@ -92,7 +92,8 @@ export class DodajWycieczkiComponent implements OnInit {
       howManyRatings: 0
 
     }
-    // this.fb.setNewNextIndex(nowaWycieczka.id + 1)
+
+    console.log(nowaWycieczka);
     this.fb.addNewJourney(nowaWycieczka);
     this.okay = true;
     data.reset();

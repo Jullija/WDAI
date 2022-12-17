@@ -58,7 +58,6 @@ export class WycieczkiComponent implements OnInit {
   ngOnInit(): void {
     this.fb.getTravels().subscribe(tmp => {
       this.journeys = [];
-      let index = 0;
       for (let i of tmp){
         let priceChange = i.cenaJednostkowa;
         
@@ -66,7 +65,7 @@ export class WycieczkiComponent implements OnInit {
           
               
         this.journeys.push({
-          id: index,
+          id: i.id,
           nazwa: i.nazwa,
           docelowyKraj: i.docelowyKraj,
           dataRozpoczecia: i.dataRozpoczecia,
@@ -75,16 +74,15 @@ export class WycieczkiComponent implements OnInit {
           waluta: i.waluta,
           cenaWZlotowkach: priceChange,
           maxIloscMiejsc: i.maxIloscMiejsc,
-          maxIloscMiejsc2: i.maxIloscMiejsc,
+          maxIloscMiejsc2: i.maxIloscMiejsc2,
           opis: i.opis,
           zdjecie: i.zdjecie,
-          wyprzedana: false,
-          rating: 0,
-          sumRating: 0,
-          howManyRatings: 0,
-          bought: false
+          wyprzedana: i.wyprzedana,
+          rating: i.rating,
+          sumRating: i.sumRating,
+          howManyRatings: i.howManyRatings,
+          bought: i.bought
         } as Wycieczka) 
-        index += 1;
       }
     })
 
@@ -120,11 +118,13 @@ export class WycieczkiComponent implements OnInit {
 
 
   removeClick(journey: Wycieczka){
+    this.fb.removeClick(journey);
     this.basketInfoService.removeClick(journey);
   }
 
   
   addClick(journey: Wycieczka){
+    this.fb.addClick(journey);
     this.basketInfoService.addClick(journey);
   }
 

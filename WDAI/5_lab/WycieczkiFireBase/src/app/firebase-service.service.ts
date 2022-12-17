@@ -1,7 +1,9 @@
+import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
+import { Opinion } from './szczegoly-wycieczki/szczegoly-wycieczki.component';
 import { Wycieczka } from './wycieczki/wycieczki.component';
 
 @Injectable({
@@ -9,12 +11,18 @@ import { Wycieczka } from './wycieczki/wycieczki.component';
 })
 export class FirebaseServiceService {
 
+  nextIndex: number = 0;
   journeys: Observable<any[]>;
-  private nextIndex: number = 0;
-  private maxi: number = -1;
+  opinions: Observable<any[]>;
+  history: Observable<any[]>;
+  opinionToShow: Opinion[] = [];
 
-  constructor(private db: AngularFireDatabase) {
+
+  constructor(private db: AngularFireDatabase, public datepipe: DatePipe) {
     this.journeys = this.db.list("Wycieczki").valueChanges();
+    this.db.list('Wycieczki', ref=> ref.orderByChild('id').limitToLast(1)).valueChanges().subscribe((res: any[]) => {this.nextIndex = res[0]?.id+1})
+    this.opinions = this.db.list("Opinie").valueChanges();
+    this.history = this.db.list("Historia").valueChanges();
   }
 
   //przeliczniki cen
@@ -45,26 +53,19 @@ export class FirebaseServiceService {
     return this.journeys;
    }
 
+   getOpinions():Observable<any[]>{
+    return this.opinions;
+   }
+
+   getHistory():Observable<any[]>{
+    return this.history;
+   }
+
    setNewNextIndex(i: number){
     this.nextIndex = i;
-
   }
 
   getNextIndex(){
-    
-    this.db.list('Wycieczki').snapshotChanges().subscribe((items:any[]) =>{
-      this.nextIndex = 0;
-      for(let i of items){
-        this.nextIndex += 1;
-      }
-      if (this.maxi < this.nextIndex){
-        this.maxi = this.nextIndex;
-      }
-      else if (this.nextIndex < this.maxi){
-        this.nextIndex = this.maxi;
-      }
-    } )
-
     return this.nextIndex;
   }
 
@@ -79,11 +80,9 @@ export class FirebaseServiceService {
    removeJourney(journey: Wycieczka){
     this.db.list('Wycieczki').snapshotChanges().pipe(first()).subscribe((items:any) =>{
       for(let i of items){
-        console.log(i.payload.val().id, journey.id)
         if(i.payload.val().id==journey.id)
         
         {
-          console.log(i.payload.val().id, journey.id)
           this.db.list('Wycieczki').remove(i.payload.key);
         }
       }
@@ -99,23 +98,81 @@ export class FirebaseServiceService {
           this.db.list('Wycieczki').update(i.payload.key, {howManyRatings: i.payload.val().howManyRatings + 1});
           this.db.list('Wycieczki').update(i.payload.key, {sumRating: i.payload.val().sumRating + Number(event.target.value)})
           this.db.list('Wycieczki').update(i.payload.key, {rating: Math.round(i.payload.val().sumRating / i.payload.val().howManyRatings)})
+          journey.howManyRatings = i.payload.val().howManyRatings + 1;;
+          journey.sumRating = i.payload.val().sumRating + Number(event.target.value);
+          journey.rating = Math.round(i.payload.val().sumRating / i.payload.val().howManyRatings);
         }
       }
     } )
 
    }
 
+   changeDate(dateToChange: Date){
+    return this.datepipe.transform(dateToChange, 'dd.MM.yyyy');
+  }
 
-   moveJourneyToHistory(journey: Wycieczka, howManyToBuy: number){
+
+   moveJourneyToHistory(journey: Wycieczka, howManyToBuy: number, datePaym: Date){
     this.db.list('Wycieczki').snapshotChanges().pipe(first()).subscribe((items:any) => {
       for (let i of items){
         if (i.payload.val().id == journey.id){
           this.db.list('Wycieczki').update(i.payload.key, {maxIloscMiejsc: i.payload.val().maxIloscMiejsc - howManyToBuy});
           this.db.list('Wycieczki').update(i.payload.key, {maxIloscMiejsc2: i.payload.val().maxIloscMiejsc2 - howManyToBuy});
+          this.db.list('Wycieczki').update(i.payload.key, {bought: true});
         }
       }
     })
+
+
+    this.db.list('Historia').snapshotChanges().pipe(first()).subscribe((items:any) => {
+      this.db.list("Historia").push({howManyBought: howManyToBuy, whenBought: datePaym.toString(), info: journey});
+    })
    }
+
+
+   setOpinionsForJourney(opinion: Opinion){
+    this.db.list('Opinie').push(opinion);
+   }
+
+
+   removeClick(data: Wycieczka){ 
+
+    this.db.list("Wycieczki").snapshotChanges().pipe(first()).subscribe((items:any) => {
+      for (let i of items){
+        if (i.payload.val().id == data.id){
+          if (i.payload.val().maxIloscMiejsc + 1 <= data.maxIloscMiejsc2){
+            this.db.list("Wycieczki").update(i.payload.key, {maxIloscMiejsc: i.payload.val().maxIloscMiejsc + 1})            
+          }
+          if (i.payload.val().maxIloscMiejsc == 1){
+            this.db.list("Wycieczki").update(i.payload.key, {wyprzedana: false})
+          }
+
+          
+        }
+      }
+    }
+
+  )}
+
+  addClick(data: Wycieczka){ 
+
+    this.db.list("Wycieczki").snapshotChanges().pipe(first()).subscribe((items:any) => {
+      for (let i of items){
+        if (i.payload.val().id == data.id){
+          if (i.payload.val().maxIloscMiejsc - 1 >= 0){
+            this.db.list("Wycieczki").update(i.payload.key, {maxIloscMiejsc: i.payload.val().maxIloscMiejsc - 1})            
+          }
+          if (i.payload.val().maxIloscMiejsc == 0){
+            this.db.list("Wycieczki").update(i.payload.key, {wyprzedana: true})
+          }
+
+        }
+      }
+    }
+
+  )}
+
+
 
 
    
