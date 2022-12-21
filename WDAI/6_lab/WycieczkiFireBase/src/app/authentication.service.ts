@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { BasketInfoService } from './basket-info.service';
 import { FirebaseServiceService } from './firebase-service.service';
-import { Roles } from './User';
+import { Roles, User } from './User';
 
 
 @Injectable({
@@ -29,6 +29,8 @@ export class AuthenticationService {
     fireauth.authState.subscribe(async (event: any) =>{
     if (event){
       this.userData = event;
+      const roles = await this.fb.getUserRoles(event.uid);
+      this.userRoles = roles as unknown as Roles;
     }
     else{
       this.userData = null;
@@ -61,18 +63,25 @@ export class AuthenticationService {
   }
 
   GodCreateNewUser(mail: string, password: string){
-    this.fireauth.createUserWithEmailAndPassword(mail, password)
+    return this.fireauth.createUserWithEmailAndPassword(mail, password)
     .then((userCredential) => {
-      this.router.navigate(['wycieczki'])
+      let user = new User(userCredential.user)
+      this.fb.addNewUser(user);
+      this.router.navigate(['wycieczki']);
     })
     .catch((error) => {
-      alert("Taki użytkownik już istnieje");
+      alert(error);
     })
   }
 
 
   GodSignUser(mail: string, password: string){
-    this.fireauth.signInWithEmailAndPassword(mail, password);
-    this.router.navigate(['wycieczki']);
+    return this.fireauth.signInWithEmailAndPassword(mail, password)
+    .then((userCredential) => {
+      this.router.navigate(['wycieczki'])
+    })
+    .catch((error) => {
+      alert(error);
+    })
   }
 }

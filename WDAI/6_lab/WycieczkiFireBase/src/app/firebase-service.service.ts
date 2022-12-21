@@ -4,6 +4,7 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/datab
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { Opinion } from './szczegoly-wycieczki/szczegoly-wycieczki.component';
+import { User } from './User';
 import { Wycieczka } from './wycieczki/wycieczki.component';
 
 @Injectable({
@@ -171,6 +172,28 @@ export class FirebaseServiceService {
     }
 
   )}
+
+
+  addNewUser(user: User){
+
+    this.db.object('/users/' + user.uid).set({
+      email: user.email,
+      roles: user.roles
+    });
+  }
+
+  async getUserRoles(uid: string){
+    return this.db.object('/users/' + uid + '/roles').valueChanges();
+  }
+
+  changeUserRole(uid: string, newRole: string, value: string){
+    let afterChange = '{" ' + newRole + '"' + ':' + value + '}';
+    this.db.object('/users/' + uid + '/roles').update(JSON.parse(afterChange));
+  }
+
+  getUsers(){
+    return this.db.list('users').snapshotChanges();
+  }
 
 
 

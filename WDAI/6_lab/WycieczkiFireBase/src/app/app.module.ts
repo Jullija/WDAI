@@ -34,6 +34,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthenticationService } from './authentication.service';
 import { MenuComponent } from './menu/menu.component';
+import { AdminViewComponent } from './admin-view/admin-view.component';
+import { MenagerViewComponent } from './menager-view/menager-view.component';
 
 
 
@@ -46,7 +48,7 @@ import { MenuComponent } from './menu/menu.component';
     KoszykComponent,
     OcenWycieczkiComponent,
     FiltrowanieComponent, 
-    WycieczkiPipe, PageNotFoundComponent, SzczegolyWycieczkiComponent, HistoriaZakupowComponent, LoginComponent, RegisterComponent, MenuComponent
+    WycieczkiPipe, PageNotFoundComponent, SzczegolyWycieczkiComponent, HistoriaZakupowComponent, LoginComponent, RegisterComponent, MenuComponent, AdminViewComponent, MenagerViewComponent
   ],
   imports: [
     BrowserModule,
