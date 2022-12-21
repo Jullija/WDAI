@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   error = false;
   okay = false;
 
-  constructor(private formBuilder : FormBuilder, private auth: AngularFireAuth, private router: Router){}
+  constructor(private formBuilder : FormBuilder, private auth: AuthenticationService, private router: Router){}
 
 
   ngOnInit(): void {
@@ -38,9 +39,7 @@ onSubmit(data:any){
   let newEmail = data.get("email").value;
   let newPassword = data.get("password").value;
 
-  this.auth.signInWithEmailAndPassword(newEmail, newPassword);
-  this.router.navigate(['wycieczki']);
-  this.okay = true;
+  this.auth.GodSignUser(newEmail, newPassword);
   data.reset();
 }
 }

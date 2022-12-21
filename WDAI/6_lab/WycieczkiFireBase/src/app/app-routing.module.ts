@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'dodajWycieczki', component: DodajWycieczkiComponent},
   {path: 'koszyk', component: KoszykComponent},
-  {path: 'historia', component: HistoriaZakupowComponent },
+  { path: 'historia', component: HistoriaZakupowComponent },
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: '**', component: PageNotFoundComponent}

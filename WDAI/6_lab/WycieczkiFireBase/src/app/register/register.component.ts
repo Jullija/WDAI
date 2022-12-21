@@ -5,6 +5,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../authentication.service';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class RegisterComponent implements OnInit {
   mistake = false;
   okay = false;
 
-  constructor(private formBuilder : FormBuilder, private auth: AngularFireAuth, private router: Router){}
+  constructor(private formBuilder : FormBuilder, private auth: AuthenticationService, private router: Router){}
 
 
   ngOnInit(): void {
@@ -43,19 +44,8 @@ onSubmit(data:any){
   let newEmail = data.get("email").value;
   let newPassword = data.get("password").value;
   
-
-
-  this.auth.createUserWithEmailAndPassword(newEmail, newPassword)
-    .then((userCredential) => {
-      this.okay = true;
-      this.router.navigate(['wycieczki'])
-      data.reset();
-    })
-    .catch((error) => {
-      this.mistake = true;
-    })
-  
- 
+  this.auth.GodCreateNewUser(newEmail, newPassword); 
+  data.reset();
   
 
 }

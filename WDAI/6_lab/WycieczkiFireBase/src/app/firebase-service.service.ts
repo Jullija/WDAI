@@ -1,9 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
-import { firstValueFrom, Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { User } from 'src/User';
 import { Opinion } from './szczegoly-wycieczki/szczegoly-wycieczki.component';
 import { Wycieczka } from './wycieczki/wycieczki.component';
 
@@ -174,24 +173,8 @@ export class FirebaseServiceService {
   )}
 
 
-  addNewUser(user: User){
-    this.db.object('/users/' + user.uid ).set({
-      email: user.email,
-      roles: user.roles
-    });
-  }
-
-  getUserRoles(uid: string){
-    return firstValueFrom(this.db.object('/users/' + uid + '/roles').valueChanges());
-  }
-  getUserRoles$(uid: string) {
-    return this.db.object('/users/' + uid + '/roles').valueChanges();
-  }
-
 
 
    
    
 }
-
-

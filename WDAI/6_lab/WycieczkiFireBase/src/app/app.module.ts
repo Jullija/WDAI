@@ -1,4 +1,4 @@
-import { Inject, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -30,9 +30,11 @@ import { DatePipe } from '@angular/common'
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component'
 import { AuthenticationService } from './authentication.service';
+import { MenuComponent } from './menu/menu.component';
+
 
 
 @NgModule({
@@ -44,7 +46,7 @@ import { AuthenticationService } from './authentication.service';
     KoszykComponent,
     OcenWycieczkiComponent,
     FiltrowanieComponent, 
-    WycieczkiPipe, PageNotFoundComponent, SzczegolyWycieczkiComponent, HistoriaZakupowComponent, RegisterComponent, LoginComponent
+    WycieczkiPipe, PageNotFoundComponent, SzczegolyWycieczkiComponent, HistoriaZakupowComponent, LoginComponent, RegisterComponent, MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -68,5 +70,5 @@ import { AuthenticationService } from './authentication.service';
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(public auth: AuthenticationService){};
+
  }
