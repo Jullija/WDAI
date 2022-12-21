@@ -1,0 +1,10 @@
+<div id="basket2">
+    <div class="insideBasket">
+        <div *ngFor="let journeyInCart of reservedList | keyvalue" class="single">
+            <div *ngIf="journeyInCart.value != 0">{{journeyInCart.value}} x {{journeyInCart.key.nazwa}}
+            <button (click)="buyJourney(journeyInCart.key, journeyInCart.value)">Kup wycieczkę</button></div>
+        </div>
+        <p>Łączna kwota: {{totalPrice}} zł</p>
+
+    </div>
+</div>

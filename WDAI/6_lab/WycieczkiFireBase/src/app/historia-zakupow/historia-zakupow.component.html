@@ -1,0 +1,11 @@
+<p class="title">Historia wycieczek</p>
+<div class="all">
+    <div *ngFor="let historyTrip of historyTrips" class="single">
+        <p> {{ historyTrip.info.nazwa }} </p>
+        <p> {{ historyTrip.info.docelowyKraj }} </p>
+        <p> {{ historyTrip.info.cenaWZlotowkach * historyTrip.howManyBought}} zł </p>
+        <p> {{ historyTrip.info.dataRozpoczecia}} - {{historyTrip.info.dataZakonczenia}} </p>
+        <p> Liczba zakupionych biletów: {{ historyTrip.howManyBought}} </p>
+        <p> Data zakupu: {{historyTrip.whenBought.substring(0, 21)}} </p>
+    </div>
+</div>

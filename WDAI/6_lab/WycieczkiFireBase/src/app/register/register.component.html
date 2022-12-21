@@ -1,0 +1,11 @@
+<div class="rejestracja">
+    <form [formGroup] = "modelForm" (ngSubmit)="onSubmit(modelForm)">
+        <p>Zarejestruj się</p>
+        <label>Email: </label><input name="email" formControlName="email">
+        <label>Hasło: </label><input name="password" type="password" formControlName="password">
+
+        <button type="submit">Potwierdź dane</button>
+        <p *ngIf="mistake">Taki użytkownik już istnieje</p>
+        <p *ngIf="okay">Użytkownik został zarejestrowany</p>
+    </form>
+</div>

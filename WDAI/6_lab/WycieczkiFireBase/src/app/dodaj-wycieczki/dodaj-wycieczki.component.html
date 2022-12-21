@@ -1,0 +1,19 @@
+
+<div id="mainDiv">
+    <form [formGroup] = "modelForm" (ngSubmit)="onSubmit(modelForm)">
+        <p>Dodaj wycieczkę</p>
+        <label>Nazwa wycieczki: </label><input name="nazwa" formControlName="nazwa2">
+        <label>Docelowy Kraj wycieczki: </label><input name="docelowyKraj" formControlName="docelowyKraj2">
+        <label>Data rozpoczęcia: </label><input name="dataRozpoczecia" formControlName="dataRozpoczecia2" placeholder="DD.MM.YYYY">
+        <label>Data zakończenia: </label><input name="dataZakonczenia" formControlName="dataZakonczenia2" placeholder="DD.MM.YYYY">
+        <label>Cena wycieczki: </label><input type="number" name="cenaJednostkowa" formControlName="cenaJednostkowa2">
+        <label>Waluta: </label><input name="waluta" formControlName="waluta2" placeholder="zł/euro/dolar/jen/korona">
+        <label>Maksymalna ilość miejsc: </label><input type="number" name="maxIloscMiejsc" formControlName="maxIloscMiejsc2">
+        <label>Opis wycieczki: </label><input name="opis" formControlName="opis2">
+        <label>Ścieżka do zdjęcia: </label><input name="zdjecie" formControlName="zdjecie2">
+
+        <button type="submit">Dodaj wycieczkę</button>
+        <p *ngIf="error">Wprowadź poprawne dane</p>
+        <p *ngIf="okay">Wycieczka została dodana</p>
+    </form>
+</div>

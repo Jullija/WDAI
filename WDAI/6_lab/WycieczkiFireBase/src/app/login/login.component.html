@@ -1,0 +1,12 @@
+<div class="login">
+    <form [formGroup] = "modelForm" (ngSubmit)="onSubmit(modelForm)">
+        <p>Zaloguj się</p>
+        <label>Email: </label><input name="email" formControlName="email">
+        <label>Hasło: </label><input name="password" type="password" formControlName="password">
+
+        <button type="submit">Potwierdź dane</button>
+        <p *ngIf="error">Wprowadź poprawne dane</p>
+        <p *ngIf="okay">Użytkownik został zalogowany</p>
+    </form>
+</div>
+

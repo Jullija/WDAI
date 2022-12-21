@@ -1,0 +1,21 @@
+#mainDiv{
+    margin-top: 20px;
+    width: 87vw;
+    height: 200px;
+    background-color: rgb(245, 205, 211);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.filterDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.priceDiv{
+    font-size: 10px;
+}
