@@ -23,7 +23,7 @@
                                               'font-size': journey.maxIloscMiejsc < 4 ? '25px': '15px'}"
              *ngIf = "journey.maxIloscMiejsc != 0; else zeroPoints">Ilość miejsc: {{journey.maxIloscMiejsc}}</div>
             <ng-template #zeroPoints>Brak dostępnych wycieczek</ng-template>
-            <div class="addRemoveButtons">
+            <div class="addRemoveButtons" *ngIf="this.auth.userRoles.client == true">
                 <button class="button1 add" (click)="addClick(journey)"
                 [ngStyle] = "{'display': journey.maxIloscMiejsc == 0 ? 'none': 'block'}">+</button>
                 <button class="button1 remove" (click)="removeClick(journey)">-</button>
