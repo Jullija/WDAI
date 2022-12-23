@@ -1,8 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
-import { Observable } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { firstValueFrom, Observable } from 'rxjs';
+import { first } from 'rxjs';
 import { Opinion } from './szczegoly-wycieczki/szczegoly-wycieczki.component';
 import { User } from './User';
 import { Wycieczka } from './wycieczki/wycieczki.component';
@@ -175,7 +175,6 @@ export class FirebaseServiceService {
 
 
   addNewUser(user: User){
-
     this.db.object('/users/' + user.uid).set({
       email: user.email,
       roles: user.roles
@@ -183,11 +182,11 @@ export class FirebaseServiceService {
   }
 
   async getUserRoles(uid: string){
-    return this.db.object('/users/' + uid + '/roles').valueChanges();
+    return firstValueFrom(this.db.object('/users/' + uid + '/roles').valueChanges());
   }
 
   changeUserRole(uid: string, newRole: string, value: string){
-    let afterChange = '{" ' + newRole + '"' + ':' + value + '}';
+    let afterChange = '{"' + newRole + '"' + ': ' + value + '}';
     this.db.object('/users/' + uid + '/roles').update(JSON.parse(afterChange));
   }
 

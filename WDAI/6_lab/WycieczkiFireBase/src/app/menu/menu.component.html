@@ -1,9 +1,11 @@
 <div class="nav menu"><a routerLink="">Strona główna</a> </div>
 <div class="nav wycieczkiDiv"><a routerLink="/wycieczki">Wycieczki</a></div>
-<div class="nav wycieczkiAddDiv"><a routerLink="/dodajWycieczki">Dodaj wycieczki</a></div>
+<!-- <div class="nav wycieczkiAddDiv"><a routerLink="/dodajWycieczki">Dodaj wycieczki</a></div> -->
 <div class="nav basket"><a routerLink="/koszyk"><img src="assets/images/shopping-cart.png" id="basketPhoto"></a></div>
 <div class="nav history"><a routerLink="/historia">Historia zamówień</a></div>
 <div class="nav register" *ngIf="auth.userData == null"><a routerLink="/register">Zarejestruj się</a></div>
 <div class="nav login" *ngIf="auth.userData == null"><a routerLink="/login">Zaloguj się</a></div>
 <div class="nav logout" *ngIf="auth.userData != null" (click)="auth.signOut()"><a routerLink="/logout">Wyloguj się</a></div>
 <div class="nick" *ngIf="auth.userData != null">{{ auth.userData.email }}</div>
+<div class="nav menagerView" *ngIf="auth.userRoles.menager == true"><a routerLink="/menagerView">Zarządzanie wycieczkami</a></div>
+<div class="nav adminView" *ngIf="auth.userRoles.admin == true"><a routerLink="/adminView">Widok admina</a></div>

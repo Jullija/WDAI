@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
 
@@ -34,11 +30,11 @@ export class RegisterComponent implements OnInit {
 onSubmit(data:any){
   this.mistake = false;
   this.okay = false;
-  console.log(data.valid)
+
 
   if (!data.valid ){
     this.mistake = true;
-    return
+    return;
   }
 
   let newEmail = data.get("email").value;

@@ -20,7 +20,7 @@
     </div>
 
     <h2>Napisz opinię</h2>
-    <form [formGroup]="modelForm" (ngSubmit)="onSubmit(modelForm)">
+    <form *ngIf="this.auth.userRoles.menager == true"[formGroup]="modelForm" (ngSubmit)="onSubmit(modelForm)">
         <div><label>Nick:</label><input name="nick" formControlName="nick"></div>
         <div><label>Nazwa Wycieczki:</label><input name="name" formControlName="name"></div>
         <div><label>Treść opinii:</label><input name="opinion" formControlName="opinion" id="opinionInput"></div>

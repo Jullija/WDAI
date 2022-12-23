@@ -22,7 +22,7 @@ export interface Roles {
           guest: true,
           menager: false,
           admin: false,
-          banned: false,
+          banned: false
         };
     }
 }

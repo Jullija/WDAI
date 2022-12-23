@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../authentication.service';
 import { BasketInfoService } from '../basket-info.service';
 import { WycieczkiPipe } from '../filtrowanie/wycieczki.pipe';
 import { FirebaseServiceService } from '../firebase-service.service';
@@ -11,7 +12,7 @@ import { FirebaseServiceService } from '../firebase-service.service';
 })
 export class WycieczkiComponent implements OnInit {
 
-  constructor(private basketInfoService: BasketInfoService, public datepipe: DatePipe, private fb: FirebaseServiceService) { }
+  constructor(private basketInfoService: BasketInfoService, public datepipe: DatePipe, private fb: FirebaseServiceService, public auth: AuthenticationService) { }
 
   journeys: Wycieczka[] = [];
 

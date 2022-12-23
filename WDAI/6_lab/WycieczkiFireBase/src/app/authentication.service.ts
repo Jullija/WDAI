@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { BasketInfoService } from './basket-info.service';
 import { FirebaseServiceService } from './firebase-service.service';
 import { Roles, User } from './User';
+import { Wycieczka } from './wycieczki/wycieczki.component';
 
 
 @Injectable({
@@ -20,17 +21,17 @@ export class AuthenticationService {
     admin: false,
     menager: false,
     client: false,
-    banned: false,
-  }
+    banned: false
+  };
   
 
-  constructor(private fireauth: AngularFireAuth, private router: Router, private fb: FirebaseServiceService) 
+  constructor(private fireauth: AngularFireAuth, private router: Router, private fb: FirebaseServiceService, private basket: BasketInfoService) 
   {
     fireauth.authState.subscribe(async (event: any) =>{
     if (event){
       this.userData = event;
       const roles = await this.fb.getUserRoles(event.uid);
-      this.userRoles = roles as unknown as Roles;
+      this.userRoles = roles as Roles;
     }
     else{
       this.userData = null;
@@ -39,7 +40,7 @@ export class AuthenticationService {
         admin: false,
         menager: false,
         client: false,
-        banned: false,
+        banned: false
       }
     }
   }) }
@@ -65,8 +66,8 @@ export class AuthenticationService {
   GodCreateNewUser(mail: string, password: string){
     return this.fireauth.createUserWithEmailAndPassword(mail, password)
     .then((userCredential) => {
-      let user = new User(userCredential.user)
-      this.fb.addNewUser(user);
+      let newUser = new User(userCredential.user);
+      this.fb.addNewUser(newUser);
       this.router.navigate(['wycieczki']);
     })
     .catch((error) => {
@@ -76,12 +77,16 @@ export class AuthenticationService {
 
 
   GodSignUser(mail: string, password: string){
-    return this.fireauth.signInWithEmailAndPassword(mail, password)
+    return this.fireauth.setPersistence(this.persistence).then(()=>{
+      return this.fireauth.signInWithEmailAndPassword(mail, password)
     .then((userCredential) => {
       this.router.navigate(['wycieczki'])
     })
     .catch((error) => {
       alert(error);
     })
+    })
   }
+
+
 }

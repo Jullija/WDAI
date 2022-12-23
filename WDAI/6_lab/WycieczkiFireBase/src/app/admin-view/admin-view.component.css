@@ -1,0 +1,98 @@
+#body{
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#pers{
+    margin-bottom: 50px;
+    height: 100px;
+    padding: 20px;
+    border: 2px solid rgb(248, 150, 167);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 200px;
+}
+
+#usersDiv{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#usersDiv > p{
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+}
+
+.singleUser{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px;
+    border: 2px solid rgb(248, 150, 167);
+    border-radius: 20px;
+    width: 350px;
+    height: 600px;
+    margin-top: 20px;
+}
+
+.banhammer{
+    background-color: rgb(236, 61, 61);
+    border-radius: 10px;
+    padding: 10px;
+    height: 50px;
+    width: 100px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banhammer:hover{
+    background-color: rgb(238, 32, 32);
+    color: white;
+}
+
+.rolesDiv{
+    display: flex;
+    flex-direction: column;
+    height: 40%;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+
+.roles{
+    padding: 5px;
+}
+
+.buttonik{
+    width: 50px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold;
+    background-color: rgb(248, 150, 167);
+    color: white
+}
+
+.buttonik:hover{
+    background-color: rgb(250, 129, 149);
+}

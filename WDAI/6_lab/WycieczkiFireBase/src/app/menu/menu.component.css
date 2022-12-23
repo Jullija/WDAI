@@ -41,13 +41,13 @@
 }
 
 
-.wycieczkiAddDiv{
+/* .wycieczkiAddDiv{
     left:190px;
-}
+} */
 
 
 .basket{
-    left: 280px;
+    left: 190px;
 }
 
 #basketPhoto{
@@ -57,7 +57,7 @@
 }
 
 .history{
-    left: 370px
+    left: 280px
 }
 
 .logout{
@@ -78,4 +78,12 @@
     font-style: italic;
     right: 110px;
     top: 40px;
+}
+
+.menagerView{
+    left: 370px;
+}
+
+.adminView{
+    left: 460px;
 }

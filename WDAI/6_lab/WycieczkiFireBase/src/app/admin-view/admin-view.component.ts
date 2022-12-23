@@ -13,6 +13,7 @@ export class AdminViewComponent implements OnInit{
   constructor(public auth: AuthenticationService, private fb:FirebaseServiceService){}
 
   users: User[] = [];
+  selectedPersistence = this.auth.persistence;
 
   ngOnInit(): void {
     this.fb.getUsers().subscribe((users) => {
@@ -32,5 +33,9 @@ export class AdminViewComponent implements OnInit{
 
   setUserRole(uid: string, role: string, value: boolean){
     this.fb.changeUserRole(uid, role, String(value));
+  }
+
+  chosenPersistence(){
+    this.auth.changePersistence(this.selectedPersistence);
   }
 }

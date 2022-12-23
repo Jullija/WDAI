@@ -4,7 +4,8 @@ import { BasketInfoService } from '../basket-info.service';
 import { Wycieczka } from '../wycieczki/wycieczki.component';
 import { ControlConfig, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { FirebaseServiceService } from '../firebase-service.service';
-import { first } from 'rxjs/operators';
+import { AuthenticationService } from '../authentication.service';
+
 
 
 
@@ -27,7 +28,7 @@ export interface Opinion{
 
 export class SzczegolyWycieczkiComponent implements OnInit{
 
-  constructor(private basketInfoService: BasketInfoService, private route: ActivatedRoute, private formBuilder: FormBuilder, private fb: FirebaseServiceService) { }
+  constructor(private basketInfoService: BasketInfoService, private route: ActivatedRoute, private formBuilder: FormBuilder, private fb: FirebaseServiceService, public auth: AuthenticationService) { }
 
   modelForm: FormGroup;
   opinions: Opinion[] = [];
@@ -59,6 +60,13 @@ export class SzczegolyWycieczkiComponent implements OnInit{
       this.idx = params['id'];
     })
 
+    this.fb.getTravels().subscribe(tmp => {
+      for(let i of tmp){
+        if (i.id == this.idx){
+          this.journey = i;
+        }
+      }
+    })
 
 
     this.journey = this.basketInfoService.getJourneyById(this.idx);

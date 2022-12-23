@@ -1,4 +1,27 @@
-<div *ngFor="let user of users">
-    <p>{{ user.email }}</p>
-    <p>{{ user.uid }}</p>
+<div id="body">
+    <div id="pers">Wybierz persystencję
+        <select [(ngModel)]="selectedPersistence" (ngModelChange)="chosenPersistence()">
+            <option>local</option>
+            <option>session</option>
+            <option>none</option>
+        </select>
+    </div>
+
+
+    <div *ngIf="auth.userRoles.admin == true" id="usersDiv"><p>Wszyscy użytkownicy</p>
+        <div *ngFor="let user of users" class="singleUser">
+        <p><b>Email:</b> {{ user.email }}</p>
+        <p><b>UID:</b> {{ user.uid }}</p>
+        
+        <div class="rolesDiv"><p><b>Ustaw role</b></p>
+            <div class="roles guest"> GUEST: {{user.roles.guest}} <button class="buttonik" (click)="setUserRole(user.uid, 'guest', !user.roles.guest)">zmień</button></div>
+            <div class="roles client"> CLIENT: {{user.roles.client}} <button class="buttonik" (click)="setUserRole(user.uid, 'client', !user.roles.client)">zmień</button></div>
+            <div class="roles menager"> MENAGER: {{user.roles.menager}} <button class="buttonik" (click)="setUserRole(user.uid, 'menager', !user.roles.menager)">zmień</button></div>
+            <div class="roles admin"> ADMIN: {{user.roles.admin}} <button class="buttonik" (click)="setUserRole(user.uid, 'admin', !user.roles.admin)">zmień</button></div>
+            <div class="roles admin"> BAN: {{user.roles.banned}} <button *ngIf="user.roles.banned == true" class="buttonik" (click)="setUserRole(user.uid, 'banned', !user.roles.banned)">zmień</button></div>
+        </div>
+
+        <button (click)="banUser(user.uid)" class="banhammer" *ngIf="user.uid != this.auth.userData.uid && user.roles.banned == false">BANHAMMER</button>
+        </div>
+    </div>
 </div>
