@@ -6,7 +6,8 @@
         [ngClass] = "{'mostExpensive': journey.cenaWZlotowkach == mostExpensiveJourney(journeys, filter),
                     'theCheapest': journey.cenaWZlotowkach == theCheapestJourney(journeys, filter)}">
             <div class="delete" (click)="removeJourney(journey)">Usuń</div>
-            <a routerLink="/szczegolyWycieczki/{{journey.id}}"><img src="{{journey.zdjecie}}"></a>
+            <div class="modify"><a routerLink="/modify/{{journey.id}}">Modyfikuj</a></div>
+            <img src="{{journey.zdjecie}}">
             <h2>{{journey.nazwa | uppercase}}</h2>
             <h3>{{journey.docelowyKraj | uppercase}}</h3>
             <div class="date">{{journey.dataRozpoczecia + " - " + journey.dataZakonczenia}}</div>

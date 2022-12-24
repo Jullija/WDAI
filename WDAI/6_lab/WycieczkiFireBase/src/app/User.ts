@@ -10,10 +10,12 @@ export interface Roles {
     email: string;
     roles: Roles;
     uid: string;
+    //boughtJourneys: Set<string>;
   
     constructor(userData: any) {
       this.email = userData.email;
       this.uid = userData.uid;
+      // this.boughtJourneys = userData.boughtJourneys;
       if (userData.roles != null) {
         this.roles = userData.roles;
       } else

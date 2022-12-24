@@ -5,6 +5,7 @@ import { Wycieczka } from '../wycieczki/wycieczki.component';
 import { ControlConfig, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { FirebaseServiceService } from '../firebase-service.service';
 import { AuthenticationService } from '../authentication.service';
+import { historyTrip } from '../historia-zakupow/historia-zakupow.component';
 
 
 
@@ -54,6 +55,8 @@ export class SzczegolyWycieczkiComponent implements OnInit{
       bought: false
   }
 
+  historyTrips: historyTrip[] = [];
+
   ngOnInit(): void{
 
     this.route.params.subscribe(params => {
@@ -68,6 +71,19 @@ export class SzczegolyWycieczkiComponent implements OnInit{
       }
     })
 
+    this.fb.getHistory().subscribe((tmp: any[]) => {
+      for (let i of tmp){
+        if (this.auth.userData.uid == i.whoBought){
+          this.historyTrips.push({
+          info: i.info,
+          howManyBought: i.howManyBought,
+          whenBought: i.whenBought,
+          whoBought: i.whoBought
+        })
+        }
+        
+      }
+    })
 
     this.journey = this.basketInfoService.getJourneyById(this.idx);
 
@@ -107,6 +123,15 @@ export class SzczegolyWycieczkiComponent implements OnInit{
   addClick(journey: Wycieczka){
     this.fb.addClick(journey)
     this.basketInfoService.addClick(journey);
+  }
+
+  inHistory(){
+    for (let i of this.historyTrips){
+      if ((i.whoBought == this.auth.userData.uid && i.info.id == this.journey.id) || this.auth.userData.menager == true){
+        return true;
+      }
+    }
+    return false;
   }
 
 

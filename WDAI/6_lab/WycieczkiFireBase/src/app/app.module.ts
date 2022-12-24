@@ -36,6 +36,7 @@ import { AuthenticationService } from './authentication.service';
 import { MenuComponent } from './menu/menu.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 import { MenagerViewComponent } from './menager-view/menager-view.component';
+import { ModyfikacjaComponent } from './modyfikacja/modyfikacja.component';
 
 
 
@@ -48,7 +49,7 @@ import { MenagerViewComponent } from './menager-view/menager-view.component';
     KoszykComponent,
     OcenWycieczkiComponent,
     FiltrowanieComponent, 
-    WycieczkiPipe, PageNotFoundComponent, SzczegolyWycieczkiComponent, HistoriaZakupowComponent, LoginComponent, RegisterComponent, MenuComponent, AdminViewComponent, MenagerViewComponent
+    WycieczkiPipe, PageNotFoundComponent, SzczegolyWycieczkiComponent, HistoriaZakupowComponent, LoginComponent, RegisterComponent, MenuComponent, AdminViewComponent, MenagerViewComponent, ModyfikacjaComponent
   ],
   imports: [
     BrowserModule,

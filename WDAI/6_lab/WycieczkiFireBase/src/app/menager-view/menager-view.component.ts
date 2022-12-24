@@ -198,7 +198,7 @@ export class MenagerViewComponent implements OnInit{
   }
 
 
-}
+} 
 
 
 

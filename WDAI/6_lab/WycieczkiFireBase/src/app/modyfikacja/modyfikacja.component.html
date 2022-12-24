@@ -1,0 +1,34 @@
+<div class="journeysDiv"> 
+    <div class="journeyDiv">
+        <p>PRZED</p>
+        <img src="{{journey.zdjecie}}">
+        <h2>{{journey.nazwa | uppercase}}</h2>
+        <h3>{{journey.docelowyKraj | uppercase}}</h3>
+        <div class="date">{{journey.dataRozpoczecia + " - " + journey.dataZakonczenia}}</div>
+        <div class="price">Cena: {{journey.cenaJednostkowa + " " + journey.waluta}} 
+        <div class="newPriceContainer" *ngIf = "journey.waluta != 'zł';">Cena w złotówkach: {{journey.cenaWZlotowkach}} zł</div></div>
+        <div class="howMany" [ngStyle] = "{'color': journey.maxIloscMiejsc < 4 ? 'rgb(236, 61, 61)': 'black',
+                                          'font-size': journey.maxIloscMiejsc < 4 ? '25px': '15px'}"
+         *ngIf = "journey.maxIloscMiejsc != 0; else zeroPoints">Ilość miejsc: {{journey.maxIloscMiejsc}}</div>
+        <ng-template #zeroPoints>Brak dostępnych wycieczek</ng-template>
+        <p class="desc">{{journey.opis}}</p>
+    </div>
+
+    <div class="journeyDiv">
+        <p>PO</p>
+        <form [formGroup] = "modelForm" (ngSubmit)="onSubmit(modelForm)" class="formsik">
+            <label>Nazwa wycieczki: </label><input name="nazwa" formControlName="nazwa">
+            <label>Docelowy Kraj wycieczki: </label><input name="docelowyKraj" formControlName="docelowyKraj">
+            <label>Data rozpoczęcia: </label><input name="dataRozpoczecia" formControlName="dataRozpoczecia" placeholder="DD.MM.YYYY">
+            <label>Data zakończenia: </label><input name="dataZakonczenia" formControlName="dataZakonczenia" placeholder="DD.MM.YYYY">
+            <label>Cena wycieczki: </label><input type="number" name="cenaJednostkowa" formControlName="cenaJednostkowa">
+            <label>Waluta: </label><input name="waluta" formControlName="waluta" placeholder="zł/euro/dolar/jen/korona">
+            <label>Maksymalna ilość miejsc: </label><input type="number" name="maxIloscMiejsc" formControlName="maxIloscMiejsc" >
+            <label>Opis wycieczki: </label><input name="opis" formControlName="opis">
+            <label>Ścieżka do zdjęcia: </label><input name="zdjecie" formControlName="zdjecie">
+    
+            <button type="submit">Zmodyfikuj wycieczkę</button>
+            <!-- <p *ngIf="error">Wprowadź poprawne dane</p>
+            <p *ngIf="okay">Wycieczka została dodana</p> -->
+        </form>
+    </div>

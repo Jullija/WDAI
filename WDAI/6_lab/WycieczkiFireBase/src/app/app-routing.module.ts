@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { KoszykComponent } from './koszyk/koszyk.component';
 import { LoginComponent } from './login/login.component';
 import { MenagerViewComponent } from './menager-view/menager-view.component';
+import { ModyfikacjaComponent } from './modyfikacja/modyfikacja.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegisterComponent } from './register/register.component';
 import { SzczegolyWycieczkiComponent } from './szczegoly-wycieczki/szczegoly-wycieczki.component';
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'adminView', component: AdminViewComponent, canActivate:[AdminGuardGuard]},
   {path: 'menagerView', component: MenagerViewComponent, canActivate:[MenagerGuardGuard]},
+  {path: 'modify/:id', component: ModyfikacjaComponent, canActivate:[MenagerGuardGuard]},
   {path: '**', component: PageNotFoundComponent}
 ];
 

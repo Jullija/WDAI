@@ -194,6 +194,17 @@ export class FirebaseServiceService {
     return this.db.list('users').snapshotChanges();
   }
 
+  updateJourneyDetails(data: Wycieczka, index: number){
+    this.db.list('Wycieczki').snapshotChanges().pipe(first()).subscribe((items:any) => {
+      for (let i of items){
+        if (i.payload.val().id == index){
+          console.log(i.payload.val().id, index)
+          this.db.list('Wycieczki').update(i.payload.key, data);
+        }
+      }
+    })
+  }
+
 
 
 

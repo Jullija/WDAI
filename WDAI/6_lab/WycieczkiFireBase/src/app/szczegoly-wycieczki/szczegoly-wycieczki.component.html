@@ -11,7 +11,7 @@
          *ngIf = "journey.maxIloscMiejsc != 0; else zeroPoints">Ilość miejsc: {{journey.maxIloscMiejsc}}</div>
         <ng-template #zeroPoints>Brak dostępnych wycieczek</ng-template>
         <p class="desc">{{journey.opis}}</p>
-        <app-ocen-wycieczki [whichJourney] = "journey" *ngIf="(this.auth.userRoles.client == true && this.auth.userRoles.menager == false && this.auth.userRoles.banned == false) || (this.auth.userRoles.admin == true && this.auth.userRoles.banned == false)"></app-ocen-wycieczki>
+        <app-ocen-wycieczki [whichJourney] = "journey" *ngIf="(this.auth.userRoles.client == true && this.auth.userRoles.menager == false && this.auth.userRoles.banned == false && inHistory()) || (this.auth.userRoles.admin == true && this.auth.userRoles.banned == false && inHistory())"></app-ocen-wycieczki>
         <div class="addRemoveButtons">
             <button class="button1 add" (click)="addClick(journey)"
             [ngStyle] = "{'display': journey.maxIloscMiejsc == 0 ? 'none': 'block'}">+</button>
@@ -19,8 +19,8 @@
         </div>
     </div>
 
-    <h2 *ngIf="(this.auth.userRoles.menager == true && this.auth.userRoles.banned == false) || (this.auth.userRoles.client == true && this.auth.userRoles.banned == false)">Napisz opinię</h2>
-    <form **ngIf="(this.auth.userRoles.menager == true && this.auth.userRoles.banned == false) || (this.auth.userRoles.client == true && this.auth.userRoles.banned == false)" [formGroup]="modelForm" (ngSubmit)="onSubmit(modelForm)">
+    <h2 *ngIf="(this.auth.userRoles.menager == true && this.auth.userRoles.banned == false && inHistory()) || (this.auth.userRoles.client == true && this.auth.userRoles.banned == false && inHistory()) || this.auth.userRoles.menager == true">Napisz opinię</h2>
+    <form *ngIf="(this.auth.userRoles.menager == true && this.auth.userRoles.banned == false && inHistory()) || (this.auth.userRoles.client == true && this.auth.userRoles.banned == false && inHistory()) || this.auth.userRoles.menager == true" [formGroup]="modelForm" (ngSubmit)="onSubmit(modelForm)">
         <div><label>Nick:</label><input name="nick" formControlName="nick"></div>
         <div><label>Nazwa Wycieczki:</label><input name="name" formControlName="name"></div>
         <div><label>Treść opinii:</label><input name="opinion" formControlName="opinion" id="opinionInput"></div>
