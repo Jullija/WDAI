@@ -113,7 +113,7 @@ export class FirebaseServiceService {
   }
 
 
-   moveJourneyToHistory(journey: Wycieczka, howManyToBuy: number, datePaym: Date){
+   moveJourneyToHistory(journey: Wycieczka, howManyToBuy: number, datePaym: Date, uid: String){
     this.db.list('Wycieczki').snapshotChanges().pipe(first()).subscribe((items:any) => {
       for (let i of items){
         if (i.payload.val().id == journey.id){
@@ -126,7 +126,7 @@ export class FirebaseServiceService {
 
 
     this.db.list('Historia').snapshotChanges().pipe(first()).subscribe((items:any) => {
-      this.db.list("Historia").push({howManyBought: howManyToBuy, whenBought: datePaym.toString(), info: journey});
+      this.db.list("Historia").push({howManyBought: howManyToBuy, whenBought: datePaym.toString(), info: journey, whoBought: uid});
     })
    }
 
@@ -198,7 +198,6 @@ export class FirebaseServiceService {
     this.db.list('Wycieczki').snapshotChanges().pipe(first()).subscribe((items:any) => {
       for (let i of items){
         if (i.payload.val().id == index){
-          console.log(i.payload.val().id, index)
           this.db.list('Wycieczki').update(i.payload.key, data);
         }
       }

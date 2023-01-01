@@ -37,7 +37,7 @@ export class KoszykComponent implements OnInit {
     let reservationsBeforeBuying = this.basketInfoService.howManyReservations();
     this.basketInfoService.setHowManyReservations(reservationsBeforeBuying - howManyToBuy);
     //update maxPeople in journey
-    this.db.moveJourneyToHistory(journeyToBuy, howManyToBuy, dateOfPayment);
+    this.db.moveJourneyToHistory(journeyToBuy, howManyToBuy, dateOfPayment, this.auth.userData.uid);
     //this.auth.userData.boughtJourneys.add(journeyToBuy);
 
 

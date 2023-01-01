@@ -1,0 +1,19 @@
+Admin:
+email: admin@gmail.com
+hasło: admin123
+
+Menager:
+email: menager@gmail.com
+hasło: menager
+
+Użytkownik:
+email: test@gmail.com
+hasło: testtest
+
+
+{
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null",
+  }
+}

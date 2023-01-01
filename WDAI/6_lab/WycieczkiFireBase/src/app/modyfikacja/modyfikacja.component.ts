@@ -203,15 +203,15 @@ export class ModyfikacjaComponent implements OnInit{
       zdjecie: data.get("zdjecie").value,
       cenaWZlotowkach: data.get("cenaJednostkowa").value,
       maxIloscMiejsc2: data.get("maxIloscMiejsc").value,
-      wyprzedana: false,
-      rating: 0,
-      sumRating: 0,
-      howManyRatings: 0,
-      bought: false
+      wyprzedana: this.journey.wyprzedana,
+      rating: this.journey.rating,
+      sumRating: this.journey.sumRating,
+      howManyRatings: this.journey.howManyRatings,
+      bought: this.journey.bought
 
     }
-    console.log(nowaWycieczka)
     this.fb.updateJourneyDetails(nowaWycieczka, this.idx);
+    data.reset();
   }
     
 
